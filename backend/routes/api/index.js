@@ -36,13 +36,13 @@ router.get(
     return res.json(req.user);
   }
 );
-*/
+
 
 //POST /api/test
 router.post("/test", function (req, res) {
     res.json({ requestBody: req.body });
 });
-
+*/
 
 router.use('/session', sessionRouter);
 
