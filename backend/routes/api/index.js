@@ -38,15 +38,14 @@ router.get(
 );
 */
 
-
-router.use('/session', sessionRouter);
-
-router.use('/users', usersRouter);
-
-
 //POST /api/test
 router.post("/test", function (req, res) {
     res.json({ requestBody: req.body });
 });
+
+
+router.use('/session', sessionRouter);
+
+router.use('/users', usersRouter);
 
 module.exports = router;
