@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
-
-function ProfileButton() {
+import "./ProfileButton.css";
+function ProfileButton({sidebarOpen}) {
     const user = useSelector((state) => state.session.user);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -29,22 +29,53 @@ function ProfileButton() {
     const logout = async (e) => {
         e.preventDefault();
         await dispatch(sessionActions.logout());
-        history.replace("/")
+        history.replace("/");
     };
 
     return (
         <>
-            <button onClick={openMenu}>
-                <i className="fas fa-user-circle" />
-            </button>
+            <div className='account-info-div user-li profile-name-div' onClick={openMenu}>
+                {/* <i className="fas fa-user-circle" /> */}
+                <img
+                                className="account-icon"
+                                alt="avatar"
+                                src="/images/avatar-placeholder.svg"
+                            />
+                            <span className="username-span" style={sidebarOpen ? { display: 'flex'} : {display: 'none'}}>{user.email}</span>
+                            <img
+                                className="user-li"
+                                alt="down-arrow"
+                                src="/images/down-arrow.svg"
+                                style={sidebarOpen ? { display: 'flex'} : {display: 'none'}}
+                            />
+            </div>
             {showMenu && (
+                // <div className="profile-dropdown">
+
                 <ul className="profile-dropdown">
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
+                    <div className="account-info-div">
+                        <span className="user-li">ACCOUNT</span>
+                        <li className="user-li">
+                            <img
+                                className="account-icon"
+                                alt="checkmark"
+                                src="/images/checkmark.svg"
+                            />
+                            <img
+                                className="account-icon"
+                                alt="avatar"
+                                src="/images/avatar-placeholder.svg"
+                            />
+                            <span className="username-span">{user.email}</span>
+                        </li>
+                    </div>
+                    <li className="spacer"></li>
                     <li>
-                        <button onClick={logout}>Log Out</button>
+                    <span className="logout-btn" onClick={logout}>Sign out {user.email}</span>
+
                     </li>
                 </ul>
+                // </div>
             )}
         </>
     );

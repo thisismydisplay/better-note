@@ -1,0 +1,97 @@
+.profile-dropdown {
+    transition: all 0.2s linear;
+
+    width: 352px;
+    height: 140px;
+    background-color: rgb(51, 51, 51);
+    color: rgb(166, 166, 166);
+    position: absolute;
+    list-style: none;
+    border-bottom-color: rgb(64, 64, 64);
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+margin: 0px;
+padding: 0px;
+}
+
+.username {
+    text-overflow: ellipsis;
+}
+
+.profile-name-div {
+    color: rgb(204, 204, 204);
+}
+
+.profile-name-div:hover {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+
+}
+.spacer {
+    border-bottom-color: rgb(64, 64, 64);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    padding: 8px 8px 0px 0px;
+}
+
+.user-li, .logout-btn {
+    margin: 0px 20px;
+    padding: 0px 0px;
+}
+
+.logout-btn {
+    cursor: pointer;
+
+/* box-sizing: border-box; */
+color: rgb(230, 230, 230);
+}
+
+.user-li {
+    display: flex;
+    align-items: center;
+    padding: 4px 0px;
+}
+
+img {
+    padding: 6px;
+    padding-left: 0px;
+}
+.logout-btn {
+
+    display: flex;
+    font-family: "system-ui", "Segoe UI", "Roboto", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-stretch: 100%;
+    font-style: normal;
+
+    font-weight: 500;
+    height: 17px;
+    line-height: normal;
+    margin: 0px;
+    max-width: 272.973px;
+    outline-style: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 14px 20px;
+
+    text-align: left;
+    text-decoration-thickness: auto;
+    text-overflow: ellipsis;
+    text-rendering: optimizelegibility;
+    /* text-size-adjust: 100%; */
+    /* white-space: nowrap; */
+    width: 272.969px;
+}
+
+.account-info-div {
+    padding-top: 12px;
+}
