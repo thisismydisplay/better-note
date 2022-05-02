@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const notebooksRouter = require('./notebooks.js');
 
 /************** TESTING IMPORTS *************/
 // const asyncHandler = require('express-async-handler');
@@ -47,5 +48,7 @@ router.post("/test", function (req, res) {
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
+
+router.use('/notebooks', notebooksRouter)
 
 module.exports = router;
