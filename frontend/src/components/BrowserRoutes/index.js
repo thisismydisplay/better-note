@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
+import  NotebooksPage  from '../NotebooksPage'
 
 // import DashboardPage from "../DashboardPage";
 // import NotesPage from "../NotesPage";
@@ -15,9 +16,9 @@ import HomeNavigation from "../HomeNavigation";
 function NotesPage() {
     return <div>Notes</div>;
 }
-function NotebooksPage() {
-    return <div>Notebooks</div>;
-}
+// function NotebooksPage() {
+//     return <div>Notebooks</div>;
+// }
 function TagsPage() {
     return <div>Tags</div>;
 }
