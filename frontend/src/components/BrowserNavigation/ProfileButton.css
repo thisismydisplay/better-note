@@ -5,7 +5,8 @@
     height: 140px;
     background-color: rgb(51, 51, 51);
     color: rgb(166, 166, 166);
-    position: absolute;
+    position: relative;
+    z-index: 2;
     list-style: none;
     border-bottom-color: rgb(64, 64, 64);
 border-bottom-left-radius: 3px;
