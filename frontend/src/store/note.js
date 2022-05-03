@@ -1,14 +1,12 @@
-// import { LOAD_NOTES, REMOVE_ITEM, ADD_ITEM } from './items';
-// //!!START SILENT
-// import note from '../../../backend/db/models/note';
 import { csrfFetch } from './csrf';
 import { ValidationError } from '../utils/validationError';
 
+
 //!!END
 
-const LOAD = 'notebooks/LOAD';
+const LOAD = 'notes/LOAD';
 
-const ADD_ONE = 'notebooks/ADD_ONE';
+const ADD_ONE = 'notes/ADD_ONE';
 // const REMOVE = 'notebooks/REMOVE'
 
 const load = list => ({
@@ -17,14 +15,14 @@ const load = list => ({
 });
 
 
-const addOneNotebook = notebook => ({
+const addOneNote = note => ({
   type: ADD_ONE,
-  notebook
+  note
 });
 
-export const getNotebooks = (userId) => async dispatch => {
+export const getNotes = (userId) => async dispatch => {
   console.log('hi!')
-    const response = await csrfFetch(`/api/notebooks/${userId}`);
+    const response = await csrfFetch(`/api/notes/${userId}`);
     console.log(response)
   if (response.ok) {
     const list = await response.json();
@@ -42,18 +40,18 @@ export const getNotebooks = (userId) => async dispatch => {
 // };
 
 //!!START SILENT
-export const getOneNotebook = id => async dispatch => {
-  const response = await csrfFetch(`/api/notebooks/${id}`);
+export const getOneNote = id => async dispatch => {
+  const response = await csrfFetch(`/api/notes/${id}`);
     console.log(response)
   if (response.ok) {
-    const notebook = await response.json();
-    dispatch(addOneNotebook(notebook));
+    const note = await response.json();
+    dispatch(addOneNote(note));
   }
 };
 
-export const createNotebook = data => async dispatch => {
+export const createNote = data => async dispatch => {
   try {
-    const response = await csrfFetch(`/api/notebooks`, {
+    const response = await csrfFetch(`/api/notes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -83,17 +81,17 @@ export const createNotebook = data => async dispatch => {
       }
     }
 
-    const notebook = await response.json();
-    dispatch(addOneNotebook(notebook));
-    return notebook;
+    const note = await response.json();
+    dispatch(addOneNote(note));
+    return note;
   }
   catch (error) {
     throw error;
   }
 };
 
-export const updateNotebook = data => async dispatch => {
-  const response = await csrfFetch(`/api/notebooks/${data.id}`, {
+export const updateNote = data => async dispatch => {
+  const response = await csrfFetch(`/api/notes/${data.id}`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json'
@@ -102,9 +100,9 @@ export const updateNotebook = data => async dispatch => {
   });
 
   if (response.ok) {
-    const notebook = await response.json();
-    dispatch(addOneNotebook(notebook));
-    return notebook;
+    const note = await response.json();
+    dispatch(addOneNote(note));
+    return note;
   }
 };
 
@@ -120,7 +118,7 @@ const initialState = {
 //   }).map((pokemon) => pokemon.id);
 // };
 
-const notebookReducer = (state = initialState, action) => {
+const noteReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
         console.log('inside reducer')
@@ -139,7 +137,7 @@ const notebookReducer = (state = initialState, action) => {
     //     types: action.types
     //   };
     case ADD_ONE:
-      return { ...state, list: [...state.list, action.notebook]}
+      return { ...state, list: [...state.list, action.note]}
 
     //   if (!state[action.notebook.id]) {
     //     const newState = {
@@ -190,4 +188,4 @@ const notebookReducer = (state = initialState, action) => {
   }
 }
 
-export default notebookReducer;
+export default noteReducer;
