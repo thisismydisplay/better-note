@@ -29,7 +29,7 @@ module.exports = {
                 },
                 {
                     userId: 1,
-
+                    notebookId: 1,
                     title: "This is a note without a notebook",
                     content: "It should be fine without a notebook",
                     createdAt: new Date(),
@@ -45,9 +45,9 @@ module.exports = {
                 },
                 {
                     userId: 2,
-
+                    notebookId: 3,
                     title: "This is a note for the second user",
-                    content: "It does not have a notebookId.",
+                    content: "It does have a notebookId.",
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },

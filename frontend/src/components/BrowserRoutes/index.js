@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import  NotebooksPage  from '../NotebooksPage'
+import  DashboardPage  from '../DashboardPage'
 import DashboardNotesContainer from "../DashboardNotesContainer";
 import { setFirstNotebook } from "../../store/notebook";
+import { getNotes } from "../../store/note";
 // import DashboardPage from "../DashboardPage";
 // import NotesPage from "../NotesPage";
 // import TagsPage from "../TagsPage";
@@ -23,27 +25,27 @@ import HomeNavigation from "../HomeNavigation";
 function TagsPage() {
     return <div>Tags</div>;
 }
-function DashboardPage() {
-    return (
-        <div className="dashboard-container">
-            <div>
-                <img
-                    className="dashboard-background"
-                    // id="notes-btn"
+// function DashboardPage() {
+//     return (
+//         <div className="dashboard-container">
+//             <div>
+//                 <img
+//                     className="dashboard-background"
+//                     // id="notes-btn"
 
-                    alt="background"
-                    src="
-                        /images/dashboard-background.jpg"
-                />
-            </div>
-            <div className="dashboard-header">
-                <span className="welcome-span">Good morning/Evening</span>
-                <span className="date-span">DATE</span>
-            </div>
-            <DashboardNotesContainer />
-        </div>
-    );
-}
+//                     alt="background"
+//                     src="
+//                         /images/dashboard-background.jpg"
+//                 />
+//             </div>
+//             <div className="dashboard-header">
+//                 <span className="welcome-span">Good morning/Evening</span>
+//                 <span className="date-span">DATE</span>
+//             </div>
+//             <DashboardNotesContainer />
+//         </div>
+//     );
+// }
 
 
 
@@ -55,6 +57,10 @@ function BrowserRoutes() {
     useEffect(() => {
         console.log('use effect')
         dispatch(setFirstNotebook(userId));
+    }, [dispatch]);
+    useEffect(() => {
+        console.log('use effect')
+        dispatch(getNotes(userId));
     }, [dispatch]);
 
     const [showBrowserNav, setShowBrowserNav] = useState(false);

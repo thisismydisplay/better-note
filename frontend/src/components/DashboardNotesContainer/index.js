@@ -23,6 +23,7 @@ function DashboardNotesContainer() {
         dispatch(getNotes(userId));
     }, [dispatch]);
 
+
     console.log("notes", notes);
     if (!notes) {
         return null;
@@ -73,14 +74,14 @@ function DashboardNotesContainer() {
             </div>
             <div className="dashboard-notes-list">
                 {notes?.map((note) => (
-                        <NavLink
-                            key={note.id}
-                            exact
-                            to={`/browser/notes/${note.id}`}
-                        >
-                            <span>test</span>
-                            <NoteDetail note={note} />;
-                        </NavLink>
+                        // <NavLink
+                        //     key={note.id}
+                        //     exact
+                        //     to={`/browser/notes/${note.id}`}
+                        // >
+                            
+                            <NoteDetail note={note} />
+                        // </NavLink>
                 ))}
             </div>
         </div>

@@ -53,23 +53,15 @@ function NotesList() {
                     <span>Recent</span>
                     <span>Suggested</span>
                 </div>
-                <div className="placeholder-for-menu-options">
-                    </div>
-                    <div className="note-list">
+                <div className="placeholder-for-menu-options"></div>
+                <div className="note-list">
                     {notes?.map((note) => (
-                    <NavLink
-                        key={note.id}
-                        exact
-                        to={`/browser/notes/${note.id}`}
-                    >
-                        <span>test</span>
-                        <NoteDetail note={note} />;
-                    </NavLink>
-                ))}
+                        <div>
+                            <NoteDetail note={note} />
+                        </div>
+                    ))}
                 </div>
-
             </div>
-
         </div>
     );
     //             <span>Notebooks</span>

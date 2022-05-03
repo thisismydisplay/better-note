@@ -12,11 +12,14 @@ module.exports = {
         allowNull: false,
 
         type: Sequelize.INTEGER,
-        references: {model: "Users"}
+        references: {model: "Users"},
+
+
       },
       notebookId: {
         type: Sequelize.INTEGER,
-        references: {model: "Notebooks"}
+        references: {model: "Notebooks"},
+        onDelete: 'CASCADE'
       },
       title: {
         type: Sequelize.STRING

@@ -5,7 +5,11 @@ import { NavLink, Route, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getNotebooks } from "../../store/notebook";
 import CreateNotebookForm from "../CreateNotebookForm";
-import NotebookDetail from '../NotebookDetail'
+import NotebookDetail from "../NotebookDetail";
+import NotebooksList from "../NotebooksList";
+import NotebooksListHeader from "../NotebooksListHeader";
+import NotebooksPageHeader from "../NotebooksPageHeader";
+
 // import notebook from "../../../../backend/db/models/notebook";
 //!!END
 //!!ADD
@@ -20,14 +24,14 @@ function NotebooksPage() {
     // console.log(state)
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
-    const notebooks = useSelector((state)=> {
-        return state.notebook.list
+    const notebooks = useSelector((state) => {
+        return state.notebook.list;
     });
-    console.log(notebooks)
+    console.log(notebooks);
     const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
-        console.log('use effect')
+        console.log("use effect");
         dispatch(getNotebooks(userId));
     }, [dispatch]);
 
@@ -36,37 +40,26 @@ function NotebooksPage() {
     }
     return (
         <div>
-            <span>Notebooks</span>
-            <div hidden={showForm} onClick={() => setShowForm(true)}>Create Notebook</div>
-            <div className="notebook-list">
-            {notebooks?.map((notebook) => {
-                return (
-                    <NavLink key={notebook.id} to={`/notebooks/${notebook.id}`}>
-                        <div
-                            className={
-                                `notebook-${notebook.id}`
-                            }
-                        >
-                            <div>
-                                <div className="title">{notebook.title}</div>
-                                <div className="createdAt">
-                                    {notebook.createdAt}{" "}
-                                    {notebook.updatedAt && "Updated"}
-                                </div>
-                            </div>
-                        </div>
-                    </NavLink>
-                );
-            })}
+            <div>
+                <span>Notebooks</span>
+                <span>Search Placeholder</span>
             </div>
+            <div hidden={showForm} onClick={() => setShowForm(true)}>
+                Create Notebook
+            </div>
+            <NotebooksPageHeader />
+
+            <NotebooksListHeader notebooks={notebooks}/>
+
+            <NotebooksList />
+
             {showForm ? (
-        <CreateNotebookForm hideForm={() => setShowForm(false)} />
-      ) : (
-          null
-        // <Route path="/notebooks/:notebookId">
-        //   <NotebookDetail />
-        // </Route>
-      )}
+                <CreateNotebookForm hideForm={() => setShowForm(false)} />
+            ) : null
+            // <Route path="/notebooks/:notebookId">
+            //   <NotebookDetail />
+            // </Route>
+            }
         </div>
     );
 }

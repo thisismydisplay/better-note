@@ -13,7 +13,7 @@ module.exports = {
             [
                 {
                     userId: 1,
-                    title: "This is my very first notebook",
+                    title: "First Notebook",
                     createdAt: randomDate(
                         new Date(2018, 0, 1),
                         new Date(2020, 2, 30)
@@ -23,6 +23,15 @@ module.exports = {
                 {
                     userId: 1,
                     title: "This is my second notebook",
+                    createdAt: randomDate(
+                        new Date(2021, 0, 1),
+                        new Date(2022, 2, 30)
+                    ),
+                    updatedAt: randomDate(new Date(2022, 3, 1), new Date()),
+                },
+                {
+                    userId: 2,
+                    title: "First Notebook",
                     createdAt: randomDate(
                         new Date(2021, 0, 1),
                         new Date(2022, 2, 30)
