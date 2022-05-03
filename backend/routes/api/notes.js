@@ -25,7 +25,7 @@ router.post(
         const note = {title, content, userId, notebookId};
         if (!title) note.title = 'untitled';
         await Note.create(note)
-        return res.json(`${notebook.title} successfully created`);
+        return res.json(`${note.title} successfully created`);
         // return res.redirect(`/api/notebooks`);
     })
 );

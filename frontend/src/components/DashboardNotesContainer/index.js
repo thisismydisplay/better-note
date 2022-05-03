@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
-import DashboardNote from "../DashboardNote";
+import NoteDetail from "../NoteDetail";
 import { getNotes } from "../../store/note";
 // import note from "../../../../backend/db/models/note";
 
@@ -79,7 +79,7 @@ function DashboardNotesContainer() {
                             to={`/browser/notes/${note.id}`}
                         >
                             <span>test</span>
-                            <DashboardNote note={note} />;
+                            <NoteDetail note={note} />;
                         </NavLink>
                 ))}
             </div>

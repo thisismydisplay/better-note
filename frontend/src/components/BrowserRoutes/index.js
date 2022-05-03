@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import  NotebooksPage  from '../NotebooksPage'
 import DashboardNotesContainer from "../DashboardNotesContainer";
-
+import { setFirstNotebook } from "../../store/notebook";
 // import DashboardPage from "../DashboardPage";
 // import NotesPage from "../NotesPage";
 // import TagsPage from "../TagsPage";
 // import NotebooksPage from "../NotebooksPage";
 import BrowserNavigation from "../BrowserNavigation";
 import "./BrowserRoutes.css";
-
+import NotesPage from "../NotesPage"
 // import * as sessionActions from "./store/session";
 import HomeNavigation from "../HomeNavigation";
 
-function NotesPage() {
-    return <div>Notes</div>;
-}
-// function NotebooksPage() {
-//     return <div>Notebooks</div>;
+// function NotesPage() {
+//     return <div>Notes</div>;
 // }
+// // function NotebooksPage() {
+// //     return <div>Notebooks</div>;
+// // }
 function TagsPage() {
     return <div>Tags</div>;
 }
@@ -49,6 +49,14 @@ function DashboardPage() {
 
 
 function BrowserRoutes() {
+    const dispatch = useDispatch();
+    const sessionUser = useSelector((state) => state.session.user);
+    const userId = sessionUser.id;
+    useEffect(() => {
+        console.log('use effect')
+        dispatch(setFirstNotebook(userId));
+    }, [dispatch]);
+
     const [showBrowserNav, setShowBrowserNav] = useState(false);
     return (
         //conditionally render dashboard, notebooks, notes, or tags

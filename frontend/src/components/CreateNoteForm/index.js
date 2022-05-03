@@ -1,45 +1,50 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createNotebook, getNotebooks, setFirstNotebook  } from '../../store/notebook';
+
+import { createNote, getNotes  } from '../../store/note';
+import { setFirstNotebook  } from '../../store/notebook';
 import { ValidationError } from '../../utils/validationError';
 import ErrorMessage from '../ErrorMessage';
 
-const CreateNotebookForm = ({ hideForm }) => {
+const CreateNoteForm = ({ hideForm }) => {
+
   const [errorMessages, setErrorMessages] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState('untitled');
+  const [content, setContent] = useState('');
   const sessionUser = useSelector((state) => state.session.user);
   const userId = sessionUser.id;
-
+  const firstNotebook = useSelector((state) => state.notebook.firstNotebook);
+  const notebookId = firstNotebook.id;
 
   const updateTitle = (e) => setTitle(e.target.value);
+  const updateContent = (e) => setContent(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
       title,
+      content,
       userId,
+      notebookId
     };
 
-    let createdNotebook;
-    //!!START SILENT
+    let createdNote;
     try {
-      createdNotebook = await dispatch(createNotebook(payload));
+      createdNote = await dispatch(createNote(payload));
     } catch (error) {
       if (error instanceof ValidationError) setErrorMessages(error.errors);
       // If error is not a ValidationError, add slice at the end to remove extra
       // "Error: "
       else setErrorMessages({ overall: error.toString().slice(7) })
     }
-    //!!END
-    if (createdNotebook) {
-      //!!START SILENT
+    if (createdNote) {
       setErrorMessages({});
-      //!!END
-      history.push(`/browser/notebooks/`);
-    dispatch(getNotebooks(userId));
+
+    //   history.push(`/browser/notes/`);
+    dispatch(getNotes(userId));
       hideForm();
     }
   };
@@ -51,26 +56,32 @@ const CreateNotebookForm = ({ hideForm }) => {
   };
 
   return (
-    <section className="new-form-holder centered middled">
+    <section className="new-note-form-holder not-fullscreen">
       <ErrorMessage message={errorMessages.overall} />
-      <form className="create-notebook-form" onSubmit={handleSubmit}>
+      <form className="create-note-form" onSubmit={handleSubmit}>
 
         <input
           type="text"
           placeholder="Untitled"
-          required
+
           value={title}
           onChange={updateTitle} />
         {/*!!START SILENT */}
         <ErrorMessage label={"Title"} message={errorMessages.title} />
         {/*!!END */}
-
+        <textarea
+            placeholder='Start writing'
+            value={content}
+            onChange={updateContent}
+        />
         {/*!!END */}
-        <button type="submit">Create new notebook</button>
+        <ErrorMessage label={"Content"} message={errorMessages.content} />
+
+        <button type="submit">Create new note</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
       </form>
     </section>
   );
 };
 
-export default CreateNotebookForm;
+export default CreateNoteForm;

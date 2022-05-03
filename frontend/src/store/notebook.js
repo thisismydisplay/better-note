@@ -5,7 +5,7 @@ import { csrfFetch } from './csrf';
 import { ValidationError } from '../utils/validationError';
 
 //!!END
-
+const SET_FIRST = 'notebooks/SET_FIRST'
 const LOAD = 'notebooks/LOAD';
 
 const ADD_ONE = 'notebooks/ADD_ONE';
@@ -15,6 +15,11 @@ const load = list => ({
   type: LOAD,
   list
 });
+
+const setFirst = notebook => ({
+    type: SET_FIRST,
+    notebook
+})
 
 
 const addOneNotebook = notebook => ({
@@ -50,6 +55,14 @@ export const getOneNotebook = id => async dispatch => {
     dispatch(addOneNotebook(notebook));
   }
 };
+
+export const setFirstNotebook = id => async dispatch => {
+    const response = await csrfFetch(`/api/notebooks/${id}/first`)
+    if (response.ok) {
+        const firstNotebook = await response.json();
+        dispatch(setFirst(firstNotebook))
+    }
+}
 
 export const createNotebook = data => async dispatch => {
   try {
@@ -111,7 +124,7 @@ export const updateNotebook = data => async dispatch => {
 //!!END
 const initialState = {
   list: [],
-
+  firstNotebook: [],
 };
 
 // const sortList = (list) => {
@@ -138,6 +151,17 @@ const notebookReducer = (state = initialState, action) => {
     //     ...state,
     //     types: action.types
     //   };
+    case SET_FIRST:
+        console.log('inside reducer')
+    //   const allNotebooks = {};
+    //   action.list?.forEach(notebook => {
+    //     allNotebooks[notebook.id] = notebook;
+    //   });
+      return {
+        // ...allNotebooks,
+        ...state,
+        firstNotebook: action.notebook
+      };
     case ADD_ONE:
       return { ...state, list: [...state.list, action.notebook]}
 
