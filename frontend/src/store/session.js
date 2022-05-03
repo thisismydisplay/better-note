@@ -1,5 +1,5 @@
 import { csrfFetch } from './csrf';
-
+// import { createNotebook } from './notebook';
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
@@ -46,6 +46,7 @@ export const restoreUser = () => async dispatch => {
         email,
         password,
       }),
+
     });
     const data = await response.json();
     dispatch(setUser(data.user));

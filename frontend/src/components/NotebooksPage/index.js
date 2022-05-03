@@ -62,9 +62,10 @@ function NotebooksPage() {
             {showForm ? (
         <CreateNotebookForm hideForm={() => setShowForm(false)} />
       ) : (
-        <Route path="/notebooks/:notebookId">
-          <NotebookDetail />
-        </Route>
+          null
+        // <Route path="/notebooks/:notebookId">
+        //   <NotebookDetail />
+        // </Route>
       )}
         </div>
     );

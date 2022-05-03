@@ -14,6 +14,15 @@ router.get('/:id', asyncHandler(async function(req, res) {
   return res.json(notebooks);
 }));
 
+router.get('/:id/first', asyncHandler(async function(req, res) {
+    const {userId} = req.body;
+  let firstNotebook = await Notebook.findOne({where: {userId: req.params.id, title: 'First Notebook'}});
+    if (!firstNotebook) firstNotebook = await Notebook.create({userId: req.params.id, title: 'First Notebook'})
+  console.log('insideFetch')
+  console.log('firstNotebook: ', firstNotebook)
+  return res.json(firstNotebook);
+}));
+
 router.post(
   '/',
   asyncHandler(async function (req, res) {

@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 // import NotebooksPage from "../NotebooksPage";
 import {dateAdjustLogic} from "../../utils/dateAdjust";
 
-function DashboardNote({ note }) {
+function NoteDetail({ note }) {
     return (
         <NavLink key={note.id} to={`/notes/${note.id}`}>
             <div className={`note-${note.id} dashboard-note`}>
@@ -14,7 +14,8 @@ function DashboardNote({ note }) {
                     <div className="title">{note.title}</div>
                     <div className="content">{note.content}</div>
                     <div className="updatedAt">
-                        {`${dateAdjustLogic(note)}`}
+                        {/* {`${dateAdjustLogic(note)}`} */}
+                        {note.updatedAt}
                     </div>
                 </div>
             </div>
@@ -22,4 +23,4 @@ function DashboardNote({ note }) {
     );
 }
 
-export default DashboardNote;
+export default NoteDetail;
