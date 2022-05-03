@@ -6,8 +6,9 @@ const {Notebook} = require('../../db/models');
 
 const router = express.Router();
 
-router.get('/', asyncHandler(async function(_req, res) {
-  const notebooks = await Notebook.findAll();
+router.get('/:id', asyncHandler(async function(req, res) {
+    const {userId} = req.body;
+  const notebooks = await Notebook.findAll({where: {userId: req.params.id}});
   console.log('insideFetch')
   console.log('notebooks: ', notebooks)
   return res.json(notebooks);

@@ -18,6 +18,8 @@ function NotebooksPage() {
     // const { notebookId } = useParams();
     // console.log( notebookId)
     // console.log(state)
+    const sessionUser = useSelector((state) => state.session.user);
+    const userId = sessionUser.id;
     const notebooks = useSelector((state)=> {
         return state.notebook.list
     });
@@ -26,7 +28,7 @@ function NotebooksPage() {
 
     useEffect(() => {
         console.log('use effect')
-        dispatch(getNotebooks());
+        dispatch(getNotebooks(userId));
     }, [dispatch]);
 
     if (!notebooks) {
