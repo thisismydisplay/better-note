@@ -7,14 +7,18 @@ import { ValidationError } from '../utils/validationError';
 const LOAD = 'notes/LOAD';
 
 const ADD_ONE = 'notes/ADD_ONE';
-// const REMOVE = 'notebooks/REMOVE'
+const DELETE = 'notes/DELETE'
+
 
 const load = list => ({
   type: LOAD,
   list
 });
 
-
+const deleteOne = noteId => ({
+    type: DELETE,
+    noteId
+})
 const addOneNote = note => ({
   type: ADD_ONE,
   note
@@ -30,16 +34,7 @@ export const getNotes = (userId) => async dispatch => {
   }
 };
 
-// export const getPokemonTypes = () => async dispatch => {
-//   const response = await csrfFetch(`/api/pokemon/types`);
 
-//   if (response.ok) {
-//     const types = await response.json();
-//     dispatch(loadTypes(types));
-//   }
-// };
-
-//!!START SILENT
 export const getOneNote = id => async dispatch => {
   const response = await csrfFetch(`/api/notes/${id}`);
     console.log(response)
@@ -105,6 +100,21 @@ export const updateNote = data => async dispatch => {
     return note;
   }
 };
+export const deleteNote = id => async dispatch => {
+    const response = await csrfFetch(`/api/notes/${id}`, {
+      method: 'DELETE',
+      // headers: {
+      //   'Content-Type': 'application/json'
+      // },
+      // body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+      const message = await response.json();
+      dispatch(deleteOne(id));
+          return message;
+    }
+  };
 
 //!!END
 const initialState = {
@@ -139,50 +149,10 @@ const noteReducer = (state = initialState, action) => {
     case ADD_ONE:
       return { ...state, list: [...state.list, action.note]}
 
-    //   if (!state[action.notebook.id]) {
-    //     const newState = {
-    //       ...state,
-    //       [action.notebook.id]: action.notebook
-    //     };
-    //     const notebookList = newState.list.map(id => newState[id]);
-    //     notebookList.push(action.notebook);
-    //     newState.list = notebookList;
-    //     return newState;
-    //   }
-    //   return {
-    //     ...state,
-    //     [action.notebook.id]: {
-    //       ...state[action.notebook.id],
-    //       ...action.notebook
-    //     }
-    //   };
-    // case LOAD_NOTES:
-    //   return {
-    //     ...state,
-    //     [action.notebookId]: {
-    //       ...state[action.notebookId],
-    //       notes: action.notes.map(note => note.id)
-    //     }
-    //   };
-    // case REMOVE_ITEM:
-    //   return {
-    //     ...state,
-    //     [action.noteId]: {
-    //       ...state[action.noteId],
-    //       notes: state[action.noteId].items.filter(
-    //         (itemId) => itemId !== action.itemId
-    //       )
-    //     }
-    //   };
-    // case ADD_ITEM:
-    //   console.log(action.item);
-    //   return {
-    //     ...state,
-    //     [action.item.pokemonId]: {
-    //       ...state[action.item.pokemonId],
-    //       items: [...state[action.item.pokemonId].items, action.item.id]
-    //     }
-    //   };
+      case DELETE:
+        const newState = {...state};
+        delete newState[action.noteId]
+        return newState;
     default:
       return state;
   }

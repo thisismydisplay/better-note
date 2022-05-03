@@ -4,6 +4,7 @@ import { NavLink, Route, useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getNotes } from "../../store/note";
+import { setFirstNotebook } from "../../store/notebook";
 import CreateNoteForm from "../CreateNoteForm";
 import NotesList from '../NotesList'
 // import notebook from "../../../../backend/db/models/notebook";
@@ -20,6 +21,11 @@ function NotesPage() {
     // console.log(state)
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
+
+    useEffect(() => {
+        console.log('use effect')
+        dispatch(setFirstNotebook(userId));
+    }, [dispatch]);
     const notes = useSelector((state)=> {
         return state.note.list
     });

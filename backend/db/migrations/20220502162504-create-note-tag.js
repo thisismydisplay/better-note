@@ -12,12 +12,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: "Notes"},
+        onDelete: 'CASCADE'
+
 
       },
       tagId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: "Tags"},
+        onDelete: 'CASCADE'
+
 
       },
       createdAt: {
