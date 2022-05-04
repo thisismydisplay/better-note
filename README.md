@@ -1,6 +1,6 @@
 # better-note
 
-<h1 align="center">:pencil2: BetterNote :notebook_with_decorative_cover:</h1>
+<h1 align="center">:pencil2: :notebook_with_decorative_cover: BetterNote :notebook_with_decorative_cover: :pencil2:</h1>
 
 <h3 align="center"> :books: https://better-note-app.herokuapp.com :books:</h3>
 
