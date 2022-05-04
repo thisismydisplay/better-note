@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getNotes } from "../../store/note";
 import { setFirstNotebook } from "../../store/notebook";
 import CreateNoteForm from "../CreateNoteForm";
-import NotesList from '../NotesList'
+import NotesList from "../NotesList";
+import EditNote from "../EditNote";
 // import notebook from "../../../../backend/db/models/notebook";
 //!!END
 //!!ADD
@@ -23,65 +24,48 @@ function NotesPage() {
     const userId = sessionUser.id;
 
     useEffect(() => {
-        console.log('use effect')
+        console.log("use effect");
         dispatch(setFirstNotebook(userId));
     }, [dispatch]);
-    const notes = useSelector((state)=> {
-        return state.note.list
-    });
-    console.log(notes)
-    const [showNotes, setShowNotes] = useState(false);
+
+    // const [showNotes, setShowNotes] = useState(false);
 
     useEffect(() => {
-        console.log('use effect')
+        console.log("use effect");
         dispatch(getNotes(userId));
     }, [dispatch]);
 
-    if (!notes) {
-        return null;
+    const notes = useSelector((state) => {
+        return state.note.list;
+    });
+    const note = useSelector((state) => {
+        return state.note.list[0];
+    });
+    // const [currentNote, setCurrentNote] = useState(note);
+
+    // useEffect(()=>{
+    //     setCurrentNote(note)
+    // })
+
+    if (!notes || !notes.length) {
+        return (
+            <div className="create-note-form">
+                <CreateNoteForm />
+            </div>)
     }
     return (
         <div className="notes-page-container">
-        <div>
-            <NotesList />
+            <div>
+                {/* <NotesList changeNote={(note) => setCurrentNote(note)}/> */}
+                <NotesList />
+            </div>
+            <div>{note.id && <EditNote note={note} />}
+
+            </div>
+            <div className="create-note-form">
+                <CreateNoteForm />
+            </div>)
         </div>
-        <div className="create-note-form">
-            <CreateNoteForm />
-        </div>
-        </div>
-    )
-//             <span>Notebooks</span>
-//             <div hidden={showForm} onClick={() => setShowForm(true)}>Create Notebook</div>
-//             <div className="notebook-list">
-//             {notebooks?.map((notebook) => {
-//                 return (
-//                     <NavLink key={notebook.id} to={`/notebooks/${notebook.id}`}>
-//                         <div
-//                             className={
-//                                 `notebook-${notebook.id}`
-//                             }
-//                         >
-//                             <div>
-//                                 <div className="title">{notebook.title}</div>
-//                                 <div className="createdAt">
-//                                     {notebook.createdAt}{" "}
-//                                     {notebook.updatedAt && "Updated"}
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </NavLink>
-//                 );
-//             })}
-//             </div>
-//             {showForm ? (
-//         <CreateNotebookForm hideForm={() => setShowForm(false)} />
-//       ) : (
-//         <Route path="/notebooks/:notebookId">
-//           <NotebookDetail />
-//         </Route>
-//       )}
-//         </div>
-//     );
-// }
-    }
+    );
+}
 export default NotesPage;

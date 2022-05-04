@@ -3,7 +3,8 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Note, Notebook } = require('../../db/models');
+// const { default: notebookReducer } = require('../../../frontend/src/store/notebook');
 
 const router = express.Router();
 
@@ -34,7 +35,8 @@ router.post(
     asyncHandler(async (req, res) => {
       const { email, password, username } = req.body;
       const user = await User.signup({ email, username, password });
-
+      const firstNotebook = await Notebook.create({userId: user.id, title: 'First Notebook'})
+      const firstNote = await Note.create({userId: user.id, title: 'Untitled', content: '', notebookId: firstNotebook.id})
       await setTokenCookie(res, user);
 
       return res.json({

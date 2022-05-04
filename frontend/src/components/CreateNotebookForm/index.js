@@ -51,7 +51,7 @@ const CreateNotebookForm = ({ hideForm }) => {
   };
 
   return (
-    <section className="new-form-holder centered middled">
+    <section className="new-form-holder centered middled" onClick={(e)=> e.stopPropagation()}>
       <ErrorMessage message={errorMessages.overall} />
       <form className="create-notebook-form" onSubmit={handleSubmit}>
 

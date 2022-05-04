@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useRef } from "react";
+import ReactDOM from "react-dom";
 import { NavLink, Route, useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -17,11 +17,28 @@ import NotebooksPageHeader from "../NotebooksPageHeader";
 //!!END_ADD
 // import NotebookNotes from '../NotebookNotes';
 
+function Modal({ children, onHide }) {
+    const [modalEl, setModalEl] = useState(document.getElementById('modal'));
+    useEffect(() => {
+        setModalEl( document.getElementById("modal"));
+    }, []);
+    return modalEl
+        ? ReactDOM.createPortal(
+              <div className="modal-content" onClick={() => onHide()}>
+                  <div className="modal-backdrop"></div>
+                  <div className="modal-inner-content">{children}</div>
+              </div>,
+              modalEl
+          )
+        : null;
+}
+
 function NotebooksPage() {
     const dispatch = useDispatch();
     // const { notebookId } = useParams();
     // console.log( notebookId)
     // console.log(state)
+
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
     const notebooks = useSelector((state) => {
@@ -29,6 +46,8 @@ function NotebooksPage() {
     });
     console.log(notebooks);
     const [showForm, setShowForm] = useState(false);
+
+
 
     useEffect(() => {
         console.log("use effect");
@@ -44,22 +63,34 @@ function NotebooksPage() {
                 <span>Notebooks</span>
                 <span>Search Placeholder</span>
             </div>
+            <div>
+                {showForm && (
+                    <Modal
+                        onHide={() => {
+                            setShowForm(false);
+                        }}
+                    >
+                        <CreateNotebookForm
+                            hideForm={() => setShowForm(false)}
+                        />
+                    </Modal>
+                )}
+            </div>
             <div hidden={showForm} onClick={() => setShowForm(true)}>
                 Create Notebook
             </div>
             <NotebooksPageHeader />
 
-            <NotebooksListHeader notebooks={notebooks}/>
+            <NotebooksListHeader notebooks={notebooks} />
 
             <NotebooksList />
 
-            {showForm ? (
-                <CreateNotebookForm hideForm={() => setShowForm(false)} />
-            ) : null
-            // <Route path="/notebooks/:notebookId">
-            //   <NotebookDetail />
-            // </Route>
-            }
+            {/* {
+                showForm ? <CreateNotebookForm /> : null
+                // <Route path="/notebooks/:notebookId">
+                //   <NotebookDetail />
+                // </Route>
+            } */}
         </div>
     );
 }

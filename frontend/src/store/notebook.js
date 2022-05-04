@@ -7,6 +7,7 @@ import { ValidationError } from '../utils/validationError';
 //!!END
 const SET_FIRST = 'notebooks/SET_FIRST'
 const LOAD = 'notebooks/LOAD';
+const LOAD_NOTEBOOK_NOTES = 'notes/LOAD_NOTEBOOK_NOTES'
 
 const ADD_ONE = 'notebooks/ADD_ONE';
 const DELETE = 'notebooks/DELETE'
@@ -16,7 +17,10 @@ const load = list => ({
   type: LOAD,
   list
 });
-
+const loadNotebookNotes = list => ({
+    type: LOAD_NOTEBOOK_NOTES,
+    list
+})
 const setFirst = notebook => ({
     type: SET_FIRST,
     notebook
@@ -32,6 +36,17 @@ const addOneNotebook = notebook => ({
   type: ADD_ONE,
   notebook
 });
+
+export const getNotebookNotes = (notebookId) => async dispatch => {
+    console.log('hi!')
+      const response = await csrfFetch(`/api/notebooks/${notebookId}/notes`);
+      console.log(response)
+    if (response.ok) {
+      const list = await response.json();
+      dispatch(loadNotebookNotes(list));
+    }
+  };
+
 
 export const getNotebooks = (userId) => async dispatch => {
   console.log('hi!')
@@ -137,6 +152,7 @@ export const deleteNotebook = id => async dispatch => {
 const initialState = {
   list: [],
   firstNotebook: [],
+  notebookNotes: []
 };
 
 // const sortList = (list) => {
@@ -163,6 +179,12 @@ const notebookReducer = (state = initialState, action) => {
     //     ...state,
     //     types: action.types
     //   };
+    case LOAD_NOTEBOOK_NOTES:
+        return {
+            // ...allNotebooks,
+            ...state,
+            notebookNotes: [...action.list]
+          };
     case SET_FIRST:
         console.log('inside reducer')
     //   const allNotebooks = {};

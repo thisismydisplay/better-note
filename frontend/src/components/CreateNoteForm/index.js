@@ -45,14 +45,14 @@ const CreateNoteForm = ({ hideForm }) => {
 
     //   history.push(`/browser/notes/`);
     dispatch(getNotes(userId));
-      hideForm();
+    //   hideForm();
     }
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
     setErrorMessages({});
-    hideForm();
+    // hideForm();
   };
 
   return (
@@ -78,7 +78,7 @@ const CreateNoteForm = ({ hideForm }) => {
         <ErrorMessage label={"Content"} message={errorMessages.content} />
 
         <button type="submit">Create new note</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+        {/* <button type="button" onClick={handleCancelClick}>Cancel</button> */}
       </form>
     </section>
   );

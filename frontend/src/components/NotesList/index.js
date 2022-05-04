@@ -56,7 +56,7 @@ function NotesList() {
                 <div className="placeholder-for-menu-options"></div>
                 <div className="note-list">
                     {notes?.map((note) => (
-                        <div>
+                        <div className="note-detail-container">
                             <NoteDetail note={note} />
                         </div>
                     ))}

@@ -7,13 +7,23 @@ const { Note } = require("../../db/models");
 const router = express.Router();
 
 router.get(
+    "/",
+    asyncHandler(async function (req, res) {
+        const userId = req.query.userId
+        // const {userId} = req.body;
+        const notes = await Note.findAll({where: {userId}});
+        return res.json(notes);
+    })
+);
+router.get(
     "/:id",
     asyncHandler(async function (req, res) {
-        const {userId} = req.body;
-        const notes = await Note.findAll({where: {userId: req.params.id}});
-        console.log("insideFetch");
-        console.log("notes: ", notes);
-        return res.json(notes);
+        // const {id} = req.body;
+        // const id = req.query.id;
+        const note = await Note.findOne({where: {id: req.params.id}});
+        // const note = await Note.findOne({where: {id}});
+
+        return res.json(note);
     })
 );
 
@@ -35,15 +45,16 @@ router.put(
     //   noteValidations.validateUpdate,
     asyncHandler(async function (req, res) {
         const note = await Note.findByPk(req.params.id)
+        const {title, content} = req.body;
+        console.log(req.body)
         if (!note.title) note.title = 'untitled';
+        note.title = title;
+        note.content = content;
         await note.save();
-        return res.json({ message: 'Successfully edited note.', note})
-        // const { title, content, userId, notebookId } = req.body;
-        // const note = {content, userId}
-        // if (!title) note.title = 'untitled';
-        // await Note.update(await Note.findByPk(req.params.id))
-        // const note = await Note.updateItem(req.body);
-        // return res.json(note);
+        console.log('==============')
+        console.log(note)
+        return res.json(note)
+
     })
 );
 

@@ -2,6 +2,7 @@ import { deleteNotebook, getNotebooks } from "../../store/notebook";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
+import NotebookDetail from "../NotebookDetail";
 
 function NotebooksList() {
     // const [reload, setReload] = useState(false)
@@ -36,26 +37,11 @@ function NotebooksList() {
             {notebooks?.map((notebook) => {
                 return (
                     // <NavLink key={notebook.id} to={`/notebooks`}>
-                    <div className={`notebook-${notebook.id}`}>
+
+                    <div className='notebook-detail' id={`notebook-${notebook.id}`}>
+                        <NotebookDetail key={notebook.id} notebook={notebook}/>
                         <div>
-                            <div className="title">{notebook.title}</div>
-                            <div className="createdAt">
-                                {notebook.createdAt}{" "}
-                            </div>
-                            <div>{notebook.updatedAt && "Updated"}</div>
-                            <div>
-                                <form onSubmit={onSubmit}>
-                                <button
-                                    onClick={() => {
-                                        dispatch(deleteNotebook(notebook.id));
-                                        // setReload(!reload)
-                                        dispatch(getNotebooks(userId));
-                                    }}
-                                >
-                                    Delete
-                                </button>
-                                </form>
-                            </div>
+
                         </div>
                     </div>
                     // </NavLink>
