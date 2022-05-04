@@ -16,6 +16,15 @@ router.get(
         return res.json(notes);
     })
 );
+router.get(
+    "/:id/current",
+    asyncHandler(async function (req, res) {
+        // const {id} = req.body;
+        const note = await Note.findOne({where: {id: req.params.id}});
+
+        return res.json(note);
+    })
+);
 
 router.post(
     "/",
