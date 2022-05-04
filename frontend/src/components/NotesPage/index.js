@@ -41,14 +41,17 @@ function NotesPage() {
     const note = useSelector((state) => {
         return state.note.list[0];
     });
-    const [currentNote, setCurrentNote] = useState(note);
+    // const [currentNote, setCurrentNote] = useState(note);
 
-    useEffect(()=>{
-        setCurrentNote(note)
-    })
+    // useEffect(()=>{
+    //     setCurrentNote(note)
+    // })
 
-    if (!notes) {
-        return null;
+    if (!notes || !notes.length) {
+        return (
+            <div className="create-note-form">
+                <CreateNoteForm />
+            </div>)
     }
     return (
         <div className="notes-page-container">
@@ -56,12 +59,12 @@ function NotesPage() {
                 {/* <NotesList changeNote={(note) => setCurrentNote(note)}/> */}
                 <NotesList />
             </div>
+            <div>{note.id && <EditNote note={note} />}
+
+            </div>
             <div className="create-note-form">
                 <CreateNoteForm />
-            </div>
-            <div>
-                <EditNote note={currentNote} />
-            </div>
+            </div>)
         </div>
     );
 }

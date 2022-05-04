@@ -10,71 +10,27 @@ import ErrorMessage from '../ErrorMessage';
 const EditNote = ({ note }) => {
 
     const currentNote = useSelector((state) => state.note.currentNote);
-    const dispatch = useDispatch();
     const [title, setTitle] = useState(currentNote.title);
     const [content, setContent] = useState(currentNote.content);
     const [errorMessages, setErrorMessages] = useState({});
-    // const [payload, setPayload] = useState({})
-
-    useEffect(() => {
-        dispatch(getOneNote(currentNote.id))
-        let updatedNote = {
-            ...currentNote,
-            title
-        }
-        dispatch(updateNote(updatedNote))
-    }, [dispatch, note.id])
-
-    // const history = useHistory();
-    // const sessionUser = useSelector((state) => state.session.user);
-    // const userId = sessionUser.id;
-    // const firstNotebook = useSelector((state) => state.notebook.firstNotebook);
-    // const notebookId = firstNotebook.id;
+    const dispatch = useDispatch();
+    // debugger;
 
     const updateTitle = (e) => {
         setTitle(e.target.value);
-        // setPayload({title, currentNote.content})
-
+        dispatch(updateNote({...currentNote, title: e.target.value}))
+        //debounce
     }
-    const updateContent = (e) => setContent(e.target.value);
+    const updateContent = (e) => {
+        setContent(e.target.value);
+        dispatch(updateNote({...currentNote, content: e.target.value}))
+        //debounce
+    }
 
-
-
-
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const payload = {
-//       title,
-//       content,
-//       userId,
-//       notebookId
-//     };
-
-//     let createdNote;
-//     try {
-//       createdNote = await dispatch(createNote(payload));
-//     } catch (error) {
-//       if (error instanceof ValidationError) setErrorMessages(error.errors);
-//       // If error is not a ValidationError, add slice at the end to remove extra
-//       // "Error: "
-//       else setErrorMessages({ overall: error.toString().slice(7) })
-//     }
-//     if (createdNote) {
-//       setErrorMessages({});
-
-//     //   history.push(`/browser/notes/`);
-//     dispatch(getNotes(userId));
-//       hideForm();
-//     }
-//   };
-
-//   const handleCancelClick = (e) => {
-//     e.preventDefault();
-//     setErrorMessages({});
-//     hideForm();
-//   };
-
+    useEffect(()=> {
+        setTitle(currentNote.title)
+        setContent(currentNote.content)
+    }, [currentNote])
   return (
     <section className="new-note-form-holder not-fullscreen">
       <ErrorMessage message={errorMessages.overall} />
@@ -86,7 +42,7 @@ const EditNote = ({ note }) => {
         </div>
         <div>{`Last edited ${currentNote.updatedAt}`}</div>
       <div className="edit-note-form" >
-
+        <form>
       <input
           type="text"
           placeholder="Title"
@@ -102,7 +58,7 @@ const EditNote = ({ note }) => {
         />
         {/*!!END */}
         <ErrorMessage label={"Content"} message={errorMessages.content} />
-
+        </form>
       </div>
     </section>
   );

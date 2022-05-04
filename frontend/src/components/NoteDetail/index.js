@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getNotes } from "../../store/note";
 import { deleteNote, getOneNote } from "../../store/note";
+import { getNotebookNotes } from "../../store/notebook";
 // import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 // import NotebooksPage from "../NotebooksPage";
 import { dateAdjustLogic } from "../../utils/dateAdjust";
@@ -13,6 +14,8 @@ function NoteDetail({ note}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
+    const currentNotebookId = useSelector((state) => state.notebook)
+
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -33,10 +36,11 @@ function NoteDetail({ note}) {
 
             <form onSubmit={onSubmit}>
                 <button
-                    onClick={() => {
-                        dispatch(deleteNote(note.id));
+                    onClick={async () => {
+                        await dispatch(deleteNote(note.id));
                         // setReload(!reload)
-                        dispatch(getNotes(userId));
+                        await dispatch(getNotes(userId));
+                        await dispatch(getNotebookNotes(note.notebookId))
                     }}
                 >
                     Delete

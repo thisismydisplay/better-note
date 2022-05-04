@@ -10,6 +10,8 @@ function NotebookDetail({ notebook }) {
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
     const notebookNotes = useSelector((state)=> state.notebook.notebookNotes)
+    const firstNotebook = useSelector((state) => state.notebook.list[0])
+
     const onSubmit = (e) => {
         e.preventDefault();
         dispatch(getNotebooks(userId));
@@ -41,11 +43,12 @@ function NotebookDetail({ notebook }) {
                 <div className="delete-btn-form">
                     <form onSubmit={onSubmit}>
                         <button
+                            disabled={firstNotebook?.id === notebook?.id}
                             className="delete-btn"
-                            onClick={() => {
-                                dispatch(deleteNotebook(notebook.id));
+                            onClick={async () => {
+                                await dispatch(deleteNotebook(notebook.id));
                                 // setReload(!reload)
-                                dispatch(getNotebooks(userId));
+                                await dispatch(getNotebooks(userId));
                             }}
                         >
                             Delete

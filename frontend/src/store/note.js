@@ -40,7 +40,7 @@ const update = (note) => ({
 
 export const getNotes = (userId) => async (dispatch) => {
     console.log("hi!");
-    const response = await csrfFetch(`/api/notes/${userId}`);
+    const response = await csrfFetch(`/api/notes/?userId=${userId}`); //`/api/notes/?userId=${userId}&active=true&notebookId=${notebookId}`
     console.log(response);
     if (response.ok) {
         const list = await response.json();
@@ -57,7 +57,7 @@ export const getNotes = (userId) => async (dispatch) => {
 // }
 
 export const getOneNote = (id) => async (dispatch) => {
-    const response = await csrfFetch(`/api/notes/${id}/current`);
+    const response = await csrfFetch(`/api/notes/${id}`);
     console.log(response);
     if (response.ok) {
         const note = await response.json();
@@ -75,6 +75,7 @@ export const updateNote = (note) => async (dispatch) => {
     console.log(response);
     if (response.ok) {
         const note = await response.json();
+        // debugger;
         dispatch(update(note));
     }
 };
@@ -172,6 +173,7 @@ const noteReducer = (state = initialState, action) => {
                 // ...allNotebooks,
                 ...state,
                 list: [...action.list],
+                currentNote: action.list[0] || {},
             };
         // case LOAD_TYPES:
         //   return {
@@ -185,19 +187,29 @@ const noteReducer = (state = initialState, action) => {
             if (!state[action.note.id]) {
                 const newState = {
                     ...state,
-                    [action.note.id]: action.note
-                }
+                    [action.note.id]: action.note,
+                };
                 return newState;
             }
             return {
-                ...state, [action.note.id]: {
-                    ...state[action.note.id], ...action.note
+                ...state,
+                [action.note.id]: {
+                    ...state[action.note.id],
+                    ...action.note,
+                },
+            };
+        // return { ...state, list: [...state.list, action.note] };
+        case UPDATE:
+            let newList = [];
+            for (const note of state.list) {
+                if (note.id === action.note.id) {
+                    newList.push(action.note);
+                } else {
+                    newList.push(note);
                 }
             }
-            // return { ...state, list: [...state.list, action.note] };
-        case UPDATE:
             // return { ...state, [action.note.id]: action.note };
-            return { ...state, currentNote: action.note };
+            return { ...state, currentNote: { ...action.note } , list: newList};
 
         case DELETE:
             const newState = { ...state };
