@@ -8,7 +8,7 @@ import { getNotebookNotes } from "../../store/notebook";
 // import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 // import NotebooksPage from "../NotebooksPage";
 import { dateAdjustLogic } from "../../utils/dateAdjust";
-
+import './NoteDetail.css'
 function NoteDetail({ note}) {
 
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function NoteDetail({ note}) {
         //!!END
     };
     return (
-        <div className={`note-${note.id} note`}>
+        <div className={`note-${note.id} note-container`}>
 
                 <div onClick={()=>{dispatch(getOneNote(note.id))}}>
                     <div className="title">{note.title}</div>
@@ -36,6 +36,7 @@ function NoteDetail({ note}) {
 
             <form onSubmit={onSubmit}>
                 <button
+                    className="delete-btn"
                     onClick={async () => {
                         await dispatch(deleteNote(note.id));
                         // setReload(!reload)

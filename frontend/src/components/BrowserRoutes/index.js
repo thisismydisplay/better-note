@@ -13,6 +13,7 @@ import { getNotes } from "../../store/note";
 import BrowserNavigation from "../BrowserNavigation";
 import "./BrowserRoutes.css";
 import NotesPage from "../NotesPage"
+import Footer from "../Footer"
 // import * as sessionActions from "./store/session";
 import HomeNavigation from "../HomeNavigation";
 
@@ -118,6 +119,7 @@ function BrowserRoutes() {
                     }
                 />
             </div>
+            <Footer />
         </div>
     );
 }

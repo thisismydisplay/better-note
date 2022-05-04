@@ -1,0 +1,40 @@
+/* li::marker {
+    display: none;
+} */
+
+.home-nav {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-family: 'system-ui';
+    list-style: none;
+}
+
+a.nav-btn, button.nav-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-decoration: none;
+    color: white;
+    background-color: #1A1A1A;
+    border: none;
+}
+
+ul.home-nav {
+    margin: 0px;
+    padding: 0px;
+    background-color: #1A1A1A;
+
+}
+
+.home-top-right {
+    display: flex;
+}
+.home-icon {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
