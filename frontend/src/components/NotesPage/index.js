@@ -8,6 +8,7 @@ import { setFirstNotebook } from "../../store/notebook";
 import CreateNoteForm from "../CreateNoteForm";
 import NotesList from "../NotesList";
 import EditNote from "../EditNote";
+import './NotesPage.css'
 // import notebook from "../../../../backend/db/models/notebook";
 //!!END
 //!!ADD
@@ -59,11 +60,11 @@ function NotesPage() {
                 {/* <NotesList changeNote={(note) => setCurrentNote(note)}/> */}
                 <NotesList />
             </div>
-            <div>{note.id && <EditNote note={note} />}
+            <div className="edit-note-container">{note.id && <EditNote note={note} />}
 
             </div>
             <div className="create-note-form">
-                <CreateNoteForm />
+                {/* <CreateNoteForm /> */}
             </div>)
         </div>
     );

@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: 20px;
+    bottom: 120px;
     border-radius: 10px;
     /* transition: all 0.2s linear; */
 
@@ -73,7 +73,9 @@
     flex-direction: column;
     font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 font-weight:400 400;
-height: 360px;
+height: max-content;
+/* height: 80%; */
+max-height: 800px;
 line-height: 24px;
 outline-color: rgba(0, 0, 0, 0);
 outline-style: solid;
@@ -83,7 +85,9 @@ overflow-y: hidden;
 position: relative;
 text-rendering: optimizelegibility;
 text-size-adjust: 100%;
-width: 482.656px;
+width: 96%;
+max-width: 1200px;
+margin-right: 20px;
 z-index: 1;
     padding: 14px;
     margin: 20px;

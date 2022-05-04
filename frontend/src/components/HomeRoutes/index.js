@@ -2,22 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "../LoginFormPage";
-
+import Footer from "../Footer";
+import './HomePage.css'
 import SignupFormPage from "../SignupFormPage";
 import Error404Page from "../Error404Page";
 
 import * as sessionActions from "../../store/session";
 import HomeNavigation from "../HomeNavigation";
 
-function Footer() {
-    return (<div>
-        <ul>
-            <li>Github</li>
-            <li>LinkedIn</li>
-            <li>Etc</li>
-        </ul>
-    </div>)
-}
 
 function HomeRoutes() {
     const dispatch = useDispatch();
@@ -30,7 +22,7 @@ function HomeRoutes() {
         <>
           <HomeNavigation isLoaded={isLoaded} />
           {isLoaded && (
-              <div>
+              <div className="home-form">
 
             <Switch>
               <Route path="/login">
@@ -38,6 +30,9 @@ function HomeRoutes() {
               </Route>
               <Route path="/signup">
                 <SignupFormPage />
+              </Route>
+              <Route path="/">
+                <LoginFormPage />
               </Route>
               <Route path="/*">
                 <Error404Page />

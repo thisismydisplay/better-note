@@ -13,9 +13,14 @@ function HomeNavigation({ isLoaded }) {
     } else {
         sessionLinks = (
             <>
-                <NavLink to="/login">Log In</NavLink>
-                <NavLink to="/signup">Sign Up</NavLink>
+                <NavLink className="nav-btn" to="/login">
+                    Log In
+                </NavLink>
+                <NavLink className="nav-btn" to="/signup">
+                    Sign Up
+                </NavLink>
                 <button
+                    className="nav-btn"
                     type="button"
                     onClick={() =>
                         dispatch(
@@ -33,13 +38,21 @@ function HomeNavigation({ isLoaded }) {
     }
 
     return (
-        <ul>
-            <li>
-                <NavLink exact to="/">
-                    Home
+        <ul className="home-nav">
+            <div className="home-top-left">
+                <NavLink className='nav-btn' exact to="/">
+                <img
+                    className="home-icon"
+                    // id="notes-btn"
+
+                    alt="background"
+                    src="
+                        /images/betternote-logo.svg"
+                />
+                    BetterNote
                 </NavLink>
-                {isLoaded && sessionLinks}
-            </li>
+            </div>
+            <div className="home-top-right">{isLoaded && sessionLinks}</div>
         </ul>
     );
 }

@@ -4,7 +4,7 @@ import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import NoteDetail from "../NoteDetail";
 import { getNotes } from "../../store/note";
 // import note from "../../../../backend/db/models/note";
-
+import './DashboardNotesContainer.css'
 function DashboardNotesContainer() {
     const dispatch = useDispatch();
     // const { notebookId } = useParams();
@@ -79,7 +79,7 @@ function DashboardNotesContainer() {
                         //     exact
                         //     to={`/browser/notes/${note.id}`}
                         // >
-                            
+
                             <NoteDetail note={note} />
                         // </NavLink>
                 ))}
