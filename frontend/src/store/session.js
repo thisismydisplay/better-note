@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 // import { createNotebook } from './notebook';
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const SET_SORT = 'session/setSort'
 
 const setUser = (user) => {
   return {
@@ -15,6 +16,12 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
+
+const setSort = () => {
+    return {
+        type: SET_SORT
+    }
+}
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -61,7 +68,12 @@ export const restoreUser = () => async dispatch => {
     return response;
   };
 
-const initialState = { user: null };
+  export const changeSortPreference = () => async (dispatch) => {
+      dispatch(setSort());
+    //   return;
+  }
+
+const initialState = { user: null, orderBy: 'DESC' };
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
@@ -74,6 +86,10 @@ const sessionReducer = (state = initialState, action) => {
       newState = Object.assign({}, state);
       newState.user = null;
       return newState;
+      case SET_SORT:
+      newState = Object.assign({}, state);
+        state.orderBy === 'DESC' ? newState.orderBy = 'ASC' : newState.orderBy = 'DESC'
+        return newState;
     default:
       return state;
   }

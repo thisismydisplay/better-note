@@ -59,9 +59,12 @@
     justify-content: space-between;
     padding: 10px;
     color: white;
-    margin-bottom: 60px;
+    margin-bottom: 120px;
 }
 
+.browser-div {
+    margin-bottom: 120px;
+}
 /* DashboardNotesContainer */
 
 .dashboard-notes-container {
@@ -99,10 +102,14 @@ z-index: 1;
     align-items: center;
 }
 
-.notes-nav-left {
-display: flex;
-    align-items: center;
+.notes-nav {
+    padding: 10px;
 }
+
+.notes-nav-left {
+    display: flex;
+        align-items: center;
+    }
 
 span {
     text-decoration: none;
@@ -117,5 +124,16 @@ span {
 }
 
 .notes-nav-top {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    /* margin: 10px; */
+    padding: 10px;
+    padding-top: 0px;
+    border-bottom: #333333 solid 1px;
+}
+
+.notes-nav-bottom {
+    padding: 10px;
+    padding-bottom: 0px;
 }

@@ -38,9 +38,9 @@ const update = (note) => ({
     note,
 });
 
-export const getNotes = (userId) => async (dispatch) => {
+export const getNotes = (userId, order) => async (dispatch) => {
     console.log("hi!");
-    const response = await csrfFetch(`/api/notes/?userId=${userId}`); //`/api/notes/?userId=${userId}&active=true&notebookId=${notebookId}`
+    const response = await csrfFetch(`/api/notes/?userId=${userId}&orderBy=${order}`); //`/api/notes/?userId=${userId}&active=true&notebookId=${notebookId}`
     console.log(response);
     if (response.ok) {
         const list = await response.json();
@@ -61,7 +61,7 @@ export const getOneNote = (id) => async (dispatch) => {
     console.log(response);
     if (response.ok) {
         const note = await response.json();
-        dispatch(getOne(note));
+        await dispatch(getOne(note));
     }
 };
 export const updateNote = (note) => async (dispatch) => {
@@ -173,7 +173,7 @@ const noteReducer = (state = initialState, action) => {
                 // ...allNotebooks,
                 ...state,
                 list: [...action.list],
-                currentNote: action.list[0] || {},
+                currentNote: action.list[0] || {},  //USE NOTEID HERE INSTEAD OF INDEX AFTER NORMALIZE
             };
         // case LOAD_TYPES:
         //   return {

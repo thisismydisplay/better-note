@@ -5,13 +5,28 @@ const {Notebook, Note} = require('../../db/models');
 
 const router = express.Router();
 
-router.get('/:id', asyncHandler(async function(req, res) {
-    const {userId} = req.body;
-  const notebooks = await Notebook.findAll({where: {userId: req.params.id}});
+router.get('/', asyncHandler(async function(req, res) {
+    // const {userId} = req.body;
+    const userId = req.query.userId
+
+  const notebooks = await Notebook.findAll({where: {userId}});
   console.log('insideFetch')
   console.log('notebooks: ', notebooks)
   return res.json(notebooks);
 }));
+
+router.get(
+    "/:id",
+    asyncHandler(async function (req, res) {
+        // const {id} = req.body;
+        // const id = req.query.id;
+        const notebook = await Notebook.findOne({where: {id: req.params.id}});
+        // const note = await Note.findOne({where: {id}});
+
+        return res.json(notebook);
+    })
+);
+
 
 router.get('/:id/first', asyncHandler(async function(req, res) {
     const {userId} = req.body;
@@ -60,7 +75,9 @@ router.get('/:id', asyncHandler(async function(req, res) {
 }));
 
 router.get('/:id/notes', asyncHandler(async function(req, res) {
-  const notes = await Note.findAll({where: {notebookId: req.params.id}});
+    const orderBy = req.query.orderBy
+
+  const notes = await Note.findAll({where: {notebookId: req.params.id}, order: [["updatedAt", orderBy]]});
   return res.json(notes);
 }));
 

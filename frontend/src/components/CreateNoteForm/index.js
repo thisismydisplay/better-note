@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { createNote, getNotes  } from '../../store/note';
-import { setFirstNotebook  } from '../../store/notebook';
+import { setFirstNotebook, getNotebookNotes  } from '../../store/notebook';
 import { ValidationError } from '../../utils/validationError';
 import ErrorMessage from '../ErrorMessage';
 
@@ -12,10 +12,12 @@ const CreateNoteForm = ({ hideForm }) => {
   const [errorMessages, setErrorMessages] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
-  const [title, setTitle] = useState('untitled');
+  const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const sessionUser = useSelector((state) => state.session.user);
   const userId = sessionUser.id;
+
+    const orderBy = useSelector((state) => state.session.orderBy);
   const firstNotebook = useSelector((state) => state.notebook.firstNotebook);
   const notebookId = firstNotebook.id;
 
@@ -44,8 +46,10 @@ const CreateNoteForm = ({ hideForm }) => {
       setErrorMessages({});
 
     //   history.push(`/browser/notes/`);
-    dispatch(getNotes(userId));
-    //   hideForm();
+    dispatch(getNotes(userId, orderBy));
+    dispatch(getNotebookNotes(firstNotebook.id, orderBy))
+
+      hideForm();
     }
   };
 
@@ -56,20 +60,21 @@ const CreateNoteForm = ({ hideForm }) => {
   };
 
   return (
-    <section className="new-note-form-holder not-fullscreen">
+    <section className="create-note-div not-fullscreen" onClick={(e)=> e.stopPropagation()}>
       <ErrorMessage message={errorMessages.overall} />
       <form className="create-note-form" onSubmit={handleSubmit}>
 
         <input
           type="text"
           placeholder="Untitled"
-
+className='create-note-title-input'
           value={title}
           onChange={updateTitle} />
         {/*!!START SILENT */}
         <ErrorMessage label={"Title"} message={errorMessages.title} />
         {/*!!END */}
         <textarea
+        className='create-note-content-input'
             placeholder='Start writing'
             value={content}
             onChange={updateContent}
@@ -77,7 +82,7 @@ const CreateNoteForm = ({ hideForm }) => {
         {/*!!END */}
         <ErrorMessage label={"Content"} message={errorMessages.content} />
 
-        <button type="submit">Create new note</button>
+        <button type="submit" className='form-btn'>Create new note</button>
         {/* <button type="button" onClick={handleCancelClick}>Cancel</button> */}
       </form>
     </section>

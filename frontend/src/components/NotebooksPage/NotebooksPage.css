@@ -1,0 +1,19 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+}
+.header-container {
+    border-bottom: rgb(38, 38, 38) 1px solid;
+}
+.body-container {
+    display: flex;
+    height: 100% auto max-content;
+    width: 100%;
+}
+
+.edit-note-container {
+    display: flex;
+    border-left: rgb(38, 38, 38) 1px solid;
+    padding: 10px;
+    /* height: max-content; */
+}

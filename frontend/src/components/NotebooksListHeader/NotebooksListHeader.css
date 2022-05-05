@@ -15,6 +15,15 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: rgb(165,165,165) 1px solid ;
+    margin-top: 0px;
+    padding: 10px 0px;
+    /* cursor: pointer; */
+}
+
+.book-list-top-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 
@@ -27,10 +36,7 @@
 
 }
 
-#new-notebook{
-    padding-left: 0px;
-    font-size: .8rem
-}
+
 
 .book-list-bottom {
     display: flex;

@@ -9,9 +9,10 @@ const router = express.Router();
 router.get(
     "/",
     asyncHandler(async function (req, res) {
+        const orderBy = req.query.orderBy
         const userId = req.query.userId
         // const {userId} = req.body;
-        const notes = await Note.findAll({where: {userId}});
+        const notes = await Note.findAll({where: {userId}, order: [["updatedAt", orderBy]]});
         return res.json(notes);
     })
 );
