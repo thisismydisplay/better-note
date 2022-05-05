@@ -8,6 +8,7 @@ import { getNotebookNotes, getOneNotebook } from "../../store/notebook";
 // import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 // import NotebooksPage from "../NotebooksPage";
 import { dateAdjustLogic } from "../../utils/dateAdjust";
+import DeleteButton from "../DeleteButton";
 import './NoteDetail.css'
 function NoteDetail({ note}) {
     const history = useHistory();
@@ -46,25 +47,15 @@ function NoteDetail({ note}) {
                     }}>
                     <div className="title">{note.title}</div>
                     <div className="content">{note.content}</div>
+                    <div className="note-detail-footer">
                     <div className="updatedAt">
                         {/* {`${dateAdjustLogic(note)}`} */}
                         {`${note.updatedAt.toString().slice(0, 10)} ${note.updatedAt.toString().slice(11, 16)} `}
                     </div>
+                    <DeleteButton note={note}/>
+                    </div>
                 </div>
 
-            <form onSubmit={onSubmit}>
-                <button
-                    className="delete-btn"
-                    onClick={async () => {
-                        await dispatch(deleteNote(note.id));
-                        // setReload(!reload)
-                        await dispatch(getNotes(userId, orderBy));
-                        await dispatch(getNotebookNotes(note.notebookId, orderBy))
-                    }}
-                >
-                    Delete
-                </button>
-            </form>
         </div>
     );
 }

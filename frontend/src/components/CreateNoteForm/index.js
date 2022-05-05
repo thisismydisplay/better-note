@@ -39,7 +39,7 @@ const CreateNoteForm = ({ hideForm }) => {
         //                     order === 'DESC' ? setOrder('ASC') : setOrder('DESC')
         dispatch(getNotebooks(userId));
         // order === 'DESC' ? setOrder('ASC') : setOrder('DESC')
-        // dispatch(getNotes(userId, 'DESC'))
+        dispatch(getNotes(userId, 'DESC'))
         // setNotebookId(notebook)
         console.log(notebookId, '-<-<')
     }, [dispatch]);
@@ -71,9 +71,9 @@ const CreateNoteForm = ({ hideForm }) => {
             setErrorMessages({});
 
             //   history.push(`/browser/notes/`);
-
             await dispatch(getNotes(userId, 'DESC'));
             history.replace('/browser/notes')
+
             //  dispatch(getOneNote(createdNote.id))
             // dispatch(getNotebookNotes(firstNotebook.id, 'DESC'));
             // dispatch(getNotebooks(userId));

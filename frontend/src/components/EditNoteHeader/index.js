@@ -1,71 +1,81 @@
-import './EditNoteHeader.css'
+import "./EditNoteHeader.css";
 import React, { useEffect, useState } from "react";
-import { getOneNotebook } from '../../store/notebook';
-import { getOneNote } from '../../store/note';
-import { useDispatch, useSelector,  } from "react-redux";
+import { getOneNotebook } from "../../store/notebook";
+import { getOneNote } from "../../store/note";
+import { useDispatch, useSelector } from "react-redux";
+import DeleteButton from "../DeleteButton";
 // import {getOneNotebook} from '../../store/notebook'
-function EditNoteHeader() {
+function EditNoteHeader({ note }) {
+    const currentNotebook = useSelector((state) => state.notebook.currentNotebook)
+    // const [notebook, setNotebook] = useState(cNotebook);
+
     const dispatch = useDispatch();
+    useEffect(()=> {
+        console.log(currentNotebook, '++++++++++++')
+
+        dispatch(getOneNotebook(note.id))
+        // setNotebook(currentNotebook)
+        // console.log(currentNotebook)
+
+    }, [note])
     // const cN = useSelector((state)=> state.notebook.currentNotebook)
-    // const [notebook, setNotebook] = useState(cN);
+    // // console.log(cN)
+    // const [notebook, setNotebook] = useState(currentNotebook);
     // useEffect(()=>{
-    //     dispatch(getOneNotebook(notebook.id))
+    //     dispatch(getOneNotebook(currentNotebook.id))
     //     setNotebook(notebook)
     //     // dispatch(getOneNote(note.id))
     // }, [notebook])
-return(
-<div className="edit-note-header">
-    <div className='edit-note-header-left'>
-                    <div className="expand-div header-item">
-                        <img
-                            className="expand-icon icon-img"
-                            // id="notes-btn"
+    return (
+        <div className="edit-note-header">
+            <div className="edit-note-header-left">
+                <div className="expand-div header-item">
+                    <img
+                        className="expand-icon icon-img"
+                        // id="notes-btn"
 
-                            alt="background"
-                            src="
+                        alt="background"
+                        src="
                         /images/expand-window.svg"
-                        />
-                    </div>
-                    <div className="notebook-icon-div header-item">
+                    />
+                </div>
+                <div className="notebook-icon-div header-item">
                     <img
-                            className="notebooks-icon icon-img"
-                            // id="notes-btn"
+                        className="notebooks-icon icon-img"
+                        // id="notes-btn"
 
-                            alt="background"
-                            src="
+                        alt="background"
+                        src="
                         /images/notebooks.svg"
-                        />
-                        <span className="welcome-span">notebook</span>
-                    </div>
-                    </div>
-                    <div className='edit-note-header-right'>
-
-
-                    <div className="move-note-icon-div header-item">
+                    />
+                    <span className="welcome-span">{currentNotebook?.title}</span>
+                </div>
+            </div>
+            <div className="edit-note-header-right">
+                <div className="move-note-icon-div header-item">
                     <img
-                            className="move-note-icon icon-img"
-                            // id="notes-btn"
+                        className="move-note-icon icon-img"
+                        // id="notes-btn"
 
-                            alt="background"
-                            src="
+                        alt="background"
+                        src="
                         /images/notebooks.svg"
-                        />
-                        <span className='move-note-span'>Move Note</span>
-                    </div>
-                        <div className="delete-div header-item">
-                        <img
-                            className="trash-icon icon-img"
-                            // id="notes-btn"
+                    />
+                    <span className="move-note-span">Move Note</span>
+                </div>
+                <DeleteButton note={note} />
+                {/* <div className="delete-div header-item">
+                    <img
+                        className="trash-icon icon-img"
+                        // id="notes-btn"
 
-                            alt="background"
-                            src="
+                        alt="background"
+                        src="
                         /images/trashcan-icon.svg"
-                        />
-                    </div>
-                    </div>
-
-                </div>)
-
-
+                    />
+                </div> */}
+            </div>
+        </div>
+    );
 }
-export default EditNoteHeader
+export default EditNoteHeader;
