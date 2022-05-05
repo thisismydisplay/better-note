@@ -30,7 +30,7 @@ function NoteDetail({ note}) {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(getNotes(userId, orderBy));
+        // dispatch(getNotes(userId, orderBy));
         //!!END
     };
     return (

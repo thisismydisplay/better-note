@@ -1,12 +1,13 @@
-.create-notebook-input {
+.create-notebook-input, .create-note-title-input textarea#create-note-content-text {
     background-color: #1A1A1A;
     color: rgb(165,165,165);
     border: 1px solid rgb(165,165,165);
     border-radius: 5px;
     outline: none;
     padding: 10px;
+    margin: 10px;
 }
-.create-notebook-form {
+.create-notebook-form, .create-note-form {
 
     display: flex;
     flex-direction: column;
@@ -14,7 +15,7 @@
     align-items: center;
 }
 
-.create-notebook-div {
+.create-notebook-div, .create-note-form-div {
     background-color: #1A1A1A;
     width: 30%;
     border-radius: 10px;
