@@ -1,12 +1,28 @@
 .create-notebook-input {
     background-color: #1A1A1A;
     color: rgb(165,165,165);
-    border: none;
+    border: 1px solid rgb(165,165,165);
     border-radius: 5px;
     outline: none;
     padding: 10px;
 }
 .create-notebook-form {
+
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-notebook-div {
+    background-color: #1A1A1A;
+    width: 30%;
+    border-radius: 10px;
+    border: 1px solid rgb(165,165,165);
+}
+
+.create-notebook-btn {
+    margin: 0px;
+    margin-bottom: 20px;
+
 }

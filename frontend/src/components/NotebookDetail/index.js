@@ -14,6 +14,8 @@ function NotebookDetail({ notebook, colorToggle }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
+    const orderBy = useSelector((state) => state.session.orderBy);
+
     const notebookNotes = useSelector((state) => state.notebook.notebookNotes);
     const firstNotebook = useSelector((state) => state.notebook.list[0]);
     console.log(sessionUser)
@@ -23,7 +25,7 @@ function NotebookDetail({ notebook, colorToggle }) {
     };
 
     const handleClick = () => {
-        dispatch(getNotebookNotes(notebook.id));
+        dispatch(getNotebookNotes(notebook.id, orderBy));
         setShowNotes(!showNotes);
     };
     // useEffect(()=>{
@@ -60,6 +62,12 @@ function NotebookDetail({ notebook, colorToggle }) {
                                             deleteNotebook(notebook.id)
                                         );
                                         // setReload(!reload)
+
+
+
+                                                //DELETE NEEDS TO UPDATE NOTEBOOK NOTES?
+
+
                                         await dispatch(getNotebooks(userId));
                                     }}
                                 >
@@ -70,7 +78,7 @@ function NotebookDetail({ notebook, colorToggle }) {
                     </div>
                 </div>
             </div>
-            {showNotes && (
+            {showNotes && notebook?.id === notebookNotes[0]?.notebookId && (
                 <div className="notebook-notes">
                     {notebookNotes?.map((note) => {
                         return <NoteDetail note={note} />;

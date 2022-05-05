@@ -12,6 +12,8 @@ function DashboardNotesContainer() {
     // console.log(state)
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
+
+    const orderBy = useSelector((state) => state.session.orderBy);
     const notes = useSelector((state) => {
         return state.note.list;
     });
@@ -20,7 +22,7 @@ function DashboardNotesContainer() {
 
     useEffect(() => {
         console.log("use effect");
-        dispatch(getNotes(userId));
+        dispatch(getNotes(userId, orderBy));
     }, [dispatch]);
 
 
@@ -69,7 +71,7 @@ function DashboardNotesContainer() {
                 </div>
                 <div className="notes-nav-bottom">
                     <span>Recent</span>
-                    <span>Suggested</span>
+                    {/* <span>Suggested</span> */}
                 </div>
             </div>
             <div className="dashboard-notes-list">

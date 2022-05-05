@@ -1,0 +1,33 @@
+.edit-note-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-note-header-right, .edit-note-header-left{
+    /* align-items: center; */
+    display: flex;
+    font-size: .8rem;
+    font-family: 'system-ui';
+}
+
+.header-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-img {
+    padding: 0px;
+}
+
+.expand-icon {
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: rgb(38, 38, 38) 1px solid;
+}
+
+.move-note-span {
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: rgb(38, 38, 38) 1px solid;
+}

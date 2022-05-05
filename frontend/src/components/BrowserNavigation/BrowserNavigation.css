@@ -29,3 +29,18 @@
     padding: 4px 8px 4px 18px;
     justify-content: flex-start;
 }
+
+.create-note-div {
+    background-color: #008F26;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 0px;
+    border-radius: 20px;
+}
+
+.create-note-div > img{
+    padding: 0px;
+    height: 40px;
+}

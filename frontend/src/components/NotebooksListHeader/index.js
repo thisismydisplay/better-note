@@ -1,29 +1,41 @@
 import "./NotebooksListHeader.css";
-import React, { useState, useEffect, useRef } from "react";
-import ReactDOM from "react-dom";
+import React, { useState, } from "react";
 import CreateNotebookForm from "../CreateNotebookForm";
+import Modal from "../Modal";
+import { useSelector,  } from "react-redux";
 
+import SortButton from "../SortButton";
 
-function Modal({ children, onHide }) {
-    const [modalEl, setModalEl] = useState(document.getElementById('modal'));
-    useEffect(() => {
-        setModalEl( document.getElementById("modal"));
-    }, []);
-    return modalEl
-        ? ReactDOM.createPortal(
-              <div className="modal-content" onClick={() => onHide()}>
-                  <div className="modal-backdrop"></div>
-                  <div className="modal-inner-content">{children}</div>
-              </div>,
-              modalEl
-          )
-        : null;
-}
-
+// function Modal({ children, onHide }) {
+//     const [modalEl, setModalEl] = useState(document.getElementById('modal'));
+//     useEffect(() => {
+//         setModalEl( document.getElementById("modal"));
+//     }, []);
+//     return modalEl
+//         ? ReactDOM.createPortal(
+//               <div className="modal-content" onClick={() => onHide()}>
+//                   <div className="modal-backdrop"></div>
+//                   <div className="modal-inner-content">{children}</div>
+//               </div>,
+//               modalEl
+//           )
+//         : null;
+// }
 
 function NotebooksListHeader({ notebooks }) {
     const [showForm, setShowForm] = useState(false);
+    const sessionUser = useSelector((state) => state.session.user);
+    const userId = sessionUser.id;
+    const orderBy = useSelector((state) => state.session.orderBy);
+    // const [order, setOrder] = useState(orderBy);
 
+    // const dispatch = useDispatch();
+
+    // useEffect(()=> {
+    //     dispatch(getNotes(userId, order))
+    //     dispatch(getNotebookNotes(userId, order))
+    //     console.log('USE EFFECT')
+    // }, [userId, order])
     return (
         <div className="notebooks-list-header">
             <div className="book-list-top">
@@ -43,17 +55,24 @@ function NotebooksListHeader({ notebooks }) {
                         />
                     </Modal>
                 )}
-                <div className="add-notebook-container" hidden={showForm} onClick={() => setShowForm(true)}>
-                    <img
-                        className="create-book-icon"
-                        // id="notes-btn"
+                <div className="book-list-top-right">
+                    <div
+                        className="add-notebook-container"
+                        hidden={showForm}
+                        onClick={() => setShowForm(true)}
+                    >
+                        <img
+                            className="create-book-icon"
+                            // id="notes-btn"
 
-                        alt="search"
-                        src="
+                            alt="search"
+                            src="
                     /images/create-note.svg"
-                    />
-                    <span id="new-notebook">New Notebook</span>
-                    {/* <span>sort</span> */}
+                        />
+                        <span id="new-notebook">New Notebook</span>
+                        {/* <span>sort</span> */}
+                    </div>
+                    <SortButton />
                 </div>
             </div>
             <div className="book-list-bottom">

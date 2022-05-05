@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createNotebook, getNotebooks, setFirstNotebook  } from '../../store/notebook';
+import { createNotebook, getNotebookNotes, getNotebooks, setFirstNotebook  } from '../../store/notebook';
 import { ValidationError } from '../../utils/validationError';
 import ErrorMessage from '../ErrorMessage';
 import './CreateNotebookForm.css'
@@ -52,7 +52,7 @@ const CreateNotebookForm = ({ hideForm }) => {
   };
 
   return (
-    <section className="new-form-holder centered middled" onClick={(e)=> e.stopPropagation()}>
+    <section className="create-notebook-div" onClick={(e)=> e.stopPropagation()}>
       <ErrorMessage message={errorMessages.overall} />
       <form className="create-notebook-form" onSubmit={handleSubmit}>
 
@@ -68,8 +68,8 @@ const CreateNotebookForm = ({ hideForm }) => {
         {/*!!END */}
 
         {/*!!END */}
-        <button type="submit" className='form-btn'>Create new notebook</button>
-        <button type="button" className='form-btn' onClick={handleCancelClick}>Cancel</button>
+        <button type="submit" className='form-btn create-notebook-btn'>Create new notebook</button>
+        <button type="button" className='form-btn create-notebook-btn' onClick={handleCancelClick}>Cancel</button>
       </form>
     </section>
   );

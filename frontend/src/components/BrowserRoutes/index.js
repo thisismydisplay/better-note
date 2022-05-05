@@ -55,13 +55,15 @@ function BrowserRoutes() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
+
+    const orderBy = useSelector((state) => state.session.orderBy);
     useEffect(() => {
         console.log('use effect')
         dispatch(setFirstNotebook(userId));
     }, [dispatch]);
     useEffect(() => {
         console.log('use effect')
-        dispatch(getNotes(userId));
+        dispatch(getNotes(userId, orderBy));
     }, [dispatch]);
 
     const [showBrowserNav, setShowBrowserNav] = useState(false);
@@ -72,6 +74,7 @@ function BrowserRoutes() {
                 <BrowserNavigation sidebarOpen={showBrowserNav} />
             </div>
             <div
+                className="browser-div"
                 style={
                     showBrowserNav
                         ? { marginLeft: "208px" }

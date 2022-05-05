@@ -8,7 +8,7 @@ import CreateNotebookForm from "../CreateNotebookForm";
 import NotebookDetail from "../NotebookDetail";
 import NotebooksList from "../NotebooksList";
 import NotebooksListHeader from "../NotebooksListHeader";
-import NotebooksPageHeader from "../NotebooksPageHeader";
+import PageHeader from "../PageHeader";
 
 // import notebook from "../../../../backend/db/models/notebook";
 //!!END
@@ -17,21 +17,21 @@ import NotebooksPageHeader from "../NotebooksPageHeader";
 //!!END_ADD
 // import NotebookNotes from '../NotebookNotes';
 
-function Modal({ children, onHide }) {
-    const [modalEl, setModalEl] = useState(document.getElementById('modal'));
-    useEffect(() => {
-        setModalEl( document.getElementById("modal"));
-    }, []);
-    return modalEl
-        ? ReactDOM.createPortal(
-              <div className="modal-content" onClick={() => onHide()}>
-                  <div className="modal-backdrop"></div>
-                  <div className="modal-inner-content">{children}</div>
-              </div>,
-              modalEl
-          )
-        : null;
-}
+// function Modal({ children, onHide }) {
+//     const [modalEl, setModalEl] = useState(document.getElementById('modal'));
+//     useEffect(() => {
+//         setModalEl( document.getElementById("modal"));
+//     }, []);
+//     return modalEl
+//         ? ReactDOM.createPortal(
+//               <div className="modal-content" onClick={() => onHide()}>
+//                   <div className="modal-backdrop"></div>
+//                   <div className="modal-inner-content">{children}</div>
+//               </div>,
+//               modalEl
+//           )
+//         : null;
+// }
 
 function NotebooksPage() {
     const dispatch = useDispatch();
@@ -59,8 +59,8 @@ function NotebooksPage() {
         return null;
     }
     return (
-        <div>
-            <div>
+        <div className="page-container">
+            {/* <div>
                 <span>Notebooks</span>
                 <span>Search Placeholder</span>
             </div>
@@ -79,12 +79,17 @@ function NotebooksPage() {
             </div>
             <div hidden={showForm} onClick={() => setShowForm(true)}>
                 Create Notebook
+            </div> */}
+            <div className="header-container">
+
+            <PageHeader />
             </div>
-            <NotebooksPageHeader />
+
 
             <NotebooksListHeader notebooks={notebooks} />
 
             <NotebooksList />
+
 
             {/* {
                 showForm ? <CreateNotebookForm /> : null

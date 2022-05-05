@@ -1,8 +1,10 @@
-/* .note-title-input {
-    overflow: hidden;
-} */
+.note-title-input {
+    padding: 10px 0px;
+    margin: 10px 0px;
+    font-size: 1.3rem;
+}
 .edit-note-form {
-    padding:10px;
+    /* padding:10px; */
     width: 100%;
 
 }
@@ -16,6 +18,8 @@ input.note-title-input, textarea.note-content-input{
 }
 textarea.note-content-input{
     height: 480px;
+    padding: 10px 0px;
+    margin-top: 10px;
 
 }
 input.note-title-input {
@@ -25,6 +29,14 @@ input.note-title-input {
 .edit-note-form, .edit-note-container  {
     width: 100%;
     height: 100%;
+
+}
+
+.last-edited {
+    font-family: 'system-ui';
+    padding:10px;
+    border-bottom: rgb(38, 38, 38) 1px solid;
+    border-top: rgb(38, 38, 38) 1px solid;
 
 }
 

@@ -11,12 +11,18 @@ const LOAD_NOTEBOOK_NOTES = 'notes/LOAD_NOTEBOOK_NOTES'
 
 const ADD_ONE = 'notebooks/ADD_ONE';
 const DELETE = 'notebooks/DELETE'
+const LOAD_ONE = 'notebooks/LOAD_ONE'
 // const REMOVE = 'notebooks/REMOVE'
 
 const load = list => ({
   type: LOAD,
   list
 });
+
+const loadOne = notebook => ({
+    type: LOAD_ONE,
+    notebook
+})
 const loadNotebookNotes = list => ({
     type: LOAD_NOTEBOOK_NOTES,
     list
@@ -37,9 +43,9 @@ const addOneNotebook = notebook => ({
   notebook
 });
 
-export const getNotebookNotes = (notebookId) => async dispatch => {
+export const getNotebookNotes = (notebookId, orderBy) => async dispatch => {
     console.log('hi!')
-      const response = await csrfFetch(`/api/notebooks/${notebookId}/notes`);
+      const response = await csrfFetch(`/api/notebooks/${notebookId}/notes/?orderBy=${orderBy}`);
       console.log(response)
     if (response.ok) {
       const list = await response.json();
@@ -50,7 +56,7 @@ export const getNotebookNotes = (notebookId) => async dispatch => {
 
 export const getNotebooks = (userId) => async dispatch => {
   console.log('hi!')
-    const response = await csrfFetch(`/api/notebooks/${userId}`);
+    const response = await csrfFetch(`/api/notebooks/?userId=${userId}`);
     console.log(response)
   if (response.ok) {
     const list = await response.json();
@@ -64,7 +70,7 @@ export const getOneNotebook = id => async dispatch => {
     console.log(response)
   if (response.ok) {
     const notebook = await response.json();
-    dispatch(addOneNotebook(notebook));
+    dispatch(loadOne(notebook));
   }
 };
 
@@ -152,7 +158,8 @@ export const deleteNotebook = id => async dispatch => {
 const initialState = {
   list: [],
   firstNotebook: [],
-  notebookNotes: []
+  notebookNotes: [],
+  currentNotebook: {}
 };
 
 // const sortList = (list) => {
@@ -179,6 +186,8 @@ const notebookReducer = (state = initialState, action) => {
     //     ...state,
     //     types: action.types
     //   };
+    case LOAD_ONE:
+        return { ...state, currentNotebook: action.notebook}
     case LOAD_NOTEBOOK_NOTES:
         return {
             // ...allNotebooks,

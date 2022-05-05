@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
 import { createNote, getNotes, getOneNote, updateNote  } from '../../store/note';
-import { setFirstNotebook  } from '../../store/notebook';
+import { getOneNotebook, setFirstNotebook  } from '../../store/notebook';
 import { ValidationError } from '../../utils/validationError';
 import ErrorMessage from '../ErrorMessage';
+import EditNoteHeader from '../EditNoteHeader';
 import './EditNote.css'
 
 const EditNote = ({ note }) => {
 
     const currentNote = useSelector((state) => state.note.currentNote);
+    const currentNotebook = useSelector((state) => state.notebook.currentNotebook)
     const [title, setTitle] = useState(currentNote.title);
     const [content, setContent] = useState(currentNote.content);
+    const [notebook, setNotebook] = useState(currentNotebook);
     // const [height, setHeight] = useState('100px')
     const [errorMessages, setErrorMessages] = useState('');
     const dispatch = useDispatch();
@@ -35,17 +38,19 @@ const EditNote = ({ note }) => {
     useEffect(()=> {
         setTitle(currentNote.title)
         setContent(currentNote.content)
+        console.log(currentNotebook)
+        console.log('=====')
+        dispatch(getOneNotebook(currentNote.notebookId))
+        setNotebook(currentNotebook)
+        console.log(currentNotebook)
+
     }, [currentNote])
   return (
     <section className="edit-note-form not-fullscreen">
       <ErrorMessage message={errorMessages.overall} />
-        <div className='edit-note-header'>
-            <span>Expand</span>
-            <span>Notebook</span>
-            <span>Move Note</span>
-            <span>Delete</span>
-        </div>
-        <div>{`Last edited ${currentNote.updatedAt}`}</div>
+        <EditNoteHeader currentNotebook={notebook} note={note}/>
+
+        <div className='last-edited'>{`Last edited ${currentNote?.updatedAt.toString().slice(0, 10)}, ${currentNote?.updatedAt.toString().slice(11, 16)}`}</div>
       <div className="edit-note-form" >
         <form className='edit-inputs'>
       <input className='note-title-input'

@@ -5,6 +5,7 @@ import { NavLink, Route, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getNotes } from "../../store/note";
 import NoteDetail from "../NoteDetail";
+import SortButton from "../SortButton";
 // import NotesList from "../NotesList";
 // import notebook from "../../../../backend/db/models/notebook";
 //!!END
@@ -21,6 +22,7 @@ function NotesList() {
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
 
+    const orderBy = useSelector((state) => state.session.orderBy);
     const notes = useSelector((state) => {
         return state.note.list;
     });
@@ -29,7 +31,7 @@ function NotesList() {
 
     useEffect(() => {
         console.log("use effect");
-        dispatch(getNotes(userId));
+        dispatch(getNotes(userId, orderBy));
     }, [dispatch]);
 
     if (!notes) {
@@ -39,19 +41,24 @@ function NotesList() {
         <div className="notes-container">
             <div className="notes-nav">
                 <div className="notes-nav-top">
-                    <img
-                        className="note-icon"
-                        // id="notes-btn"
+                    <div className="notes-nav-left">
+                        <img
+                            className="note-icon"
+                            // id="notes-btn"
 
-                        alt="background"
-                        src="
+                            alt="background"
+                            src="
                         /images/notes-icon.svg"
-                    />
-                    <span className="welcome-span">NOTES</span>
+                        />
+                        <span className="welcome-span">NOTES</span>
+                    </div>
+                    <div className="notes-nav-right">
+                        <SortButton></SortButton>
+                    </div>
                 </div>
                 <div className="notes-nav-bottom">
                     <span>Recent</span>
-                    <span>Suggested</span>
+                    {/* <span>Suggested</span> */}
                 </div>
                 <div className="placeholder-for-menu-options"></div>
                 <div className="note-list">
