@@ -1,0 +1,65 @@
+.notebooks-list-header {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 20px;
+    /* padding: 20px 0px; */
+
+}
+.notebook-list {
+    margin: 0px 20px;
+    /* padding: 0px px; */
+
+}
+.book-list-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: rgb(165,165,165) 1px solid ;
+    cursor: pointer;
+}
+
+.add-notebook-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-icon {
+
+}
+
+#new-notebook{
+    padding-left: 0px;
+    font-size: .8rem
+}
+
+.book-list-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: .8rem;
+    background-color: #1A1A1A;
+
+}
+
+.book-list-bottom > div > span{
+    color: rgb(165,165,165);
+    width: 100px;
+}
+
+.notebook-title-div {
+    width: max-content;
+}
+
+.notebook-details-header-right {
+    display: flex;
+
+}
+
+.notebook-details-header-right > div {
+    width: 100px;
+    padding: 6px;
+    overflow: hidden;
+    /* overflow-wrap: break-word; */
+}

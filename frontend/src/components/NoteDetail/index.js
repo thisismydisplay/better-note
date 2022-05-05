@@ -30,7 +30,7 @@ function NoteDetail({ note}) {
                     <div className="content">{note.content}</div>
                     <div className="updatedAt">
                         {/* {`${dateAdjustLogic(note)}`} */}
-                        {note.updatedAt}
+                        {`${note.updatedAt.toString().slice(0, 10)} ${note.updatedAt.toString().slice(11, 16)} `}
                     </div>
                 </div>
 
