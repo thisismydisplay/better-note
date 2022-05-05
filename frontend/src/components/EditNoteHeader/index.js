@@ -4,15 +4,15 @@ import { getOneNotebook } from '../../store/notebook';
 import { getOneNote } from '../../store/note';
 import { useDispatch, useSelector,  } from "react-redux";
 // import {getOneNotebook} from '../../store/notebook'
-function EditNoteHeader({currentNotebook, note}) {
+function EditNoteHeader() {
     const dispatch = useDispatch();
-    const cN = useSelector((state)=> state.notebook.currentNotebook)
-    const [notebook, setNotebook] = useState(cN);
-    useEffect(()=>{
-        dispatch(getOneNotebook(notebook.id))
-        setNotebook(notebook)
-        // dispatch(getOneNote(note.id))
-    }, [notebook])
+    // const cN = useSelector((state)=> state.notebook.currentNotebook)
+    // const [notebook, setNotebook] = useState(cN);
+    // useEffect(()=>{
+    //     dispatch(getOneNotebook(notebook.id))
+    //     setNotebook(notebook)
+    //     // dispatch(getOneNote(note.id))
+    // }, [notebook])
 return(
 <div className="edit-note-header">
     <div className='edit-note-header-left'>
@@ -35,7 +35,7 @@ return(
                             src="
                         /images/notebooks.svg"
                         />
-                        <span className="welcome-span">{currentNotebook.title}</span>
+                        <span className="welcome-span">notebook</span>
                     </div>
                     </div>
                     <div className='edit-note-header-right'>
