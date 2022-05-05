@@ -26,6 +26,7 @@ function NotesList() {
     const notes = useSelector((state) => {
         return state.note.list;
     });
+    const currentNote = useSelector((state)=> state.note.currentNote)
     console.log(notes);
     const [showNotes, setShowNotes] = useState(false);
 
@@ -64,7 +65,7 @@ function NotesList() {
                 <div className="note-list">
                     {notes?.map((note) => (
                         <div className="note-detail-container">
-                            <NoteDetail note={note} />
+                            <NoteDetail note={note} active={currentNote?.id === note.id} />
                         </div>
                     ))}
                 </div>

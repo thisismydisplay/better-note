@@ -10,7 +10,7 @@ import { getNotebookNotes, getOneNotebook } from "../../store/notebook";
 import { dateAdjustLogic } from "../../utils/dateAdjust";
 import DeleteButton from "../DeleteButton";
 import './NoteDetail.css'
-function NoteDetail({ note}) {
+function NoteDetail({ note, active}) {
     const history = useHistory();
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
@@ -36,17 +36,17 @@ function NoteDetail({ note}) {
         //!!END
     };
     return (
-        <div className={`note-${note.id} note-container`}>
+        <div className={(active ? 'note-active' : '') + ` note-${note.id} note-container`}>
 
                 <div onClick={async ()=>{
-                    // history.replace('/browser/notes')
+                    history.replace('/browser/notes')
                     await dispatch(getOneNote(note.id))
                     window.scrollTo(0, 0)
 
                     // await dispatch(getOneNotebook(currentNotebook.id))
                     }}>
                     <div className="title">{note.title}</div>
-                    <div className="content">{note.content}</div>
+                    <div className="content note-content">{note.content}</div>
                     <div className="note-detail-footer">
                     <div className="updatedAt">
                         {/* {`${dateAdjustLogic(note)}`} */}
