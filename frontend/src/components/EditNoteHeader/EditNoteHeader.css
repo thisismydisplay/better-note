@@ -31,3 +31,7 @@
     padding-right: 10px;
     border-right: rgb(38, 38, 38) 1px solid;
 }
+
+.move-note-icon-div {
+    cursor: pointer;
+}

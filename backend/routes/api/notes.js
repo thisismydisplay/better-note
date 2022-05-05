@@ -46,11 +46,12 @@ router.put(
     //   noteValidations.validateUpdate,
     asyncHandler(async function (req, res) {
         const note = await Note.findByPk(req.params.id)
-        const {title, content} = req.body;
+        const {title, content, notebookId} = req.body;
         console.log(req.body)
         if (!note.title) note.title = 'untitled';
         note.title = title;
         note.content = content;
+        note.notebookId = notebookId;
         await note.save();
         console.log('==============')
         console.log(note)

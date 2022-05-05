@@ -39,7 +39,7 @@ function NoteDetail({ note}) {
         <div className={`note-${note.id} note-container`}>
 
                 <div onClick={async ()=>{
-                    history.replace('/browser/notes')
+                    // history.replace('/browser/notes')
                     await dispatch(getOneNote(note.id))
                     window.scrollTo(0, 0)
 
@@ -51,10 +51,10 @@ function NoteDetail({ note}) {
                     <div className="updatedAt">
                         {/* {`${dateAdjustLogic(note)}`} */}
                         {`${note.updatedAt.toString().slice(0, 10)} ${note.updatedAt.toString().slice(11, 16)} `}
+                </div>
                     </div>
                     <DeleteButton note={note}/>
                     </div>
-                </div>
 
         </div>
     );

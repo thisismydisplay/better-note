@@ -18,7 +18,7 @@ function NotebookDetail({ notebook, colorToggle }) {
 
     const notebookNotes = useSelector((state) => state.notebook.notebookNotes);
     const firstNotebook = useSelector((state) => state.notebook.list[0]);
-    console.log(sessionUser)
+    console.log(sessionUser);
     const onSubmit = (e) => {
         e.preventDefault();
         dispatch(getNotebooks(userId));
@@ -49,30 +49,35 @@ function NotebookDetail({ notebook, colorToggle }) {
                     </div>
                     <div className="notebook-details-header-right">
                         <div className="createdAt">{sessionUser.username} </div>
-                        <div>{notebook.updatedAt && `${notebook?.updatedAt.toString().slice(0, 10)} ${notebook?.updatedAt.toString().slice(11, 16)} `}</div>
+                        <div>
+                            {notebook.updatedAt &&
+                                `${notebook?.updatedAt
+                                    .toString()
+                                    .slice(0, 10)} ${notebook?.updatedAt
+                                    .toString()
+                                    .slice(11, 16)} `}
+                        </div>
                         <div className="delete-btn-form">
-                            <form onSubmit={onSubmit}>
-                                <button
-                                    hidden={
-                                        firstNotebook?.id === notebook?.id
-                                    }
-                                    className="delete-btn"
-                                    onClick={async () => {
-                                        await dispatch(
-                                            deleteNotebook(notebook.id)
-                                        );
-                                        // setReload(!reload)
+                            <form
+                                onSubmit={onSubmit}
+                                hidden={firstNotebook?.id === notebook?.id}
+                                className="delete-btn delete-div"
+                                onClick={async () => {
+                                    await dispatch(deleteNotebook(notebook.id));
+                                    // setReload(!reload)
 
+                                    //DELETE NEEDS TO UPDATE NOTEBOOK NOTES?
 
-
-                                                //DELETE NEEDS TO UPDATE NOTEBOOK NOTES?
-
-
-                                        await dispatch(getNotebooks(userId));
-                                    }}
-                                >
-                                    Delete
-                                </button>
+                                    await dispatch(getNotebooks(userId));
+                                }}
+                            >
+                                <img
+                                    className="delete-btn trash-icon icon-img"
+                                    alt="background"
+                                    src="
+                        /images/trashcan-icon.svg"
+                                />{" "}
+                                Delete
                             </form>
                         </div>
                     </div>

@@ -4,20 +4,26 @@ import { getOneNotebook } from "../../store/notebook";
 import { getOneNote } from "../../store/note";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteButton from "../DeleteButton";
+import Modal from "../Modal";
+import ChangeNotebookForm from "../ChangeNotebookForm";
+import CreateNoteForm from "../CreateNoteForm";
+
 // import {getOneNotebook} from '../../store/notebook'
 function EditNoteHeader({ note }) {
-    const currentNotebook = useSelector((state) => state.notebook.currentNotebook)
+    const currentNotebook = useSelector(
+        (state) => state.notebook.currentNotebook
+    );
     // const [notebook, setNotebook] = useState(cNotebook);
+    const [showForm, setShowForm] = useState(false);
 
     const dispatch = useDispatch();
-    useEffect(()=> {
-        console.log(currentNotebook, '++++++++++++')
+    useEffect(() => {
+        console.log(currentNotebook, "++++++++++++");
 
-        dispatch(getOneNotebook(note.id))
+        dispatch(getOneNotebook(note.id));
         // setNotebook(currentNotebook)
         // console.log(currentNotebook)
-
-    }, [note])
+    }, [note]);
     // const cN = useSelector((state)=> state.notebook.currentNotebook)
     // // console.log(cN)
     // const [notebook, setNotebook] = useState(currentNotebook);
@@ -48,11 +54,28 @@ function EditNoteHeader({ note }) {
                         src="
                         /images/notebooks.svg"
                     />
-                    <span className="welcome-span">{currentNotebook?.title}</span>
+                    <span className="welcome-span">
+                        {currentNotebook?.title}
+                    </span>
                 </div>
             </div>
             <div className="edit-note-header-right">
-                <div className="move-note-icon-div header-item">
+                {showForm && (
+                    <Modal
+                        onHide={() => {
+                            setShowForm(false);
+                        }}
+                    >
+                        <ChangeNotebookForm
+                            hideForm={() => setShowForm(false)}
+                        />
+                    </Modal>
+                )}
+                <div
+                    className="move-note-icon-div header-item"
+                    hidden={showForm}
+                    onClick={() => setShowForm(true)}
+                >
                     <img
                         className="move-note-icon icon-img"
                         // id="notes-btn"

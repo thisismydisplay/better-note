@@ -69,7 +69,7 @@ function NotesPage() {
                     <NotesList />
                 </div>
                 <div className="edit-note-container">
-                    {note.id && <EditNote note={note} />}
+                    {note?.id && <EditNote note={note} />}
                 </div>
                 <div className="create-note-form">
                     {/* <CreateNoteForm /> */}

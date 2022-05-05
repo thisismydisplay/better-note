@@ -31,10 +31,15 @@
     padding: 0px;
     padding-top: 10px;
     cursor: pointer;
+    z-index: 200;
 }
 
 .delete-div {
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .note-detail-footer {
