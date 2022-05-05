@@ -22,6 +22,34 @@
     display: none;
 }
 
+.note-active {
+    border: 1px solid white;
+
+}
+
+.note-active.note-container {
+    background-color: rgb(88,88,88);
+}
+
+.note-list {
+    overflow-y: scroll;
+    max-height: 700px;
+}
+
+.note-list::-webkit-scrollbar {
+    background: black;
+}
+.note-list::-webkit-scrollbar-thumb {
+    background: var(--darkgrey);
+}
+
+.note-content {
+    white-space: pre;
+    max-height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .delete-btn {
     /* background-color: rgb(58,58,58); */
     border: none;
