@@ -17,6 +17,7 @@ function NotebooksList() {
     });
     console.log(notebooks);
     const [showForm, setShowForm] = useState(false);
+    // const [colorToggle, setColorToggle] = useState(false)
 
     // useEffect(() => {
     //     console.log("use effect");
@@ -39,7 +40,7 @@ function NotebooksList() {
                     // <NavLink key={notebook.id} to={`/notebooks`}>
 
                     <div className='notebook-detail' id={`notebook-${notebook.id}`}>
-                        <NotebookDetail key={notebook.id} notebook={notebook}/>
+                        <NotebookDetail key={notebook.id} notebook={notebook} />
                         <div>
 
                         </div>

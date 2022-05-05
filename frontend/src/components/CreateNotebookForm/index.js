@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { createNotebook, getNotebooks, setFirstNotebook  } from '../../store/notebook';
 import { ValidationError } from '../../utils/validationError';
 import ErrorMessage from '../ErrorMessage';
+import './CreateNotebookForm.css'
 
 const CreateNotebookForm = ({ hideForm }) => {
   const [errorMessages, setErrorMessages] = useState({});
@@ -56,6 +57,7 @@ const CreateNotebookForm = ({ hideForm }) => {
       <form className="create-notebook-form" onSubmit={handleSubmit}>
 
         <input
+        className='create-notebook-input'
           type="text"
           placeholder="Untitled"
           required
@@ -66,8 +68,8 @@ const CreateNotebookForm = ({ hideForm }) => {
         {/*!!END */}
 
         {/*!!END */}
-        <button type="submit">Create new notebook</button>
-        <button type="button" onClick={handleCancelClick}>Cancel</button>
+        <button type="submit" className='form-btn'>Create new notebook</button>
+        <button type="button" className='form-btn' onClick={handleCancelClick}>Cancel</button>
       </form>
     </section>
   );

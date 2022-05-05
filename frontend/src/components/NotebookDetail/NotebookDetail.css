@@ -2,3 +2,17 @@
     display:none;
 }
 
+div.notebook-details-text {
+    display: flex;
+    background-color: #333333;
+    border-bottom: #737373 1px solid;
+    padding: 10px;
+
+
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 1rem;
+    /* background-color: #1A1A1A; */
+}
