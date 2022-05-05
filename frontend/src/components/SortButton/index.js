@@ -23,25 +23,25 @@ function SortButton() {
         dispatch(getNotebookNotes(userId, order))
         console.log('USE EFFECT')
     }, [userId, order])
-    return (<div
-                        className="sort-container"
+    return(<div></div>)}
+    // return (<div
+    //                     className="sort-container"
+    //                     onClick={async () => {
+    //                         // history.replace('/browser/notebooks')
 
-                        onClick={async () => {
-                            // history.replace('/browser/notebooks')
+    //                         await dispatch(changeSortPreference());
+    //                         order === 'DESC' ? setOrder('ASC') : setOrder('DESC')
+    //                     }}
+    //                 >
+    //                     <img
+    //                         className="sort-icon"
+    //                         // id="notes-btn"
 
-                            await dispatch(changeSortPreference());
-                            order === 'DESC' ? setOrder('ASC') : setOrder('DESC')
-                        }}
-                    >
-                        <img
-                            className="sort-icon"
-                            // id="notes-btn"
-
-                            alt="sort"
-                            src="
-                    /images/sort-down.svg"
-                        />
-                        <span id="new-notebook">Sort</span>
-                        {/* <span>sort</span> */}
-                    </div>)}
+    //                         alt="sort"
+    //                         src="
+    //                 /images/sort-down.svg"
+    //                     />
+    //                     <span id="new-notebook">Sort</span>
+    //                     {/* <span>sort</span> */}
+    //                 </div>)}
 export default SortButton
