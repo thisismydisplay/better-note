@@ -53,7 +53,7 @@ function NotebookDetail({ notebook, colorToggle }) {
                         <div className="delete-btn-form">
                             <form onSubmit={onSubmit}>
                                 <button
-                                    disabled={
+                                    hidden={
                                         firstNotebook?.id === notebook?.id
                                     }
                                     className="delete-btn"

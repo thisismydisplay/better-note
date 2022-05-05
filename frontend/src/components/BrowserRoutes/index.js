@@ -63,7 +63,7 @@ function BrowserRoutes() {
     }, [dispatch]);
     useEffect(() => {
         console.log('use effect')
-        dispatch(getNotes(userId, orderBy));
+        dispatch(getNotes(userId, 'DESC'));
     }, [dispatch]);
 
     const [showBrowserNav, setShowBrowserNav] = useState(false);
