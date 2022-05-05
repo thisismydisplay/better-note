@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-
-import { createNote, getNotes } from "../../store/note";
+import { changeSortPreference } from "../../store/session";
+import { createNote, getNotes, getOneNote } from "../../store/note";
 import {
     setFirstNotebook,
     getNotebookNotes,
@@ -26,6 +26,7 @@ const CreateNoteForm = ({ hideForm }) => {
     const orderBy = useSelector((state) => state.session.orderBy);
     const firstNotebook = useSelector((state) => state.notebook.firstNotebook);
     const [notebookId, setNotebookId] = useState(firstNotebook.id);
+    const [order, setOrder] = useState(orderBy);
     //   const notebookId = firstNotebook.id;
 
     const updateTitle = (e) => setTitle(e.target.value);
@@ -34,7 +35,11 @@ const CreateNoteForm = ({ hideForm }) => {
 
     useEffect(() => {
         // dispatch()
+        // dispatch(changeSortPreference());
+        //                     order === 'DESC' ? setOrder('ASC') : setOrder('DESC')
         dispatch(getNotebooks(userId));
+        // order === 'DESC' ? setOrder('ASC') : setOrder('DESC')
+        // dispatch(getNotes(userId, 'DESC'))
         // setNotebookId(notebook)
         console.log(notebookId, '-<-<')
     }, [dispatch]);
@@ -66,10 +71,12 @@ const CreateNoteForm = ({ hideForm }) => {
             setErrorMessages({});
 
             //   history.push(`/browser/notes/`);
-            dispatch(getNotes(userId, orderBy));
-            dispatch(getNotebookNotes(firstNotebook.id, orderBy));
-            dispatch(getNotebooks(userId));
 
+            await dispatch(getNotes(userId, 'DESC'));
+            history.replace('/browser/notes')
+            //  dispatch(getOneNote(createdNote.id))
+            // dispatch(getNotebookNotes(firstNotebook.id, 'DESC'));
+            // dispatch(getNotebooks(userId));
             hideForm();
         }
     };

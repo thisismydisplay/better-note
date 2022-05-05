@@ -22,7 +22,7 @@ function DashboardNotesContainer() {
 
     useEffect(() => {
         console.log("use effect");
-        dispatch(getNotes(userId, orderBy));
+        dispatch(getNotes(userId, 'DESC'));
     }, [dispatch]);
 
 

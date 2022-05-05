@@ -23,14 +23,15 @@ function NoteDetail({ note}) {
     })
 
     useEffect(()=>{
-        dispatch(getOneNote(note.id))
+        // dispatch(getOneNote(note?.id))
         // dispatch(getOneNotebook(currentNotebook?.id))
     }, [])
+
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        // dispatch(getNotes(userId, orderBy));
+        dispatch(getNotes(userId, orderBy));
         //!!END
     };
     return (
@@ -39,6 +40,8 @@ function NoteDetail({ note}) {
                 <div onClick={async ()=>{
                     history.replace('/browser/notes')
                     await dispatch(getOneNote(note.id))
+                    window.scrollTo(0, 0)
+
                     // await dispatch(getOneNotebook(currentNotebook.id))
                     }}>
                     <div className="title">{note.title}</div>
