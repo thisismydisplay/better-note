@@ -57,10 +57,10 @@ function NotebookDetail({ notebook, colorToggle }) {
                                     .toString()
                                     .slice(11, 16)} `}
                         </div>
-                        <div className="delete-btn-form">
-                            <form
+
+                        <div className="delete-btn-form" >
+                            {!(firstNotebook?.id === notebook?.id) && <form
                                 onSubmit={onSubmit}
-                                hidden={firstNotebook?.id === notebook?.id}
                                 className="delete-btn delete-div"
                                 onClick={async () => {
                                     await dispatch(deleteNotebook(notebook.id));
@@ -78,7 +78,7 @@ function NotebookDetail({ notebook, colorToggle }) {
                         /images/trashcan-icon.svg"
                                 />{" "}
                                 Delete
-                            </form>
+                            </form>}
                         </div>
                     </div>
                 </div>
