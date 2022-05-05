@@ -12,10 +12,10 @@ import './EditNote.css'
 const EditNote = ({ note }) => {
 
     const currentNote = useSelector((state) => state.note.currentNote);
-    // const currentNotebook = useSelector((state) => state.notebook.currentNotebook)
+    const currentNotebook = useSelector((state) => state.notebook.currentNotebook)
     const [title, setTitle] = useState(currentNote.title);
     const [content, setContent] = useState(currentNote.content);
-    // const [notebook, setNotebook] = useState(currentNotebook);
+    const [notebook, setNotebook] = useState(currentNotebook);
     // const [height, setHeight] = useState('100px')
     const [errorMessages, setErrorMessages] = useState('');
     const dispatch = useDispatch();
