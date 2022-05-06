@@ -35,7 +35,6 @@ function ProfileButton({sidebarOpen}) {
     return (
         <>
             <div className='account-info-div user-li profile-name-div' onClick={openMenu}>
-                {/* <i className="fas fa-user-circle" /> */}
                 <img
                                 className="account-icon"
                                 alt="avatar"
@@ -50,7 +49,6 @@ function ProfileButton({sidebarOpen}) {
                             />
             </div>
             {showMenu && (
-                // <div className="profile-dropdown">
 
                 <ul className="profile-dropdown">
                     <div className="account-info-div">
@@ -75,7 +73,6 @@ function ProfileButton({sidebarOpen}) {
 
                     </li>
                 </ul>
-                // </div>
             )}
         </>
     );

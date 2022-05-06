@@ -16,7 +16,6 @@ function Footer() {
             <li className="footer-li"><a className='footer-link' href='https://www.postgresql.org/docs/'>PostgreSQL</a></li>
 
         </ul>
-        {/* <hr className="footer-spacer"></hr> */}
     </div>)
 }
 

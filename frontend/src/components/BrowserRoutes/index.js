@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import  NotebooksPage  from '../NotebooksPage'
 import  DashboardPage  from '../DashboardPage'
-import DashboardNotesContainer from "../DashboardNotesContainer";
 import { setFirstNotebook } from "../../store/notebook";
 import { getNotes } from "../../store/note";
-// import DashboardPage from "../DashboardPage";
-// import NotesPage from "../NotesPage";
-// import TagsPage from "../TagsPage";
-// import NotebooksPage from "../NotebooksPage";
 import BrowserNavigation from "../BrowserNavigation";
 import "./BrowserRoutes.css";
 import NotesPage from "../NotesPage"
 import Footer from "../Footer"
-// import * as sessionActions from "./store/session";
-import HomeNavigation from "../HomeNavigation";
+
 
 
 
@@ -25,12 +19,12 @@ function BrowserRoutes() {
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
     const [isLoaded, setIsLoaded] = useState(false);
-    const orderBy = useSelector((state) => state.session.orderBy);
+    // const orderBy = useSelector((state) => state.session.orderBy);
     const notes = useSelector((state)=> state.note.list)
     useEffect(() => {
         console.log('use effect')
         dispatch(setFirstNotebook(userId));
-    }, [dispatch]);
+    }, [dispatch, userId]);
     useEffect(() => {
         async function main() {
             await dispatch(getNotes(userId, 'DESC'));

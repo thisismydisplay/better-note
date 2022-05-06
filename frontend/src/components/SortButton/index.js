@@ -2,14 +2,12 @@ import "./SortButton.css";
 import React, { useState, useEffect, } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { changeSortPreference } from "../../store/session";
+// import { changeSortPreference } from "../../store/session";
 import {getNotes} from "../../store/note"
-// import {useHistory} from 'react-router-dom'
 import { getNotebookNotes } from "../../store/notebook";
 
 
 function SortButton() {
-    // const history = useHistory();
 
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
@@ -21,8 +19,7 @@ function SortButton() {
     useEffect(()=> {
         dispatch(getNotes(userId, order))
         dispatch(getNotebookNotes(userId, order))
-        console.log('USE EFFECT')
-    }, [userId, order])
+    }, [dispatch, userId, order])
     return(<div></div>)}
     // return (<div
     //                     className="sort-container"

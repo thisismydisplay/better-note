@@ -8,6 +8,8 @@
 .notebook-list {
     margin: 0px 20px;
     /* padding: 0px px; */
+    overflow-y: scroll;
+    max-height: 600px;
 
 }
 .book-list-top {

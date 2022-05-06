@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createNotebook, getNotebookNotes, getNotebooks, setFirstNotebook  } from '../../store/notebook';
+import { createNotebook, getNotebooks } from '../../store/notebook';
 import { ValidationError } from '../../utils/validationError';
 import ErrorMessage from '../ErrorMessage';
 import './CreateNotebookForm.css'
@@ -25,7 +25,6 @@ const CreateNotebookForm = ({ hideForm }) => {
     };
 
     let createdNotebook;
-    //!!START SILENT
     try {
       createdNotebook = await dispatch(createNotebook(payload));
     } catch (error) {
@@ -34,11 +33,8 @@ const CreateNotebookForm = ({ hideForm }) => {
       // "Error: "
       else setErrorMessages({ overall: error.toString().slice(7) })
     }
-    //!!END
     if (createdNotebook) {
-      //!!START SILENT
       setErrorMessages({});
-      //!!END
       history.push(`/browser/notebooks/`);
     dispatch(getNotebooks(userId));
       hideForm();
@@ -63,11 +59,8 @@ const CreateNotebookForm = ({ hideForm }) => {
           required
           value={title}
           onChange={updateTitle} />
-        {/*!!START SILENT */}
         <ErrorMessage label={"Title"} message={errorMessages.title} />
-        {/*!!END */}
 
-        {/*!!END */}
         <button type="submit" className='form-btn create-notebook-btn'>Create new notebook</button>
         <button type="button" className='form-btn create-notebook-btn' onClick={handleCancelClick}>Cancel</button>
       </form>

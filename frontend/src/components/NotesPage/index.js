@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-import { NavLink, Route, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getNotes, setOneNote } from "../../store/note";
@@ -10,27 +10,19 @@ import NotesList from "../NotesList";
 import EditNote from "../EditNote";
 import "./NotesPage.css";
 import PageHeader from "../PageHeader";
-// import notebook from "../../../../backend/db/models/notebook";
-//!!END
-//!!ADD
-// import { useSelector } from 'react-redux';
-//!!END_ADD
-// import NotebookNotes from '../NotebookNotes';
 
 function NotesPage() {
     const dispatch = useDispatch();
     const { id } = useParams();
 
     const sessionUser = useSelector((state) => state.session.user);
-    // const targetNote = useSelector((state)=> state.note.list.find(n => n.id === id))
-    // const currentNote = useSelector((state) => state.note.currentNote)
+
     const userId = sessionUser.id;
 
-    const orderBy = useSelector((state) => state.session.orderBy);
+    // const orderBy = useSelector((state) => state.session.orderBy);
     useEffect(() => {
-        console.log("use effect");
         dispatch(setFirstNotebook(userId));
-    }, [dispatch]);
+    }, [dispatch, userId]);
 
     // const [showNotes, setShowNotes] = useState(false);
 
@@ -49,11 +41,6 @@ function NotesPage() {
     const note = useSelector((state) => {
         return state.note.currentNote;
     });
-    // const [currentNote, setCurrentNote] = useState(note);
-
-    // useEffect(()=>{
-    //     setCurrentNote(note)
-    // })
 
     if (!notes || !notes.length) {
         return (
@@ -69,15 +56,13 @@ function NotesPage() {
             </div>
             <div className="body-container">
                 <div>
-                    {/* <NotesList changeNote={(note) => setCurrentNote(note)}/> */}
                     <NotesList />
                 </div>
                 <div className="edit-note-container">
                     {note?.id && <EditNote note={note} />}
                 </div>
-                <div className="create-note-form">
-                    {/* <CreateNoteForm /> */}
-                </div>
+                {/* <div className="create-note-form">
+                </div> */}
             </div>
         </div>
     );
