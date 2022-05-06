@@ -86,9 +86,9 @@ function NotebookDetail({ notebook, colorToggle }) {
                 </div>
             </div>
             {showNotes && notebook?.id === notebookNotes[0]?.notebookId && (
-                <div className="notebook-notes">
+                <div className="notebook-notes" key={notebook.id}>
                     {notebookNotes?.map((note) => {
-                        return <NoteDetail note={note} />;
+                        return <NoteDetail note={note} key={note.id}/>;
                     })}
                 </div>
             )}
