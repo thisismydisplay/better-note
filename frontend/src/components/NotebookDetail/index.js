@@ -62,11 +62,13 @@ function NotebookDetail({ notebook, colorToggle }) {
                             {!(firstNotebook?.id === notebook?.id) && <form
                                 onSubmit={onSubmit}
                                 className="delete-btn delete-div"
-                                onClick={async () => {
+                                onClick={async (e) => {
+                                    e.stopPropagation();
                                     await dispatch(deleteNotebook(notebook.id));
                                     // setReload(!reload)
 
                                     //DELETE NEEDS TO UPDATE NOTEBOOK NOTES?
+                                    await dispatch(getNotebookNotes(notebook.id, 'ASC'));
 
                                     await dispatch(getNotebooks(userId));
                                 }}

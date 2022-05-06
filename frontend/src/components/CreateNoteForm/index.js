@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { changeSortPreference } from "../../store/session";
-import { createNote, getNotes, getOneNote } from "../../store/note";
+import { createNote, getNotes, setOneNote } from "../../store/note";
 import {
     setFirstNotebook,
     getNotebookNotes,
@@ -117,7 +117,7 @@ const CreateNoteForm = ({ hideForm }) => {
                     message={errorMessages.content}
                 />
                 <select
-                    className="notebook-choice"
+                    className="notebook-choice create-notebook-input"
                     onChange={updateNotebookId}
                     value={notebookId}
                 >

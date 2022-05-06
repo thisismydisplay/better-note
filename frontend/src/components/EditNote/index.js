@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 
-import { createNote, getNotes, getOneNote, updateNote  } from '../../store/note';
+import { createNote, getNotes, setOneNote, updateNote  } from '../../store/note';
 import { getOneNotebook, setFirstNotebook  } from '../../store/notebook';
 import { ValidationError } from '../../utils/validationError';
 import ErrorMessage from '../ErrorMessage';

@@ -7,9 +7,7 @@ import CreateNoteForm from "../CreateNoteForm";
 import Modal from "../Modal";
 import "./BrowserNavigation.css";
 
-const createNote = async (e) => {
-    return <div>+New</div>;
-}
+
 
 function BrowserNavigation({ sidebarOpen, isLoaded }) {
     //   const sessionUser = useSelector(state => state.session.user);

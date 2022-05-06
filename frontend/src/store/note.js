@@ -7,7 +7,7 @@ const LOAD = "notes/LOAD";
 const ADD_ONE = "notes/ADD_ONE";
 const UPDATE = "notes/UPDATE";
 const DELETE = "notes/DELETE";
-const GET_ONE = "notes/GET_ONE";
+const SET_ONE = "notes/SET_ONE";
 // const GET_PARENT_NOTEBOOK = 'notes/GET_PARENT_NOTEBOOK'
 
 const load = (list) => ({
@@ -29,8 +29,8 @@ const addOneNote = (note) => ({
     note,
 });
 
-const getOne = (note) => ({
-    type: GET_ONE,
+const setOne = (note) => ({
+    type: SET_ONE,
     note,
 });
 const update = (note) => ({
@@ -39,7 +39,6 @@ const update = (note) => ({
 });
 
 export const getNotes = (userId, order) => async (dispatch) => {
-    console.log("hi!");
     const response = await csrfFetch(`/api/notes/?userId=${userId}&orderBy=${order}`); //`/api/notes/?userId=${userId}&active=true&notebookId=${notebookId}`
     console.log(response);
     if (response.ok) {
@@ -56,12 +55,12 @@ export const getNotes = (userId, order) => async (dispatch) => {
 //       }
 // }
 
-export const getOneNote = (id) => async (dispatch) => {
+export const setOneNote = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/notes/${id}`);
     console.log(response);
     if (response.ok) {
         const note = await response.json();
-        await dispatch(getOne(note));
+        await dispatch(setOne(note));
     }
 };
 export const updateNote = (note) => async (dispatch) => {
@@ -173,14 +172,14 @@ const noteReducer = (state = initialState, action) => {
                 // ...allNotebooks,
                 ...state,
                 list: [...action.list],
-                currentNote: action.list[0] || {},  //USE NOTEID HERE INSTEAD OF INDEX AFTER NORMALIZE
+                // currentNote: action.list[0] || {},  //USE NOTEID HERE INSTEAD OF INDEX AFTER NORMALIZE
             };
         // case LOAD_TYPES:
         //   return {
         //     ...state,
         //     types: action.types
         //   };
-        case GET_ONE:
+        case SET_ONE:
             return { ...state, currentNote: action.note };
 
         case ADD_ONE:

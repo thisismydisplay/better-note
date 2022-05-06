@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { NavLink, Route, useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { getNotes } from "../../store/note";
+import { getNotes, setOneNote } from "../../store/note";
 import { setFirstNotebook } from "../../store/notebook";
 import CreateNoteForm from "../CreateNoteForm";
 import NotesList from "../NotesList";
@@ -19,10 +19,10 @@ import PageHeader from "../PageHeader";
 
 function NotesPage() {
     const dispatch = useDispatch();
-    // const { notebookId } = useParams();
-    // console.log( notebookId)
-    // console.log(state)
+    const { id } = useParams();
+
     const sessionUser = useSelector((state) => state.session.user);
+    // const targetNote = useSelector((state)=> state.note.list.find(n => n.id === id))
     // const currentNote = useSelector((state) => state.note.currentNote)
     const userId = sessionUser.id;
 
@@ -35,9 +35,13 @@ function NotesPage() {
     // const [showNotes, setShowNotes] = useState(false);
 
     useEffect(() => {
-        console.log("use effect");
-        dispatch(getNotes(userId, 'DESC'));
-    }, [dispatch]);
+        async function main() {
+            console.log("use effect");
+            await dispatch(getNotes(userId, 'DESC'));
+            await dispatch(setOneNote(id))
+        }
+        main();
+    }, [dispatch, id, userId]);
 
     const notes = useSelector((state) => {
         return state.note.list;
