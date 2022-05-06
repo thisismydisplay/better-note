@@ -6,14 +6,22 @@
     outline: none;
     padding: 10px;
     margin: 10px;
+    margin-top: 20px;
+    width: 240px;
 }
 
 
 textarea#create-note-content-text {
-    width: 280px;
-    height: 400px;
+    width: 240px;
+    height: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
+.notebook-choice {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
 .create-notebook-form, .create-note-form {
 
     display: flex;
@@ -27,6 +35,9 @@ textarea#create-note-content-text {
     width: 30%;
     border-radius: 10px;
     border: 1px solid rgb(165,165,165);
+    min-width: 300px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .create-notebook-btn {

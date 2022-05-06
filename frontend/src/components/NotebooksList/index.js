@@ -39,8 +39,8 @@ function NotebooksList() {
                 return (
                     // <NavLink key={notebook.id} to={`/notebooks`}>
 
-                    <div className='notebook-detail' id={`notebook-${notebook.id}`}>
-                        <NotebookDetail key={notebook.id} notebook={notebook} />
+                    <div className='notebook-detail' id={`notebook-${notebook.id}` } key={notebook.id}>
+                        <NotebookDetail notebook={notebook} />
                         <div>
 
                         </div>
