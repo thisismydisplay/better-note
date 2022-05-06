@@ -1,7 +1,7 @@
 import "./EditNoteHeader.css";
 import React, { useEffect, useState } from "react";
 import { getOneNotebook } from "../../store/notebook";
-import { getOneNote } from "../../store/note";
+import { setOneNote } from "../../store/note";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteButton from "../DeleteButton";
 import Modal from "../Modal";
@@ -17,13 +17,12 @@ function EditNoteHeader({ note }) {
     const [showForm, setShowForm] = useState(false);
 
     const dispatch = useDispatch();
-    useEffect(() => {
-        console.log(currentNotebook, "++++++++++++");
+        // useEffect(() => {
 
-        dispatch(getOneNotebook(note.id));
-        // setNotebook(currentNotebook)
-        // console.log(currentNotebook)
-    }, [note]);
+        //     dispatch(getOneNotebook(note.id));
+        //     // setNotebook(currentNotebook)
+        //     // console.log(currentNotebook)
+        // }, [note, dispatch]);
     // const cN = useSelector((state)=> state.notebook.currentNotebook)
     // // console.log(cN)
     // const [notebook, setNotebook] = useState(currentNotebook);

@@ -7,7 +7,7 @@ function Searchbar() {
         type="search"
         placeholder="Search"
         id="searchbar-input"
-        autocomplete="off"
+        autoComplete="off"
     ></input>
     <div className="search-icon-div">
         <img

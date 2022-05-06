@@ -4,7 +4,12 @@ import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import NoteDetail from "../NoteDetail";
 import { getNotes } from "../../store/note";
 // import note from "../../../../backend/db/models/note";
-import './DashboardNotesContainer.css'
+import "./DashboardNotesContainer.css";
+import CreateNoteForm from "../CreateNoteForm";
+
+import Modal from "../Modal";
+
+
 function DashboardNotesContainer() {
     const dispatch = useDispatch();
     // const { notebookId } = useParams();
@@ -22,9 +27,8 @@ function DashboardNotesContainer() {
 
     useEffect(() => {
         console.log("use effect");
-        dispatch(getNotes(userId, 'DESC'));
+        dispatch(getNotes(userId, "DESC"));
     }, [dispatch]);
-
 
     console.log("notes", notes);
     if (!notes) {
@@ -51,23 +55,32 @@ function DashboardNotesContainer() {
                             />
                         </NavLink>
                     </div>
-                    <div className="notes-nav-right">
-                        <NavLink
-                            className="create-note-link"
-                            exact
-                            to={`/browser/notes/`}
-                        >
-                            <img
-                                className="create-note-icon"
-                                // id="notes-btn"
+                    <div
+                        className="notes-nav-right create-note-link"
+                        hidden={showForm}
+                        onClick={() => setShowForm(true)}
+                    >
+                        <img
+                            className="create-note-icon"
+                            // id="notes-btn"
 
-                                alt="notes"
-                                src="
+                            alt="notes"
+                            src="
                         /images/create-note.svg"
-                                // onClick={()=>{}}
-                            />
-                        </NavLink>
+                            // onClick={()=>{}}
+                        />
                     </div>
+                    {showForm && (
+                        <Modal
+                            onHide={() => {
+                                setShowForm(false);
+                            }}
+                        >
+                            <CreateNoteForm
+                                hideForm={() => setShowForm(false)}
+                            />
+                        </Modal>
+                    )}
                 </div>
                 <div className="notes-nav-bottom">
                     <span>Recent</span>
@@ -76,14 +89,14 @@ function DashboardNotesContainer() {
             </div>
             <div className="dashboard-notes-list">
                 {notes?.map((note) => (
-                        // <NavLink
-                        //     key={note.id}
-                        //     exact
-                        //     to={`/browser/notes/${note.id}`}
-                        // >
+                    // <NavLink
+                    //     key={note.id}
+                    //     exact
+                    //     to={`/browser/notes/${note.id}`}
+                    // >
 
-                            <NoteDetail note={note} />
-                        // </NavLink>
+                    <NoteDetail note={note} />
+                    // </NavLink>
                 ))}
             </div>
         </div>

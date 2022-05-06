@@ -7,6 +7,13 @@
     padding: 10px;
     margin: 10px;
 }
+
+
+textarea#create-note-content-text {
+    width: 280px;
+    height: 400px;
+}
+
 .create-notebook-form, .create-note-form {
 
     display: flex;

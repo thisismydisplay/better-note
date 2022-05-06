@@ -49,7 +49,7 @@ export const getNotebookNotes = (notebookId, orderBy) => async dispatch => {
       console.log(response)
     if (response.ok) {
       const list = await response.json();
-      dispatch(loadNotebookNotes(list));
+      await dispatch(loadNotebookNotes(list));
     }
   };
 
@@ -60,17 +60,20 @@ export const getNotebooks = (userId) => async dispatch => {
     console.log(response)
   if (response.ok) {
     const list = await response.json();
-    dispatch(load(list));
+   await dispatch(load(list));
   }
 };
 
 
 export const getOneNotebook = id => async dispatch => {
+    console.trace('getOneNOTEBOOKSADFSKDFA', id)
+    // console.trace(id)
   const response = await csrfFetch(`/api/notebooks/${id}`);
     console.log(response)
   if (response.ok) {
     const notebook = await response.json();
-    dispatch(loadOne(notebook));
+    console.log(notebook, 'notebook')
+    await dispatch(loadOne(notebook));
   }
 };
 
@@ -78,7 +81,7 @@ export const setFirstNotebook = id => async dispatch => {
     const response = await csrfFetch(`/api/notebooks/${id}/first`)
     if (response.ok) {
         const firstNotebook = await response.json();
-        dispatch(setFirst(firstNotebook))
+        await dispatch(setFirst(firstNotebook))
     }
 }
 
@@ -115,7 +118,7 @@ export const createNotebook = data => async dispatch => {
     }
 
     const notebook = await response.json();
-    dispatch(addOneNotebook(notebook));
+    await dispatch(addOneNotebook(notebook));
     return notebook;
   }
   catch (error) {
@@ -134,7 +137,7 @@ export const updateNotebook = data => async dispatch => {
 
   if (response.ok) {
     const notebook = await response.json();
-    dispatch(addOneNotebook(notebook));
+    await dispatch(addOneNotebook(notebook));
     return notebook;
   }
 };
@@ -149,7 +152,7 @@ export const deleteNotebook = id => async dispatch => {
 
   if (response.ok) {
     const message = await response.json();
-    dispatch(deleteOne(id));
+    await dispatch(deleteOne(id));
         return message;
   }
 };
