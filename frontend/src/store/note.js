@@ -33,7 +33,6 @@ const update = (note) => ({
 
 export const getNotes = (userId, order) => async (dispatch) => {
     const response = await csrfFetch(`/api/notes/?userId=${userId}&orderBy=${order}`); //`/api/notes/?userId=${userId}&active=true&notebookId=${notebookId}`
-    console.log(response);
     if (response.ok) {
         const list = await response.json();
         dispatch(load(list));
@@ -42,7 +41,6 @@ export const getNotes = (userId, order) => async (dispatch) => {
 
 export const setOneNote = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/notes/${id}`);
-    console.log(response);
     if (response.ok) {
         const note = await response.json();
         await dispatch(setOne(note));
@@ -56,7 +54,6 @@ export const updateNote = (note) => async (dispatch) => {
         },
         body: JSON.stringify(note),
     });
-    console.log(response);
     if (response.ok) {
         const note = await response.json();
         // debugger;

@@ -22,14 +22,12 @@ function BrowserRoutes() {
     // const orderBy = useSelector((state) => state.session.orderBy);
     const notes = useSelector((state)=> state.note.list)
     useEffect(() => {
-        console.log('use effect')
         dispatch(setFirstNotebook(userId));
     }, [dispatch, userId]);
     useEffect(() => {
         async function main() {
             await dispatch(getNotes(userId, 'DESC'));
             setIsLoaded(true)
-            console.log('main use effect')
         }
         main();
 

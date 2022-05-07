@@ -36,7 +36,6 @@ function ChangeNotebookForm({ hideForm }) {
             ...currentNote,
             notebookId: Number(notebookId),
         };
-        console.log(payload);
 
         try {
             await dispatch(updateNote(payload));
@@ -75,7 +74,6 @@ function ChangeNotebookForm({ hideForm }) {
                     value={notebookId}
                 >
                     {notebooks?.map((notebook) => {
-                        console.log(notebook.id, "<<<");
                         return (
                             <option
                                 key={notebook.id}

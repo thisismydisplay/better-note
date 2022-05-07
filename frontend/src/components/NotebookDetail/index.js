@@ -18,7 +18,6 @@ function NotebookDetail({ notebook, colorToggle }) {
 
     const notebookNotes = useSelector((state) => state.notebook.notebookNotes);
     const firstNotebook = useSelector((state) => state.notebook.list[0]);
-    console.log(sessionUser);
     const onSubmit = (e) => {
         e.preventDefault();
         dispatch(getNotebooks(userId));

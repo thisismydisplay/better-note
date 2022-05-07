@@ -6,7 +6,6 @@ function NotebooksList() {
     const notebooks = useSelector((state) => {
         return state.notebook.list;
     });
-    console.log(notebooks);
 
     if (!notebooks) {
         return null;
@@ -20,7 +19,7 @@ function NotebooksList() {
                         id={`notebook-${notebook.id}`}
                         key={notebook.id}
                     >
-                        <NotebookDetail notebook={notebook} />
+                        <NotebookDetail notebook={notebook} key={notebook.id} />
                         <div></div>
                     </div>
                 );

@@ -31,7 +31,6 @@ router.get(
 router.post(
     "/",
     asyncHandler(async function (req, res) {
-        console.log(req);
         const { title, content, userId, notebookId } = req.body;
         const note = {title, content, userId, notebookId};
         if (!title) note.title = 'untitled';
@@ -47,14 +46,12 @@ router.put(
     asyncHandler(async function (req, res) {
         const note = await Note.findByPk(req.params.id)
         const {title, content, notebookId} = req.body;
-        console.log(req.body)
         if (!note.title) note.title = 'untitled';
         note.title = title;
         note.content = content;
         note.notebookId = notebookId;
         await note.save();
-        console.log('==============')
-        console.log(note)
+
         return res.json(note)
 
     })
