@@ -79,7 +79,7 @@ function DashboardNotesContainer() {
             </div>
             <div className="dashboard-notes-list">
                 {notes?.map((note) => (
-                    <NoteDetail note={note} />
+                    <NoteDetail note={note} key={note.id}/>
                 ))}
             </div>
         </div>
