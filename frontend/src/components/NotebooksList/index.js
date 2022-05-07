@@ -6,7 +6,6 @@ function NotebooksList() {
     const notebooks = useSelector((state) => {
         return state.notebook.list;
     });
-    console.log(notebooks);
 
     if (!notebooks) {
         return null;

@@ -28,7 +28,6 @@ function NotesPage() {
 
     useEffect(() => {
         async function main() {
-            console.log("use effect");
             await dispatch(getNotes(userId, 'DESC'));
             await dispatch(setOneNote(id))
         }

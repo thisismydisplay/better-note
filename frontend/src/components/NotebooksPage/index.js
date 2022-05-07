@@ -17,7 +17,6 @@ function NotebooksPage() {
     // const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
-        console.log("use effect");
         dispatch(getNotebooks(userId));
     }, [dispatch, userId]);
 

@@ -18,15 +18,12 @@ function DashboardNotesContainer() {
     const notes = useSelector((state) => {
         return state.note.list;
     });
-    console.log(notes);
     const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
-        console.log("use effect");
         dispatch(getNotes(userId, "DESC"));
     }, [dispatch, userId]);
 
-    console.log("notes", notes);
     if (!notes) {
         return null;
     }

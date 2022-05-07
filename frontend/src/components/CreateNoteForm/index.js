@@ -101,7 +101,6 @@ const CreateNoteForm = ({ hideForm }) => {
                     value={notebookId}
                 >
                     {notebooks?.map((notebook) => {
-                        console.log(notebook.id, "<<<");
                         return (
                             <option
                                 key={notebook.id}
