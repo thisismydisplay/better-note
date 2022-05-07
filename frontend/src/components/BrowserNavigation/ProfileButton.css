@@ -18,9 +18,13 @@ margin-top: 5px;
 padding: 0px;
 }
 
-.username {
+.username, .username-span {
+    overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 140px;
 }
+
 
 .profile-name-div {
     color: rgb(204, 204, 204);

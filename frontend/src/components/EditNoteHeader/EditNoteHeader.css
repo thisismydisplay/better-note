@@ -35,3 +35,16 @@
 .move-note-icon-div {
     cursor: pointer;
 }
+
+.move-note-span:hover {
+    background-color: rgb(166,166,166);
+    border-radius: 5px;
+
+
+}
+
+.move-note-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

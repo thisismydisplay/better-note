@@ -51,20 +51,22 @@ function EditNoteHeader({ note }) {
                         />
                     </Modal>
                 )}
-                <div
-                    className="move-note-icon-div header-item"
-                    hidden={showForm}
-                    onClick={() => setShowForm(true)}
-                >
-                    <img
-                        className="move-note-icon icon-img"
-                        // id="notes-btn"
+                <div className="move-note-btn-container">
+                    <div
+                        className="move-note-icon-div header-item"
+                        hidden={showForm}
+                        onClick={() => setShowForm(true)}
+                    >
+                        <img
+                            className="move-note-icon icon-img"
+                            // id="notes-btn"
 
-                        alt="background"
-                        src="
+                            alt="background"
+                            src="
                         /images/notebooks.svg"
-                    />
-                    <span className="move-note-span">Move Note</span>
+                        />
+                        <span className="move-note-span">Move Note</span>
+                    </div>
                 </div>
                 <DeleteButton note={note} />
                 {/* <div className="delete-div header-item">

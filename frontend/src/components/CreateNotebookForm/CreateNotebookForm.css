@@ -23,7 +23,7 @@ textarea#create-note-content-text {
     margin-bottom: 20px;
 }
 .create-notebook-form, .create-note-form {
-
+    z-index: 100;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -8,8 +8,12 @@ import {
 } from "../../store/notebook";
 import NoteDetail from "../NoteDetail";
 import "./NotebookDetail.css";
+import Modal from "../Modal";
+import ConfirmDeleteNotebook from "../ConfirmDeleteNotebook";
 
-function NotebookDetail({ notebook, colorToggle }) {
+function NotebookDetail({ notebook }) {
+    const [showForm, setShowForm] = useState(false);
+
     const [showNotes, setShowNotes] = useState(false);
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
@@ -28,17 +32,13 @@ function NotebookDetail({ notebook, colorToggle }) {
         setShowNotes(!showNotes);
     };
 
-
     if (!notebook) {
         return null;
     }
     return (
         <div className="notebook-container">
             <div className="notebook-details">
-                <div
-                    className="notebook-details-text"
-                    onClick={handleClick}
-                >
+                <div className="notebook-details-text" onClick={handleClick}>
                     {" "}
                     <div className="notebook-title-div">
                         <div className="title">{notebook.title}</div>
@@ -53,28 +53,42 @@ function NotebookDetail({ notebook, colorToggle }) {
                                     .toString()
                                     .slice(11, 16)} `}
                         </div>
-
-                        <div className="delete-btn-form" >
-                            {!(firstNotebook?.id === notebook?.id) && <form
-                                onSubmit={onSubmit}
+                        <div className="delete-btn-form">
+                            {!(firstNotebook?.id === notebook?.id) && (
+                                <div
+                                // onSubmit={onSubmit}
                                 className="delete-btn delete-div"
-                                onClick={async (e) => {
-                                    e.stopPropagation();
-                                    await dispatch(deleteNotebook(notebook.id));
+                                hidden={showForm}
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    setShowForm(true)}}
 
-                                    await dispatch(getNotebookNotes(notebook.id, 'ASC'));
 
-                                    await dispatch(getNotebooks(userId));
-                                }}
-                            >
-                                <img
-                                    className="delete-btn trash-icon icon-img"
-                                    alt="background"
-                                    src="
+
+
+                                >
+                                    {showForm && (
+                                        <Modal
+                                            onHide={() => {
+                                                setShowForm(false);
+                                            }}
+                                        >
+                                            <ConfirmDeleteNotebook
+                                                notebook={notebook}
+                                                userId={userId}
+                                                hideForm={() => setShowForm(false)}
+                                            />
+                                        </Modal>
+                                    )}
+                                    <img
+                                        className="delete-btn trash-icon icon-img"
+                                        alt="background"
+                                        src="
                         /images/trashcan-icon.svg"
-                                />{" "}
-                                Delete
-                            </form>}
+                                    />{" "}
+                                    Delete
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -82,7 +96,7 @@ function NotebookDetail({ notebook, colorToggle }) {
             {showNotes && notebook?.id === notebookNotes[0]?.notebookId && (
                 <div className="notebook-notes note-list" key={notebook.id}>
                     {notebookNotes?.map((note) => {
-                        return <NoteDetail note={note} key={note.id}/>;
+                        return <NoteDetail note={note} key={note.id} />;
                     })}
                 </div>
             )}

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 // import { changeSortPreference } from "../../store/session";
-import { getNotes, updateNote } from "../../store/note";
-import { getOneNotebook } from "../../store/notebook";
+import { getNotes, updateNote, setOneNote } from "../../store/note";
+import { getNotebooks, getOneNotebook } from "../../store/notebook";
 import { ValidationError } from "../../utils/validationError";
 import ErrorMessage from "../ErrorMessage";
 import "../CreateNoteForm/CreateNoteForm.css";
@@ -11,6 +11,7 @@ import "../CreateNotebookForm/CreateNotebookForm.css";
 
 function ChangeNotebookForm({ hideForm }) {
     const currentNote = useSelector((state) => state.note.currentNote);
+    const noteId = currentNote.id
     const [errorMessages, setErrorMessages] = useState({});
     const dispatch = useDispatch();
 
@@ -27,6 +28,7 @@ function ChangeNotebookForm({ hideForm }) {
 
     useEffect(() => {
         dispatch(getOneNotebook(notebookId));
+        dispatch(getNotebooks(userId))
     }, [dispatch, notebookId]);
 
     const handleSubmit = async (e) => {
@@ -56,6 +58,11 @@ function ChangeNotebookForm({ hideForm }) {
     };
 
     const handleCancelClick = (e) => {
+        // history.goBack()
+        dispatch(setOneNote(noteId));
+
+        history.replace(`/browser/notes/${noteId}`);
+
         e.preventDefault();
         setErrorMessages({});
         hideForm();

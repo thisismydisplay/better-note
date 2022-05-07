@@ -40,7 +40,7 @@ function NotebooksListHeader({ notebooks }) {
                         <img
                             className="create-book-icon"
 
-                            alt="search"
+                            alt="create notebook"
                             src="
                     /images/create-note.svg"
                         />

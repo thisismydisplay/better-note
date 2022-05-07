@@ -1,4 +1,5 @@
 .note-container {
+
     display: flex;
     flex-direction: column;
     width:300px;
@@ -59,7 +60,7 @@
     padding: 0px;
     padding-top: 10px;
     cursor: pointer;
-    z-index: 200;
+    z-index: 1;
 }
 
 .delete-div {
@@ -67,7 +68,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 5px;
+    border-radius: 5px;
 
+}
+
+.delete-div:hover {
+    background-color: rgb(166,166,166);
+
+
+}
+
+.del-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .note-detail-footer {
