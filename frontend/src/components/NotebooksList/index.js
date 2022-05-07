@@ -19,7 +19,7 @@ function NotebooksList() {
                         id={`notebook-${notebook.id}`}
                         key={notebook.id}
                     >
-                        <NotebookDetail notebook={notebook} />
+                        <NotebookDetail notebook={notebook} key={notebook.id} />
                         <div></div>
                     </div>
                 );
