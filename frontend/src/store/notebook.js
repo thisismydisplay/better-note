@@ -1,10 +1,7 @@
-// import { LOAD_NOTES, REMOVE_ITEM, ADD_ITEM } from './items';
-// //!!START SILENT
-// import note from '../../../backend/db/models/note';
+
 import { csrfFetch } from './csrf';
 import { ValidationError } from '../utils/validationError';
 
-//!!END
 const SET_FIRST = 'notebooks/SET_FIRST'
 const LOAD = 'notebooks/LOAD';
 const LOAD_NOTEBOOK_NOTES = 'notes/LOAD_NOTEBOOK_NOTES'
@@ -12,7 +9,6 @@ const LOAD_NOTEBOOK_NOTES = 'notes/LOAD_NOTEBOOK_NOTES'
 const ADD_ONE = 'notebooks/ADD_ONE';
 const DELETE = 'notebooks/DELETE'
 const LOAD_ONE = 'notebooks/LOAD_ONE'
-// const REMOVE = 'notebooks/REMOVE'
 
 const load = list => ({
   type: LOAD,
@@ -44,9 +40,7 @@ const addOneNotebook = notebook => ({
 });
 
 export const getNotebookNotes = (notebookId, orderBy) => async dispatch => {
-    console.log('hi!')
       const response = await csrfFetch(`/api/notebooks/${notebookId}/notes/?orderBy=${orderBy}`);
-      console.log(response)
     if (response.ok) {
       const list = await response.json();
       await dispatch(loadNotebookNotes(list));
@@ -55,9 +49,7 @@ export const getNotebookNotes = (notebookId, orderBy) => async dispatch => {
 
 
 export const getNotebooks = (userId) => async dispatch => {
-  console.log('hi!')
     const response = await csrfFetch(`/api/notebooks/?userId=${userId}`);
-    console.log(response)
   if (response.ok) {
     const list = await response.json();
    await dispatch(load(list));
@@ -66,13 +58,10 @@ export const getNotebooks = (userId) => async dispatch => {
 
 
 export const getOneNotebook = id => async dispatch => {
-    console.trace('getOneNOTEBOOKSADFSKDFA', id)
-    // console.trace(id)
+
   const response = await csrfFetch(`/api/notebooks/${id}`);
-    console.log(response)
   if (response.ok) {
     const notebook = await response.json();
-    console.log(notebook, 'notebook')
     await dispatch(loadOne(notebook));
   }
 };
@@ -144,10 +133,7 @@ export const updateNotebook = data => async dispatch => {
 export const deleteNotebook = id => async dispatch => {
   const response = await csrfFetch(`/api/notebooks/${id}`, {
     method: 'DELETE',
-    // headers: {
-    //   'Content-Type': 'application/json'
-    // },
-    // body: JSON.stringify(data)
+
   });
 
   if (response.ok) {
@@ -157,7 +143,6 @@ export const deleteNotebook = id => async dispatch => {
   }
 };
 
-//!!END
 const initialState = {
   list: [],
   firstNotebook: [],
@@ -165,46 +150,25 @@ const initialState = {
   currentNotebook: {}
 };
 
-// const sortList = (list) => {
-//   return list.sort((pokemonA, pokemonB) => {
-//     return pokemonA.number - pokemonB.number;
-//   }).map((pokemon) => pokemon.id);
-// };
-
 const notebookReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
-        console.log('inside reducer')
-    //   const allNotebooks = {};
-    //   action.list?.forEach(notebook => {
-    //     allNotebooks[notebook.id] = notebook;
-    //   });
+
       return {
-        // ...allNotebooks,
         ...state,
         list: [...action.list]
       };
-    // case LOAD_TYPES:
-    //   return {
-    //     ...state,
-    //     types: action.types
-    //   };
+
     case LOAD_ONE:
         return { ...state, currentNotebook: action.notebook}
     case LOAD_NOTEBOOK_NOTES:
         return {
-            // ...allNotebooks,
             ...state,
             notebookNotes: [...action.list]
           };
     case SET_FIRST:
-        console.log('inside reducer')
-    //   const allNotebooks = {};
-    //   action.list?.forEach(notebook => {
-    //     allNotebooks[notebook.id] = notebook;
-    //   });
+
       return {
-        // ...allNotebooks,
         ...state,
         firstNotebook: action.notebook
       };

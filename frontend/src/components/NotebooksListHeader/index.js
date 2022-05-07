@@ -1,42 +1,17 @@
 import "./NotebooksListHeader.css";
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import CreateNotebookForm from "../CreateNotebookForm";
 import Modal from "../Modal";
-import { useSelector, useDispatch } from "react-redux";
-import { getNotes } from "../../store/note";
-import { getNotebookNotes } from "../../store/notebook";
 import SortButton from "../SortButton";
-
-// function Modal({ children, onHide }) {
-//     const [modalEl, setModalEl] = useState(document.getElementById('modal'));
-//     useEffect(() => {
-//         setModalEl( document.getElementById("modal"));
-//     }, []);
-//     return modalEl
-//         ? ReactDOM.createPortal(
-//               <div className="modal-content" onClick={() => onHide()}>
-//                   <div className="modal-backdrop"></div>
-//                   <div className="modal-inner-content">{children}</div>
-//               </div>,
-//               modalEl
-//           )
-//         : null;
-// }
 
 function NotebooksListHeader({ notebooks }) {
     const [showForm, setShowForm] = useState(false);
-    const sessionUser = useSelector((state) => state.session.user);
-    const userId = sessionUser.id;
-    const orderBy = useSelector((state) => state.session.orderBy);
-    const [order, setOrder] = useState(orderBy);
 
-    const dispatch = useDispatch();
+    // const orderBy = useSelector((state) => state.session.orderBy);
+    // const [order, setOrder] = useState(orderBy);
 
-    // useEffect(()=> {
-    //     dispatch(getNotes(userId, order))
-    //     dispatch(getNotebookNotes(userId, order))
-    //     console.log('USE EFFECT')
-    // }, [userId, order])
+    // const dispatch = useDispatch();
+
     return (
         <div className="notebooks-list-header">
             <div className="book-list-top">
@@ -64,14 +39,12 @@ function NotebooksListHeader({ notebooks }) {
                     >
                         <img
                             className="create-book-icon"
-                            // id="notes-btn"
 
                             alt="search"
                             src="
                     /images/create-note.svg"
                         />
                         <span id="new-notebook">New Notebook</span>
-                        {/* <span>sort</span> */}
                     </div>
                     <SortButton />
                 </div>

@@ -1,10 +1,10 @@
 .note-container {
     display: flex;
     flex-direction: column;
-    /* width:100%; */
+    width:300px;
     height: max-content;
-    min-width: 200px;
-    max-width: 400px;
+    /* min-width: 200px;
+    max-width: 400px; */
     max-height: 500px;
     box-shadow: rgba(0, 0, 0, 0.15) 1px 2px 6px 0px;
     border-radius: 10px;
@@ -33,7 +33,7 @@
 
 .note-list {
     overflow-y: scroll;
-    max-height: 700px;
+    max-height: 600px;
 }
 
 .note-list::-webkit-scrollbar {

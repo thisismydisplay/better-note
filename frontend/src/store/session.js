@@ -1,5 +1,4 @@
 import { csrfFetch } from './csrf';
-// import { createNotebook } from './notebook';
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 const SET_SORT = 'session/setSort'

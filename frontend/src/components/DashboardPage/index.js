@@ -5,13 +5,12 @@ function DashboardPage() {
     const user = sessionUser.username;
     const date = new Date();
     let today = date.toDateString();
-// {`Last edited ${currentNote?.updatedAt.toString().slice(0, 10)}, ${currentNote?.updatedAt.toString().slice(11, 16)}`}
+    // {`Last edited ${currentNote?.updatedAt.toString().slice(0, 10)}, ${currentNote?.updatedAt.toString().slice(11, 16)}`}
     return (
         <div className="dashboard-container">
             <div>
                 <img
                     className="dashboard-background"
-                    // id="notes-btn"
 
                     alt="background"
                     src="

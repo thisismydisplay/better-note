@@ -43,7 +43,6 @@ function HomeNavigation({ isLoaded }) {
                 <NavLink className='nav-btn' exact to="/">
                 <img
                     className="home-icon"
-                    // id="notes-btn"
 
                     alt="background"
                     src="

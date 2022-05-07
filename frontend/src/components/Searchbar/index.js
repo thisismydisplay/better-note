@@ -12,7 +12,6 @@ function Searchbar() {
     <div className="search-icon-div">
         <img
             className="search-icon"
-            // id="notes-btn"
 
             alt="search"
             src="

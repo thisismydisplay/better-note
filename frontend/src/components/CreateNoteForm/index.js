@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { changeSortPreference } from "../../store/session";
-import { createNote, getNotes, setOneNote } from "../../store/note";
-import {
-    setFirstNotebook,
-    getNotebookNotes,
-    getNotebooks,
-    getOneNotebook,
-} from "../../store/notebook";
+// import { changeSortPreference } from "../../store/session";
+import { createNote, getNotes } from "../../store/note";
+import { getNotebooks, getOneNotebook } from "../../store/notebook";
 import { ValidationError } from "../../utils/validationError";
 import ErrorMessage from "../ErrorMessage";
 import "./CreateNoteForm.css";
@@ -23,38 +18,29 @@ const CreateNoteForm = ({ hideForm }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
     const notebooks = useSelector((state) => state.notebook.list);
-    const orderBy = useSelector((state) => state.session.orderBy);
+    // const orderBy = useSelector((state) => state.session.orderBy);
     const firstNotebook = useSelector((state) => state.notebook.firstNotebook);
     const [notebookId, setNotebookId] = useState(firstNotebook.id);
-    const [order, setOrder] = useState(orderBy);
-    //   const notebookId = firstNotebook.id;
+    // const [order, setOrder] = useState(orderBy);
 
     const updateTitle = (e) => setTitle(e.target.value);
     const updateContent = (e) => setContent(e.target.value);
     const updateNotebookId = (e) => setNotebookId(e.target.value);
 
     useEffect(() => {
-        // dispatch()
-        // dispatch(changeSortPreference());
-        //                     order === 'DESC' ? setOrder('ASC') : setOrder('DESC')
         dispatch(getNotebooks(userId));
-        // order === 'DESC' ? setOrder('ASC') : setOrder('DESC')
-        dispatch(getNotes(userId, 'DESC'))
-        // setNotebookId(notebook)
-        console.log(notebookId, '-<-<')
-    }, [dispatch]);
+        dispatch(getNotes(userId, "DESC"));
+    }, [dispatch, userId]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(notebookId, '<<<')
-        dispatch(getOneNotebook(notebookId))
-        // await dispatch(getNotebooks(userId));
-        // updateNotebookId(notebookId)
+        dispatch(getOneNotebook(notebookId));
+
         const payload = {
             title,
             content,
             userId,
-            notebookId: Number(notebookId)
+            notebookId: Number(notebookId),
         };
 
         let createdNote;
@@ -70,22 +56,18 @@ const CreateNoteForm = ({ hideForm }) => {
         if (createdNote) {
             setErrorMessages({});
 
-            //   history.push(`/browser/notes/`);
-            await dispatch(getNotes(userId, 'DESC'));
-            history.replace('/browser/notes')
+            await dispatch(getNotes(userId, "DESC"));
+            history.replace("/browser/notes");
 
-            //  dispatch(getOneNote(createdNote.id))
-            // dispatch(getNotebookNotes(firstNotebook.id, 'DESC'));
-            // dispatch(getNotebooks(userId));
             hideForm();
         }
     };
 
-    const handleCancelClick = (e) => {
-        e.preventDefault();
-        setErrorMessages({});
-        // hideForm();
-    };
+    // const handleCancelClick = (e) => {
+    //     e.preventDefault();
+    //     setErrorMessages({});
+    //     // hideForm();
+    // };
 
     return (
         <section
@@ -101,9 +83,7 @@ const CreateNoteForm = ({ hideForm }) => {
                     value={title}
                     onChange={updateTitle}
                 />
-                {/*!!START SILENT */}
                 <ErrorMessage label={"Title"} message={errorMessages.title} />
-                {/*!!END */}
                 <textarea
                     className="create-notebook-input"
                     id="create-note-content-text"
@@ -111,7 +91,6 @@ const CreateNoteForm = ({ hideForm }) => {
                     value={content}
                     onChange={updateContent}
                 />
-                {/*!!END */}
                 <ErrorMessage
                     label={"Content"}
                     message={errorMessages.content}
@@ -122,10 +101,8 @@ const CreateNoteForm = ({ hideForm }) => {
                     value={notebookId}
                 >
                     {notebooks?.map((notebook) => {
-                        console.log(notebook.id, '<<<')
+                        console.log(notebook.id, "<<<");
                         return (
-                            // <NavLink key={notebook.id} to={`/notebooks`}>
-
                             <option
                                 key={notebook.id}
                                 className="notebook-option"
@@ -134,15 +111,12 @@ const CreateNoteForm = ({ hideForm }) => {
                             >
                                 {notebook.title}
                             </option>
-
-                            // </NavLink>
                         );
                     })}
                 </select>
                 <button type="submit" className="form-btn create-notebook-btn">
                     Create new note
                 </button>
-                {/* <button type="button" onClick={handleCancelClick}>Cancel</button> */}
             </form>
         </section>
     );

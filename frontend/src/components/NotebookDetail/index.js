@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -28,9 +28,7 @@ function NotebookDetail({ notebook, colorToggle }) {
         dispatch(getNotebookNotes(notebook.id, orderBy));
         setShowNotes(!showNotes);
     };
-    // useEffect(()=>{
-    //     colorToggle(!colorToggle)
-    // }[colorToggle])
+
 
     if (!notebook) {
         return null;
@@ -41,7 +39,6 @@ function NotebookDetail({ notebook, colorToggle }) {
                 <div
                     className="notebook-details-text"
                     onClick={handleClick}
-                    // style={colorToggle ? {backgroundColor: '#333333'} : {backgroundColor: '#333333'}}
                 >
                     {" "}
                     <div className="notebook-title-div">
@@ -65,9 +62,7 @@ function NotebookDetail({ notebook, colorToggle }) {
                                 onClick={async (e) => {
                                     e.stopPropagation();
                                     await dispatch(deleteNotebook(notebook.id));
-                                    // setReload(!reload)
 
-                                    //DELETE NEEDS TO UPDATE NOTEBOOK NOTES?
                                     await dispatch(getNotebookNotes(notebook.id, 'ASC'));
 
                                     await dispatch(getNotebooks(userId));
@@ -86,7 +81,7 @@ function NotebookDetail({ notebook, colorToggle }) {
                 </div>
             </div>
             {showNotes && notebook?.id === notebookNotes[0]?.notebookId && (
-                <div className="notebook-notes" key={notebook.id}>
+                <div className="notebook-notes note-list" key={notebook.id}>
                     {notebookNotes?.map((note) => {
                         return <NoteDetail note={note} key={note.id}/>;
                     })}

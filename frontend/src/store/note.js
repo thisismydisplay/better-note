@@ -1,24 +1,17 @@
 import { csrfFetch } from "./csrf";
 import { ValidationError } from "../utils/validationError";
 
-//!!END
-
 const LOAD = "notes/LOAD";
 const ADD_ONE = "notes/ADD_ONE";
 const UPDATE = "notes/UPDATE";
 const DELETE = "notes/DELETE";
 const SET_ONE = "notes/SET_ONE";
-// const GET_PARENT_NOTEBOOK = 'notes/GET_PARENT_NOTEBOOK'
 
 const load = (list) => ({
     type: LOAD,
     list,
 });
 
-// const getParentNotebook = notebookId => ({
-//     type: GET_PARENT_NOTEBOOK,
-//     notebookId
-// })
 
 const deleteOne = (noteId) => ({
     type: DELETE,
@@ -46,14 +39,6 @@ export const getNotes = (userId, order) => async (dispatch) => {
         dispatch(load(list));
     }
 };
-
-// export const getNotebook = (note) => async dispatch => {
-//     const response = await csrfFetch(`/api/notes/notebook/${note.id}`)
-//     if (response.ok) {
-//         const notebookId = await response.json();
-//         dispatch(getParentNotebook(notebookId));
-//       }
-// }
 
 export const setOneNote = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/notes/${id}`);
@@ -117,28 +102,11 @@ export const createNote = (data) => async (dispatch) => {
     }
 };
 
-// export const updateNote = data => async dispatch => {
-//   const response = await csrfFetch(`/api/notes/${data.id}`, {
-//     method: 'put',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(data)
-//   });
 
-//   if (response.ok) {
-//     const note = await response.json();
-//     dispatch(addOneNote(note));
-//     return note;
-//   }
-// };
 export const deleteNote = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/notes/${id}`, {
         method: "DELETE",
-        // headers: {
-        //   'Content-Type': 'application/json'
-        // },
-        // body: JSON.stringify(data)
+
     });
 
     if (response.ok) {
@@ -148,37 +116,22 @@ export const deleteNote = (id) => async (dispatch) => {
     }
 };
 
-//!!END
 const initialState = {
     list: [],
     currentNote: {},
 };
 
-// const sortList = (list) => {
-//   return list.sort((pokemonA, pokemonB) => {
-//     return pokemonA.number - pokemonB.number;
-//   }).map((pokemon) => pokemon.id);
-// };
 
 const noteReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD:
-            console.log("inside reducer");
-            //   const allNotebooks = {};
-            //   action.list?.forEach(notebook => {
-            //     allNotebooks[notebook.id] = notebook;
-            //   });
+
             return {
-                // ...allNotebooks,
                 ...state,
                 list: [...action.list],
                 // currentNote: action.list[0] || {},  //USE NOTEID HERE INSTEAD OF INDEX AFTER NORMALIZE
             };
-        // case LOAD_TYPES:
-        //   return {
-        //     ...state,
-        //     types: action.types
-        //   };
+
         case SET_ONE:
             return { ...state, currentNote: action.note };
 

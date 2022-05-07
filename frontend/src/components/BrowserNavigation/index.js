@@ -1,6 +1,6 @@
 import React from "react";
-import { NavLink, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+
 import { useState } from "react";
 import ProfileButton from "./ProfileButton";
 import CreateNoteForm from "../CreateNoteForm";
@@ -10,16 +10,7 @@ import "./BrowserNavigation.css";
 
 
 function BrowserNavigation({ sidebarOpen, isLoaded }) {
-    //   const sessionUser = useSelector(state => state.session.user);
 
-    //   let sessionLinks;
-    //   if (sessionUser) {
-    //     sessionLinks = (
-    //       <ProfileButton user={sessionUser} />
-    //     );
-    //   } else {
-    //     Redirect
-    //   }
     const [showForm, setShowForm] = useState(false);
 
 
@@ -123,7 +114,7 @@ function BrowserNavigation({ sidebarOpen, isLoaded }) {
                         </span>
                     </NavLink>
                 </li>
-                <li className="sidebar-li">
+                {/* <li className="sidebar-li">
                     <NavLink
                         className="sidebar-navlink"
                         exact
@@ -145,7 +136,7 @@ function BrowserNavigation({ sidebarOpen, isLoaded }) {
                             Tags
                         </span>
                     </NavLink>
-                </li>
+                </li> */}
             </ul>
         </div>
     );

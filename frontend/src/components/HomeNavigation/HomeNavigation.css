@@ -19,6 +19,7 @@ a.nav-btn, button.nav-btn {
     color: white;
     background-color: #1A1A1A;
     border: none;
+    cursor: pointer;
 }
 
 ul.home-nav {
@@ -36,5 +37,3 @@ ul.home-nav {
     padding-left: 20px;
     padding-right: 20px;
 }
-
-

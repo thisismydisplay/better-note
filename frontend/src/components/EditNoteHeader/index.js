@@ -1,36 +1,17 @@
 import "./EditNoteHeader.css";
-import React, { useEffect, useState } from "react";
-import { getOneNotebook } from "../../store/notebook";
-import { setOneNote } from "../../store/note";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+
+import { useSelector } from "react-redux";
 import DeleteButton from "../DeleteButton";
 import Modal from "../Modal";
 import ChangeNotebookForm from "../ChangeNotebookForm";
-import CreateNoteForm from "../CreateNoteForm";
 
-// import {getOneNotebook} from '../../store/notebook'
 function EditNoteHeader({ note }) {
     const currentNotebook = useSelector(
         (state) => state.notebook.currentNotebook
     );
-    // const [notebook, setNotebook] = useState(cNotebook);
     const [showForm, setShowForm] = useState(false);
 
-    const dispatch = useDispatch();
-        // useEffect(() => {
-
-        //     dispatch(getOneNotebook(note.id));
-        //     // setNotebook(currentNotebook)
-        //     // console.log(currentNotebook)
-        // }, [note, dispatch]);
-    // const cN = useSelector((state)=> state.notebook.currentNotebook)
-    // // console.log(cN)
-    // const [notebook, setNotebook] = useState(currentNotebook);
-    // useEffect(()=>{
-    //     dispatch(getOneNotebook(currentNotebook.id))
-    //     setNotebook(notebook)
-    //     // dispatch(getOneNote(note.id))
-    // }, [notebook])
     return (
         <div className="edit-note-header">
             <div className="edit-note-header-left">
