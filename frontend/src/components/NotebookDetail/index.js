@@ -2,8 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    deleteNotebook,
-    getNotebooks,
+
     getNotebookNotes,
 } from "../../store/notebook";
 import NoteDetail from "../NoteDetail";
@@ -13,7 +12,7 @@ import ConfirmDeleteNotebook from "../ConfirmDeleteNotebook";
 
 function NotebookDetail({ notebook }) {
     const [showForm, setShowForm] = useState(false);
-    console.log(showForm)
+
     const [showNotes, setShowNotes] = useState(false);
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
@@ -22,10 +21,10 @@ function NotebookDetail({ notebook }) {
 
     const notebookNotes = useSelector((state) => state.notebook.notebookNotes);
     const firstNotebook = useSelector((state) => state.notebook.list[0]);
-    const onSubmit = (e) => {
-        e.preventDefault();
-        dispatch(getNotebooks(userId));
-    };
+    // const onSubmit = (e) => {
+    //     e.preventDefault();
+    //     dispatch(getNotebooks(userId));
+    // };
 
     const handleClick = () => {
         dispatch(getNotebookNotes(notebook.id, orderBy));
@@ -71,7 +70,7 @@ function NotebookDetail({ notebook }) {
                                     {showForm && (
                                         <Modal
                                             onHide={() => {
-                                                console.log('on hide')
+
                                                 setShowForm(false);
                                             }}
                                         >

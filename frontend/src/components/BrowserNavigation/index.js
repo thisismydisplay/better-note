@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getNotes } from "../../store/note";
 import { useState } from "react";
 import ProfileButton from "./ProfileButton";
 import CreateNoteForm from "../CreateNoteForm";

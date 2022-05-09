@@ -41,7 +41,7 @@ export const getNotes = (userId, order) => async (dispatch) => {
 };
 
 export const setOneNote = (id) => async (dispatch) => {
-    console.log(id)
+
     const response = await csrfFetch(`/api/notes/${id}`);
     if (response.ok) {
         const note = await response.json();
@@ -122,14 +122,12 @@ const noteReducer = (state = initialState, action) => {
     switch (action.type) {
         case DELETE_NOTEBOOK:
             if (state.currentNote?.notebookId === action.notebookId) {
-                console.log('inside DELETE_NOTEBOOK')
-                console.log(state.list)
+
                 const notes = state.list.filter(n => n.notebookId !== action.notebookId)
                 const note = notes[0]
                 return { ...state, list: notes, currentNote: note };
             } else {
-                console.log('inside else')
-                console.log(state.list)
+
                 return state;
             }
         case LOAD:
@@ -140,7 +138,6 @@ const noteReducer = (state = initialState, action) => {
             };
 
         case SET_ONE:
-            console.trace()
             return { ...state, currentNote: action.note };
 
         case ADD_ONE:

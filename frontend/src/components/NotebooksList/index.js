@@ -10,7 +10,7 @@ function NotebooksList() {
     if (!notebooks) {
         return null;
     }
-    console.log(notebooks.map(n=>n.id))
+
     return (
         <div className="notebook-list">
             {notebooks?.map((notebook) => {

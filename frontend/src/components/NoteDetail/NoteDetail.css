@@ -4,6 +4,7 @@
     flex-direction: column;
     width:300px;
     height: max-content;
+    word-break: break-all;
     /* min-width: 200px;
     max-width: 400px; */
     max-height: 500px;
@@ -45,10 +46,18 @@
 }
 
 .note-content {
-    white-space: pre;
+    white-space: pre-wrap;
     max-height: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.dashboard-notes-list > .note-container {
+    width: 200px;
+}
+
+.dashboard-notes-list > .note-container > a > .note-content {
+    max-height: 195px;
 }
 
 .delete-btn {
