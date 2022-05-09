@@ -15,6 +15,9 @@ BetterNote is a simple app for organizing and taking notes.
 
 BetterNote is a full-stack application for note-taking and organization.  A user will be able to read, post, and edit notes as well as store sets of notes in notebooks.
 
+![Screen Recording 2022-05-08 at 11 38 23 PM](https://user-images.githubusercontent.com/66559149/167342092-d83880db-f126-459a-8f25-6ed879b985f7.gif)
+
+
 ## Getting Started
 
 1. To run this project, download or clone from the terminal.
