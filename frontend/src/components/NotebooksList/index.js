@@ -10,9 +10,16 @@ function NotebooksList() {
     if (!notebooks) {
         return null;
     }
+    console.log(notebooks.map(n=>n.id))
     return (
         <div className="notebook-list">
             {notebooks?.map((notebook) => {
+                // when notebook.id is undefined react shows a warning, so we check to avoid that
+                // this happens sometimes, but it is unclear why - shows up as wanting unique key
+                if (!notebook.id) {
+                    return null;
+                }
+
                 return (
                     <div
                         className="notebook-detail"
@@ -20,7 +27,7 @@ function NotebooksList() {
                         key={notebook.id}
                     >
                         <NotebookDetail notebook={notebook} key={notebook.id} />
-                        <div></div>
+
                     </div>
                 );
             })}

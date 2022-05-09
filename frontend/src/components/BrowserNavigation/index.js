@@ -1,18 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getNotes } from "../../store/note";
 import { useState } from "react";
 import ProfileButton from "./ProfileButton";
 import CreateNoteForm from "../CreateNoteForm";
 import Modal from "../Modal";
 import "./BrowserNavigation.css";
 
-
-
 function BrowserNavigation({ sidebarOpen, isLoaded }) {
-
+    const notes = useSelector((state) => state.note.list);
+    const location = useLocation();
     const [showForm, setShowForm] = useState(false);
-
 
     return (
         <div
@@ -21,7 +20,17 @@ function BrowserNavigation({ sidebarOpen, isLoaded }) {
         >
             <ProfileButton sidebarOpen={sidebarOpen} />
 
-            <div className="create-note-div" hidden={showForm} onClick={() => setShowForm(true)}>
+            <div
+                className="create-note-div"
+                hidden={showForm}
+                onClick={
+                    notes.length
+                        ? () => setShowForm(true)
+                        : location.pathname === "/browser/notes/new"
+                        ? null
+                        : () => setShowForm(true)
+                }
+            >
                 <img
                     className="create-note-icon"
                     // id="notes-btn"
@@ -29,21 +38,19 @@ function BrowserNavigation({ sidebarOpen, isLoaded }) {
                     alt="search"
                     src="
                     /images/plus-icon.svg"
-
                 />
                 {/* <span id="new-notebook">New</span>             */}
             </div>
+
             {showForm && (
-                    <Modal
-                        onHide={() => {
-                            setShowForm(false);
-                        }}
-                    >
-                        <CreateNoteForm
-                            hideForm={() => setShowForm(false)}
-                        />
-                    </Modal>
-                )}
+                <Modal
+                    onHide={() => {
+                        setShowForm(false);
+                    }}
+                >
+                    <CreateNoteForm hideForm={() => setShowForm(false)} />
+                </Modal>
+            )}
             <ul className="sidebar-ul">
                 <li className="sidebar-li">
                     <NavLink

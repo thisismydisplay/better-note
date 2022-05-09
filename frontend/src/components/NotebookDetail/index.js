@@ -13,7 +13,7 @@ import ConfirmDeleteNotebook from "../ConfirmDeleteNotebook";
 
 function NotebookDetail({ notebook }) {
     const [showForm, setShowForm] = useState(false);
-
+    console.log(showForm)
     const [showNotes, setShowNotes] = useState(false);
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
@@ -35,6 +35,7 @@ function NotebookDetail({ notebook }) {
     if (!notebook) {
         return null;
     }
+
     return (
         <div className="notebook-container">
             <div className="notebook-details">
@@ -70,6 +71,7 @@ function NotebookDetail({ notebook }) {
                                     {showForm && (
                                         <Modal
                                             onHide={() => {
+                                                console.log('on hide')
                                                 setShowForm(false);
                                             }}
                                         >

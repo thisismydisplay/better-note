@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 import { ValidationError } from "../utils/validationError";
-
+import { DELETE as DELETE_NOTEBOOK } from "./notebook";
 const LOAD = "notes/LOAD";
 const ADD_ONE = "notes/ADD_ONE";
 const UPDATE = "notes/UPDATE";
@@ -11,7 +11,6 @@ const load = (list) => ({
     type: LOAD,
     list,
 });
-
 
 const deleteOne = (noteId) => ({
     type: DELETE,
@@ -32,7 +31,9 @@ const update = (note) => ({
 });
 
 export const getNotes = (userId, order) => async (dispatch) => {
-    const response = await csrfFetch(`/api/notes/?userId=${userId}&orderBy=${order}`); //`/api/notes/?userId=${userId}&active=true&notebookId=${notebookId}`
+    const response = await csrfFetch(
+        `/api/notes/?userId=${userId}&orderBy=${order}`
+    ); //`/api/notes/?userId=${userId}&active=true&notebookId=${notebookId}`
     if (response.ok) {
         const list = await response.json();
         dispatch(load(list));
@@ -40,6 +41,7 @@ export const getNotes = (userId, order) => async (dispatch) => {
 };
 
 export const setOneNote = (id) => async (dispatch) => {
+    console.log(id)
     const response = await csrfFetch(`/api/notes/${id}`);
     if (response.ok) {
         const note = await response.json();
@@ -99,11 +101,9 @@ export const createNote = (data) => async (dispatch) => {
     }
 };
 
-
 export const deleteNote = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/notes/${id}`, {
         method: "DELETE",
-
     });
 
     if (response.ok) {
@@ -118,11 +118,21 @@ const initialState = {
     currentNote: {},
 };
 
-
 const noteReducer = (state = initialState, action) => {
     switch (action.type) {
+        case DELETE_NOTEBOOK:
+            if (state.currentNote?.notebookId === action.notebookId) {
+                console.log('inside DELETE_NOTEBOOK')
+                console.log(state.list)
+                const notes = state.list.filter(n => n.notebookId !== action.notebookId)
+                const note = notes[0]
+                return { ...state, list: notes, currentNote: note };
+            } else {
+                console.log('inside else')
+                console.log(state.list)
+                return state;
+            }
         case LOAD:
-
             return {
                 ...state,
                 list: [...action.list],
@@ -130,6 +140,7 @@ const noteReducer = (state = initialState, action) => {
             };
 
         case SET_ONE:
+            console.trace()
             return { ...state, currentNote: action.note };
 
         case ADD_ONE:
@@ -158,7 +169,7 @@ const noteReducer = (state = initialState, action) => {
                 }
             }
             // return { ...state, [action.note.id]: action.note };
-            return { ...state, currentNote: { ...action.note } , list: newList};
+            return { ...state, currentNote: { ...action.note }, list: newList };
 
         case DELETE:
             const newState = { ...state };

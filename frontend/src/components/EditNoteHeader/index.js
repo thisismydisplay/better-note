@@ -6,7 +6,7 @@ import DeleteButton from "../DeleteButton";
 import Modal from "../Modal";
 import ChangeNotebookForm from "../ChangeNotebookForm";
 
-function EditNoteHeader({ note }) {
+function EditNoteHeader({ note, onExpandClick = () => {} }) {
     const currentNotebook = useSelector(
         (state) => state.notebook.currentNotebook
     );
@@ -18,11 +18,9 @@ function EditNoteHeader({ note }) {
                 <div className="expand-div header-item">
                     <img
                         className="expand-icon icon-img"
-                        // id="notes-btn"
-
+                        onClick={onExpandClick}
                         alt="background"
-                        src="
-                        /images/expand-window.svg"
+                        src="/images/expand-window.svg"
                     />
                 </div>
                 <div className="notebook-icon-div header-item">

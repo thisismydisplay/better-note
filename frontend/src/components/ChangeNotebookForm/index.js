@@ -27,9 +27,9 @@ function ChangeNotebookForm({ hideForm }) {
     const updateNotebookId = (e) => setNotebookId(e.target.value);
 
     useEffect(() => {
-        dispatch(getOneNotebook(notebookId));
+        // dispatch(getOneNotebook(notebookId));
         dispatch(getNotebooks(userId))
-    }, [dispatch, notebookId]);
+    }, [dispatch, notebookId, userId]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
