@@ -1,14 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
-import { getNotes } from "../../store/note";
-import { deleteNote} from "../../store/note";
-import { getNotebookNotes } from "../../store/notebook";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
+import Modal from "../Modal";
+import './DeleteButton.css'
+import ConfirmDelete from "../ConfirmDelete";
 
 function DeleteButton({ note }) {
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const location = useLocation();
+
+    const [showForm, setShowForm] = useState(false);
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
     const orderBy = useSelector((state) => state.session.orderBy);
@@ -17,18 +17,27 @@ function DeleteButton({ note }) {
     //     e.stopPropagation();
     //     dispatch(getNotes(userId, orderBy));
     // };
+
     return (
+        <div className="del-btn-container">
         <div
             className="delete-div header-item"
-            onClick={async (e) => {
-                e.stopPropagation();
-                await dispatch(deleteNote(note.id));
-                await dispatch(getNotes(userId, orderBy));
-                await dispatch(getNotebookNotes(note.notebookId, orderBy));
-                const url=location.pathname
-                url.includes('/browser/notes') && history.replace('/browser/notes')
-            }}
+            hidden={showForm}
+            onClick={() => setShowForm(true)}
         >
+            {showForm && (
+                <Modal
+                    onHide={() => {
+                        setShowForm(false);
+                    }}
+                >
+                    <ConfirmDelete
+                        note={note}
+                        userId={userId}
+                        hideForm={() => setShowForm(false)}
+                    />
+                </Modal>
+            )}
             <img
                 className="delete-btn trash-icon icon-img"
                 alt="background"
@@ -36,6 +45,7 @@ function DeleteButton({ note }) {
                         /images/trashcan-icon.svg"
             />{" "}
             Delete
+        </div>
         </div>
     );
 }

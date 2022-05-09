@@ -7,7 +7,7 @@ const LOAD = 'notebooks/LOAD';
 const LOAD_NOTEBOOK_NOTES = 'notes/LOAD_NOTEBOOK_NOTES'
 
 const ADD_ONE = 'notebooks/ADD_ONE';
-const DELETE = 'notebooks/DELETE'
+export const DELETE = 'notebooks/DELETE'
 const LOAD_ONE = 'notebooks/LOAD_ONE'
 
 const load = list => ({

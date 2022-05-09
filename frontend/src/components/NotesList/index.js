@@ -5,7 +5,7 @@ import { getNotes } from "../../store/note";
 import NoteDetail from "../NoteDetail";
 import SortButton from "../SortButton";
 
-function NotesList() {
+function NotesList({ search = "" }) {
     const dispatch = useDispatch();
 
     const sessionUser = useSelector((state) => state.session.user);
@@ -14,7 +14,10 @@ function NotesList() {
     const orderBy = useSelector((state) => state.session.orderBy);
     const notes = useSelector((state) => {
         return state.note.list;
+    }).filter((note) => {
+        return note.content.includes(search) || note.title.includes(search);
     });
+
     const currentNote = useSelector((state) => state.note.currentNote);
 
     useEffect(() => {

@@ -2,12 +2,12 @@ import "./PageHeader.css";
 import Searchbar from "../Searchbar";
 import { useLocation } from 'react-router-dom';
 
-function PageHeader() {
+function PageHeader( {onSearchChange}) {
     const location = useLocation();
     return (
         <div className="notebooks-page-header">
             <span className="page-title">{location.pathname === '/browser/notes' ? 'Notes' : 'Notebooks'}</span>
-            <Searchbar />
+            <Searchbar onSearchChange={onSearchChange} />
 
         </div>
     );

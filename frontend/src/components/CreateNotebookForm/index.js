@@ -10,7 +10,7 @@ const CreateNotebookForm = ({ hideForm }) => {
   const [errorMessages, setErrorMessages] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
-  const [title, setTitle] = useState('untitled');
+  const [title, setTitle] = useState('');
   const sessionUser = useSelector((state) => state.session.user);
   const userId = sessionUser.id;
 

@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getNotes, setOneNote } from "../../store/note";
@@ -12,7 +12,10 @@ import "./NotesPage.css";
 import PageHeader from "../PageHeader";
 
 function NotesPage() {
+    const [showNotes, setShowNotes] = useState(true);
+    const [search, setSearch] = useState("");
     const dispatch = useDispatch();
+    const location = useLocation();
     const { id } = useParams();
 
     const sessionUser = useSelector((state) => state.session.user);
@@ -28,8 +31,10 @@ function NotesPage() {
 
     useEffect(() => {
         async function main() {
-            await dispatch(getNotes(userId, 'DESC'));
-            await dispatch(setOneNote(id))
+            if (id && id !== "new") {
+                await dispatch(getNotes(userId, "DESC"));
+                await dispatch(setOneNote(id));
+            }
         }
         main();
     }, [dispatch, id, userId]);
@@ -40,6 +45,8 @@ function NotesPage() {
     const note = useSelector((state) => {
         return state.note.currentNote;
     });
+    console.log(notes, "notespage notes");
+    console.log(location.pathname, "pathname on notes page");
 
     if (!notes || !notes.length) {
         return (
@@ -51,14 +58,19 @@ function NotesPage() {
     return (
         <div className="page-container">
             <div className="header-container">
-                <PageHeader />
+                <PageHeader onSearchChange={(str) => setSearch(str)} />
             </div>
             <div className="body-container">
-                <div>
-                    <NotesList />
+                <div style={{ display: showNotes ? "block" : "none" }}>
+                    <NotesList search={search}/>
                 </div>
                 <div className="edit-note-container">
-                    {note?.id && <EditNote note={note} />}
+                    {note?.id && (
+                        <EditNote
+                            note={note}
+                            onExpandClick={() => setShowNotes(!showNotes)}
+                        />
+                    )}
                 </div>
                 {/* <div className="create-note-form">
                 </div> */}

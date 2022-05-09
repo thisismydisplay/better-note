@@ -8,7 +8,7 @@ import ErrorMessage from "../ErrorMessage";
 import EditNoteHeader from "../EditNoteHeader";
 import "./EditNote.css";
 
-const EditNote = ({ note }) => {
+const EditNote = ({ note, onExpandClick = () => {} }) => {
     const currentNote = useSelector((state) => state.note.currentNote);
     // const currentNotebook = useSelector(
     //     (state) => state.notebook.currentNotebook
@@ -39,7 +39,11 @@ const EditNote = ({ note }) => {
     return (
         <section className="edit-note-form not-fullscreen">
             <ErrorMessage message={errorMessages.overall} />
-            <EditNoteHeader note={note} currentNote={currentNote} />
+            <EditNoteHeader
+                note={note}
+                currentNote={currentNote}
+                onExpandClick={onExpandClick}
+            />
 
             <div className="last-edited">{`Last edited ${currentNote?.updatedAt
                 .toString()
