@@ -15,7 +15,6 @@ router.get(
             where: { userId },
             order: [["createdAt", "ASC"]],
         });
-        console.log(notebooks);
         return res.json(notebooks);
     })
 );

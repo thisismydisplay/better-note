@@ -1,8 +1,19 @@
 .dashboard-notes-list {
     display: flex;
+    flex-wrap: wrap;
+    max-height: 400px;
+    overflow-y: scroll;
 
 }
 .dashboard-notes-list:hover{
 
     overflow: auto;
+}
+
+.dashboard-notes-list::-webkit-scrollbar {
+    background: #1A1A1A;
+}
+
+.dashboard-notes::-webkit-scrollbar-thumb {
+    background: #3A3A3A;
 }

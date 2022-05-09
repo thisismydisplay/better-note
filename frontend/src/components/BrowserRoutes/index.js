@@ -4,8 +4,8 @@ import {
     Redirect,
     Route,
     Switch,
-    useLocation,
-    useHistory,
+    // useLocation,
+    // useHistory,
 } from "react-router-dom";
 import NotebooksPage from "../NotebooksPage";
 import DashboardPage from "../DashboardPage";
@@ -17,9 +17,9 @@ import NotesPage from "../NotesPage";
 import Footer from "../Footer";
 
 function BrowserRoutes() {
-    const location = useLocation();
+    // const location = useLocation();
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
     const [isLoaded, setIsLoaded] = useState(false);
@@ -42,8 +42,7 @@ function BrowserRoutes() {
     // });
 
     const [showBrowserNav, setShowBrowserNav] = useState(false);
-    console.log(notes, "browserRoutes notes");
-    console.log(location.pathname, "pathname");
+
     return (
         //conditionally render dashboard, notebooks, notes, or tags
         isLoaded && (

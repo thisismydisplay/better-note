@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getNotes, setOneNote } from "../../store/note";
@@ -15,7 +15,7 @@ function NotesPage() {
     const [showNotes, setShowNotes] = useState(true);
     const [search, setSearch] = useState("");
     const dispatch = useDispatch();
-    const location = useLocation();
+    // const location = useLocation();
     const { id } = useParams();
 
     const sessionUser = useSelector((state) => state.session.user);
@@ -45,8 +45,7 @@ function NotesPage() {
     const note = useSelector((state) => {
         return state.note.currentNote;
     });
-    console.log(notes, "notespage notes");
-    console.log(location.pathname, "pathname on notes page");
+
 
     if (!notes || !notes.length) {
         return (
