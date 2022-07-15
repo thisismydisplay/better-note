@@ -2,19 +2,15 @@
     display: flex;
     flex-direction: column;
     margin: 0px 20px;
-    /* padding: 20px 0px; */
-
 }
 .notebook-list {
     margin: 0px 20px;
-    /* padding: 0px px; */
     overflow-y: scroll;
     max-height: 534px;
-
 }
 
 .notebook-list::-webkit-scrollbar {
-    background: black ;
+    background: black;
 }
 .notebook-list::-webkit-scrollbar-thumb {
     background: 3A3A3A;
@@ -23,13 +19,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: rgb(165,165,165) 1px solid ;
+    border-bottom: rgb(165, 165, 165) 1px solid;
     margin-top: 0px;
     padding: 10px 0px;
-    /* cursor: pointer; */
 }
 
-.book-list-top-right{
+.book-list-top-right {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,10 +37,7 @@
     align-items: center;
 }
 .search-icon {
-
 }
-
-
 
 .book-list-bottom {
     display: flex;
@@ -53,13 +45,12 @@
     align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
-    font-size: .8rem;
-    background-color: #1A1A1A;
-
+    font-size: 0.8rem;
+    background-color: #1a1a1a;
 }
 
-.book-list-bottom > div > span{
-    color: rgb(165,165,165);
+.book-list-bottom > div > span {
+    color: rgb(165, 165, 165);
     width: 100px;
 }
 
@@ -69,12 +60,10 @@
 
 .notebook-details-header-right {
     display: flex;
-
 }
 
 .notebook-details-header-right > div {
     width: 100px;
     padding: 6px;
     overflow: hidden;
-    /* overflow-wrap: break-word; */
 }

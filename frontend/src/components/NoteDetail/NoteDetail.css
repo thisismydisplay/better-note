@@ -1,8 +1,7 @@
 .note-container {
-
     display: flex;
     flex-direction: column;
-    width:300px;
+    width: 300px;
     height: max-content;
     word-break: break-all;
     /* min-width: 200px;
@@ -10,11 +9,11 @@
     max-height: 500px;
     box-shadow: rgba(0, 0, 0, 0.15) 1px 2px 6px 0px;
     border-radius: 10px;
-    border: 1px solid rgb(166,166,166);
+    border: 1px solid rgb(166, 166, 166);
     padding: 10px;
     margin: 10px;
     overflow-wrap: break-word;
-    background-color: rgb(58,58,58);
+    background-color: rgb(58, 58, 58);
 }
 .title {
     font-size: 1.4rem;
@@ -26,11 +25,10 @@
 
 .note-active {
     border: 1px solid white;
-
 }
 
 .note-active.note-container {
-    background-color: rgb(88,88,88);
+    background-color: rgb(88, 88, 88);
 }
 
 .note-list {
@@ -61,11 +59,10 @@
 }
 
 .delete-btn {
-    /* background-color: rgb(58,58,58); */
     border: none;
     color: white;
-    opacity: .4;
-    font-size: .7rem;
+    opacity: 0.4;
+    font-size: 0.7rem;
     padding: 0px;
     padding-top: 10px;
     cursor: pointer;
@@ -79,13 +76,10 @@
     align-items: center;
     padding: 5px;
     border-radius: 5px;
-
 }
 
 .delete-div:hover {
-    background-color: rgb(166,166,166);
-
-
+    background-color: rgb(166, 166, 166);
 }
 
 .del-btn-container {
@@ -96,7 +90,7 @@
 
 .note-detail-footer {
     display: flex;
-    font-size: .7rem;
+    font-size: 0.7rem;
     justify-content: space-between;
     align-items: center;
 }

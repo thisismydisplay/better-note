@@ -17,24 +17,20 @@ const updateTitleOnServer = debounce((dispatch, currentNote, title) => {
 
 const EditNote = ({ note, onExpandClick = () => {} }) => {
     const currentNote = useSelector((state) => state.note.currentNote);
-    // const currentNotebook = useSelector(
-    //     (state) => state.notebook.currentNotebook
-    // );
+
     const [title, setTitle] = useState(currentNote.title);
     const [content, setContent] = useState(currentNote.content);
-    // const [notebook, setNotebook] = useState(currentNotebook);
     const [errorMessages, setErrorMessages] = useState('');
     const dispatch = useDispatch();
-    // debugger;
 
     const updateTitle = (e) => {
         setTitle(e.target.value);
-        updateTitleOnServer(dispatch, currentNote, e.target.value)
+        updateTitleOnServer(dispatch, currentNote, e.target.value);
     };
 
     const updateContent = (e) => {
         setContent(e.target.value);
-        updateContentOnServer(dispatch, currentNote, e.target.value)
+        updateContentOnServer(dispatch, currentNote, e.target.value);
     };
 
     useEffect(() => {

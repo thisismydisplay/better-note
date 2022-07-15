@@ -1,28 +1,28 @@
-import "./Searchbar.css";
+import './Searchbar.css';
 
 function Searchbar({ onSearchChange }) {
     return (
-        <div className="searchbar-container">
+        <div className='searchbar-container'>
             <input
-                className="searchbar-input"
-                type="search"
+                className='searchbar-input'
+                type='search'
                 onChange={(e) => {
                     onSearchChange && onSearchChange(e.target.value);
                 }}
-                placeholder="Search"
-                id="searchbar-input"
-                autoComplete="off"
+                placeholder='Search'
+                id='searchbar-input'
+                autoComplete='off'
             ></input>
-            <div className="search-icon-div">
+            <div className='search-icon-div'>
                 <img
-                    className="search-icon"
-                    alt="search"
-                    src="
-        /images/search-icon.svg"
+                    className='search-icon'
+                    alt='search'
+                    src='
+        /images/search-icon.svg'
                 />
             </div>
-            <div className="search-dropdown">
-                <div className="dropdown-content"></div>
+            <div className='search-dropdown'>
+                <div className='dropdown-content'></div>
             </div>
         </div>
     );

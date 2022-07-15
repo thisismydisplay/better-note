@@ -1,9 +1,6 @@
-/* .home-form{
 
-        background-color: rgb(38,38,38);
-
-} */
-.form-label, .form-btn {
+.form-label,
+.form-btn {
     padding: 10px;
     font-family: 'system-ui';
 }
@@ -20,6 +17,6 @@
 .form-btn {
     margin-top: 20px;
     border-radius: 6px;
-    background-color: rgb(58,58,58);
+    background-color: rgb(58, 58, 58);
     color: white;
 }

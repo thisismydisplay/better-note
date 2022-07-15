@@ -4,13 +4,11 @@
     font-size: 1.3rem;
 }
 .edit-note-form {
-    /* padding:10px; */
     width: 100%;
 
 }
 input.note-title-input, textarea.note-content-input{
     width: 100%;
-    /* height: ; */
     border-radius: 10px;
     background-color: rgb(58,58,58);
     color: white;
@@ -39,9 +37,3 @@ input.note-title-input {
     border-top: rgb(38, 38, 38) 1px solid;
 
 }
-
-/* .edit-inputs, .note-content-input, .note-title-input, .edit-note-form, .edit-note-container {
-    height: 100%
-
-
-} */

@@ -11,12 +11,6 @@ function DeleteButton({ note }) {
     const [showForm, setShowForm] = useState(false);
     const sessionUser = useSelector((state) => state.session.user);
     const userId = sessionUser.id;
-    // const orderBy = useSelector((state) => state.session.orderBy);
-    // const onSubmit = (e) => {
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //     dispatch(getNotes(userId, orderBy));
-    // };
 
     return (
         <div className="del-btn-container">

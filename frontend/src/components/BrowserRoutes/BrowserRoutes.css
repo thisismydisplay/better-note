@@ -9,51 +9,28 @@
     position: absolute;
     bottom: 120px;
     border-radius: 10px;
-    /* transition: all 0.2s linear; */
-
 }
 .showSidebar-img {
-    /* background-color: #1A1A1A; */
     padding: 4px;
     max-width: 100%;
     max-height: 100%;
     border-radius: 10px;
-
 }
 
 .create-note {
     text-decoration: none;
-
 }
 
 /* DashboardPage */
-.dashboard-background{
+.dashboard-background {
     position: absolute;
     background-repeat: no-repeat;
     top: 0;
     z-index: -1;
     width: 100%;
     padding: 0px;
-
 }
 
-.dashboard-container {
-    /* margin: 0 auto;
-    background-size: cover;
-    background-position: center;
-    height: 160vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    font-size: 2em;
-    font-weight: bold;
-    text-shadow: 2px 2px black;
-    z-index: 2; */
-}
 .dashboard-header {
     display: flex;
     justify-content: space-between;
@@ -65,6 +42,7 @@
 .browser-div {
     margin-bottom: 120px;
 }
+
 /* DashboardNotesContainer */
 
 .dashboard-notes-container {
@@ -74,30 +52,30 @@
     box-shadow: rgba(0, 0, 0, 0.15) 1px 2px 6px 0px;
     display: flex;
     flex-direction: column;
-    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-font-weight:400;
-height: max-content;
-/* height: 80%; */
-max-height: 800px;
-line-height: 24px;
-outline-color: rgba(0, 0, 0, 0);
-outline-style: solid;
-outline-width: 1px;
-overflow-x: hidden;
-overflow-y: hidden;
-position: relative;
-text-rendering: optimizelegibility;
-text-size-adjust: 100%;
-width: 92%;
-max-width: 1200px;
-margin-right: 20px;
-z-index: 1;
+    font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Oxygen, Ubuntu,
+        Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    height: max-content;
+    max-height: 800px;
+    line-height: 24px;
+    outline-color: rgba(0, 0, 0, 0);
+    outline-style: solid;
+    outline-width: 1px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+    text-rendering: optimizelegibility;
+    text-size-adjust: 100%;
+    width: 92%;
+    max-width: 1200px;
+    margin-right: 20px;
+    z-index: 1;
     padding: 14px;
     margin: 30px;
 }
 
 .notes-link {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -108,8 +86,8 @@ z-index: 1;
 
 .notes-nav-left {
     display: flex;
-        align-items: center;
-    }
+    align-items: center;
+}
 
 span {
     text-decoration: none;
@@ -118,16 +96,13 @@ span {
 }
 
 .green-arrow {
-
     padding: 6px;
-
 }
 
 .notes-nav-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin: 10px; */
     padding: 10px;
     padding-top: 0px;
     border-bottom: #333333 solid 1px;
@@ -139,6 +114,7 @@ span {
 }
 
 .welcome-span {
-    font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, 'system-ui', 'Segoe UI', Roboto, Oxygen, Ubuntu,
+        Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     font-size: 1.2rem;
 }

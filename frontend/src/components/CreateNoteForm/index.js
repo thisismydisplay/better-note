@@ -63,11 +63,7 @@ const CreateNoteForm = ({ hideForm }) => {
         }
     };
 
-    // const handleCancelClick = (e) => {
-    //     e.preventDefault();
-    //     setErrorMessages({});
-    //     // hideForm();
-    // };
+
 
     return (
         <section

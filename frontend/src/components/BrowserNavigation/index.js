@@ -32,13 +32,10 @@ function BrowserNavigation({ sidebarOpen, isLoaded }) {
             >
                 <img
                     className="create-note-icon"
-                    // id="notes-btn"
-
                     alt="search"
                     src="
                     /images/plus-icon.svg"
                 />
-                {/* <span id="new-notebook">New</span>             */}
             </div>
 
             {showForm && (

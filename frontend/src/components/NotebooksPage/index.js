@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { useSelector, useDispatch } from "react-redux";
-import { getNotebooks } from "../../store/notebook";
-import NotebooksList from "../NotebooksList";
-import NotebooksListHeader from "../NotebooksListHeader";
-import PageHeader from "../PageHeader";
+import { useSelector, useDispatch } from 'react-redux';
+import { getNotebooks } from '../../store/notebook';
+import NotebooksList from '../NotebooksList';
+import NotebooksListHeader from '../NotebooksListHeader';
+import PageHeader from '../PageHeader';
 
 function NotebooksPage() {
     const dispatch = useDispatch();
@@ -14,7 +14,6 @@ function NotebooksPage() {
     const notebooks = useSelector((state) => {
         return state.notebook.list;
     });
-    // const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
         dispatch(getNotebooks(userId));
@@ -24,8 +23,8 @@ function NotebooksPage() {
         return null;
     }
     return (
-        <div className="page-container">
-            <div className="header-container">
+        <div className='page-container'>
+            <div className='header-container'>
                 <PageHeader />
             </div>
 

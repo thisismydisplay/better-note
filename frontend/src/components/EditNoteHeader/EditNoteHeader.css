@@ -4,7 +4,6 @@
 }
 
 .edit-note-header-right, .edit-note-header-left{
-    /* align-items: center; */
     display: flex;
     font-size: .8rem;
     font-family: 'system-ui';

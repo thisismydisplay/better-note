@@ -1,14 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-
-    getNotebookNotes,
-} from "../../store/notebook";
-import NoteDetail from "../NoteDetail";
-import "./NotebookDetail.css";
-import Modal from "../Modal";
-import ConfirmDeleteNotebook from "../ConfirmDeleteNotebook";
+import React from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getNotebookNotes } from '../../store/notebook';
+import NoteDetail from '../NoteDetail';
+import './NotebookDetail.css';
+import Modal from '../Modal';
+import ConfirmDeleteNotebook from '../ConfirmDeleteNotebook';
 
 function NotebookDetail({ notebook }) {
     const [showForm, setShowForm] = useState(false);
@@ -21,10 +18,6 @@ function NotebookDetail({ notebook }) {
 
     const notebookNotes = useSelector((state) => state.notebook.notebookNotes);
     const firstNotebook = useSelector((state) => state.notebook.list[0]);
-    // const onSubmit = (e) => {
-    //     e.preventDefault();
-    //     dispatch(getNotebooks(userId));
-    // };
 
     const handleClick = () => {
         dispatch(getNotebookNotes(notebook.id, orderBy));
@@ -36,15 +29,15 @@ function NotebookDetail({ notebook }) {
     }
 
     return (
-        <div className="notebook-container">
-            <div className="notebook-details">
-                <div className="notebook-details-text" onClick={handleClick}>
-                    {" "}
-                    <div className="notebook-title-div">
-                        <div className="title">{notebook.title}</div>
+        <div className='notebook-container'>
+            <div className='notebook-details'>
+                <div className='notebook-details-text' onClick={handleClick}>
+                    {' '}
+                    <div className='notebook-title-div'>
+                        <div className='title'>{notebook.title}</div>
                     </div>
-                    <div className="notebook-details-header-right">
-                        <div className="createdAt">{sessionUser.username} </div>
+                    <div className='notebook-details-header-right'>
+                        <div className='createdAt'>{sessionUser.username} </div>
                         <div>
                             {notebook.updatedAt &&
                                 `${notebook?.updatedAt
@@ -53,40 +46,37 @@ function NotebookDetail({ notebook }) {
                                     .toString()
                                     .slice(11, 16)} `}
                         </div>
-                        <div className="delete-btn-form">
+                        <div className='delete-btn-form'>
                             {!(firstNotebook?.id === notebook?.id) && (
                                 <div
-                                // onSubmit={onSubmit}
-                                className="delete-btn delete-div"
-                                hidden={showForm}
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    setShowForm(true)}}
-
-
-
-
+                                    className='delete-btn delete-div'
+                                    hidden={showForm}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setShowForm(true);
+                                    }}
                                 >
                                     {showForm && (
                                         <Modal
                                             onHide={() => {
-
                                                 setShowForm(false);
                                             }}
                                         >
                                             <ConfirmDeleteNotebook
                                                 notebook={notebook}
                                                 userId={userId}
-                                                hideForm={() => setShowForm(false)}
+                                                hideForm={() =>
+                                                    setShowForm(false)
+                                                }
                                             />
                                         </Modal>
                                     )}
                                     <img
-                                        className="delete-btn trash-icon icon-img"
-                                        alt="background"
-                                        src="
-                        /images/trashcan-icon.svg"
-                                    />{" "}
+                                        className='delete-btn trash-icon icon-img'
+                                        alt='background'
+                                        src='
+                        /images/trashcan-icon.svg'
+                                    />{' '}
                                     Delete
                                 </div>
                             )}
@@ -95,7 +85,7 @@ function NotebookDetail({ notebook }) {
                 </div>
             </div>
             {showNotes && notebook?.id === notebookNotes[0]?.notebookId && (
-                <div className="notebook-notes note-list" key={notebook.id}>
+                <div className='notebook-notes note-list' key={notebook.id}>
                     {notebookNotes?.map((note) => {
                         return <NoteDetail note={note} key={note.id} />;
                     })}

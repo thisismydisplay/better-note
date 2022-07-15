@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import NotebookDetail from "../NotebookDetail";
+import NotebookDetail from '../NotebookDetail';
 
 function NotebooksList() {
     const notebooks = useSelector((state) => {
@@ -12,7 +12,7 @@ function NotebooksList() {
     }
 
     return (
-        <div className="notebook-list">
+        <div className='notebook-list'>
             {notebooks?.map((notebook) => {
                 // when notebook.id is undefined react shows a warning, so we check to avoid that
                 // this happens sometimes, but it is unclear why - shows up as wanting unique key
@@ -22,12 +22,11 @@ function NotebooksList() {
 
                 return (
                     <div
-                        className="notebook-detail"
+                        className='notebook-detail'
                         id={`notebook-${notebook.id}`}
                         key={notebook.id}
                     >
                         <NotebookDetail notebook={notebook} key={notebook.id} />
-
                     </div>
                 );
             })}
